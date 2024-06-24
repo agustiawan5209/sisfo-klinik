@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PasienController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -36,3 +37,24 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::middleware(['auth', 'verified',])->group(function () {
+
+    // Router Orang Tua
+    Route::group(['prefix' => 'pasien', 'as' => "Pasien.", ], function () {
+        Route::controller(PasienController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/tambah-data-pasien', 'create')->name('create');
+            Route::get('/ubah-data-pasien', 'edit')->name('edit');
+            Route::get('/detail-data-pasien', 'show')->name('show');
+            Route::post('/store-data-pasien', 'store')->name('store');
+            Route::put('/update-data-pasien', 'update')->name('update');
+            Route::delete('/hapus-data-pasien', 'destroy')->name('destroy');
+
+            // reset password
+
+            // Route::get('/reset-password-pasien', 'resetpassword')->middleware(['auth', 'password.confirm'])->name('reset.password');
+            // Route::post('/reset-password-pasien', 'resetpasswordUpdate')->name('reset.password');
+        });
+    });
+});
