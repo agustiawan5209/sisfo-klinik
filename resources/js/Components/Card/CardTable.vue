@@ -165,7 +165,7 @@ function truncateText(text) {
     <div class="flex flex-col">
         <div class="-m-1.5 overflow-x-auto">
             <div class="p-1.5 min-w-full inline-block align-middle">
-                <div class="border rounded-lg divide-y divide-gray-200">
+                <div class="border divide-y divide-gray-200 w-full mb-8 overflow-hidden rounded-lg shadow-xs bg-white">
                     <div class="py-3 px-4" v-if="crud.tambah">
                         <div class="relative max-w-xs">
                             <Link :href="route(props.path + '.create')">
@@ -203,10 +203,10 @@ function truncateText(text) {
                             </div>
                         </div>
                     </div>
-                    <div class=" w-full overflow-x-auto ">
-                        <table class="w-full divide-y divide-gray-200">
+                    <div class="w-full overflow-x-auto">
+                        <table class="w-full whitespace-no-wrap">
                             <thead class="bg-gray-50">
-                                <tr>
+                                <tr class="text-xs font-semibold tracking-wide text-left uppercase border-b border-gray-700  text-gray-400 bg-gray-100">
                                     <th scope="col" v-for="item in columsReplace"
                                         class="px-2 py-1 md:px-6 md:py-3 text-nowrap text-start text-xs font-medium text-gray-500 uppercase">
                                         <span v-if="item == 'id' || item == 'slug'">
@@ -219,8 +219,8 @@ function truncateText(text) {
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-gray-200" v-if="TableData.data.length > 0">
-                                <tr v-for="(item, index) in TableData.data" :key="item.id" :class="{ 'opacity-75 blur-sm': Form.processing }">
+                            <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800" v-if="TableData.data.length > 0">
+                                <tr v-for="(item, index) in TableData.data" :key="item.id" class="text-gray-700 dark:text-gray-400" :class="{ 'opacity-75 blur-sm': Form.processing }">
                                     <td class="px-2 py-1 md:px-4 md:py-3  text-xs font-medium text-gray-800"
                                         v-for="col in tableColums">
 
