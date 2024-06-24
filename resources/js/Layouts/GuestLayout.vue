@@ -6,7 +6,7 @@ import HomeLayout from '@/Layouts/HomeLayout.vue';
 </script>
 
 <template>
-    <main class="w-full">
+    <HomeLayout>
 
         <div class="bg-gray-100">
             <section class="cover bg-blue-teal-gradient relative bg-blue-600 px-4 sm:px-8 lg:px-16 xl:px-40 2xl:px-64 overflow-hidden py-48 flex
@@ -15,8 +15,11 @@ import HomeLayout from '@/Layouts/HomeLayout.vue';
                     <img src="images/cover-bg.jpg" alt="" class="w-full h-full object-cover opacity-20">
                 </div>
 
+                <div class="bg-white p-4 rounded-lg z-50">
                 <slot/>
+
+                </div>
             </section>
         </div>
-    </main>
+    </HomeLayout>
 </template>

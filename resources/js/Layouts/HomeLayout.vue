@@ -8,7 +8,7 @@ import { Link } from '@inertiajs/vue3';
 
         <!-- start header -->
         <header class="absolute top-0 left-0 w-full z-50 px-4 sm:px-8 lg:px-16 xl:px-40 2xl:px-64">
-            <div class="hidden md:flex justify-between items-center py-2 border-b text-sm py-3"
+            <div class="hidden md:flex justify-between items-center py-2 border-b text-sm"
                 style="border-color: rgba(255,255,255,.25)">
                 <div class="">
                     <ul class="flex text-white">
@@ -171,7 +171,7 @@ import { Link } from '@inertiajs/vue3';
                     <h5 class="uppercase tracking-wider font-semibold text-gray-500">Contact Details</h5>
                     <ul class="mt-4">
                         <li>
-                            <a href="#" title="" class="block flex items-center opacity-75 hover:opacity-100">
+                            <a href="#" title="" class=" flex items-center opacity-75 hover:opacity-100">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         class="fill-current">
@@ -185,7 +185,7 @@ import { Link } from '@inertiajs/vue3';
                             </a>
                         </li>
                         <li class="mt-4">
-                            <a href="#" title="" class="block flex items-center opacity-75 hover:opacity-100">
+                            <a href="#" title="" class=" flex items-center opacity-75 hover:opacity-100">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         class="fill-current">
@@ -201,7 +201,7 @@ import { Link } from '@inertiajs/vue3';
                             </a>
                         </li>
                         <li class="mt-4">
-                            <a href="#" title="" class="block flex items-center opacity-75 hover:opacity-100">
+                            <a href="#" title="" class=" flex items-center opacity-75 hover:opacity-100">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         class="fill-current">
@@ -215,7 +215,7 @@ import { Link } from '@inertiajs/vue3';
                             </a>
                         </li>
                         <li class="mt-4">
-                            <a href="#" title="" class="block flex items-center opacity-75 hover:opacity-100">
+                            <a href="#" title="" class=" flex items-center opacity-75 hover:opacity-100">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         class="fill-current">
