@@ -139,49 +139,6 @@ const Jenis = ref([
                                     class="w-full text-gray-900" />
                                 <InputError :message="Form.errors.usia" />
                             </div>
-                            <div class="col-span-full sm:col-span-3">
-                                <label for="jenis_imunisasi" class="text-sm">Jenis </label>
-                                <select id="jenis_imunisasi" v-model="Form.jenis_imunisasi"
-                                    class="w-full border-gray-300 focus:border-primary focus:ring-primary rounded-md shadow-sm text-black">
-                                    <option value="">---</option>
-                                    <option v-for="(item, key) in Jenis" :value="item" class="text-black">
-                                        {{ item }}
-                                    </option>
-                                </select>
-                                <InputError :message="Form.errors.jenis_imunisasi" />
-
-                            </div>
-                            <div class="col-span-full sm:col-span-2">
-                                <label for="tanggal" class="text-sm">Tanggal</label>
-                                <TextInput id="tanggal" type="date" v-model="Form.tanggal" placeholder="tanggal..."
-                                    class="w-full text-gray-900" />
-                                <InputError :message="Form.errors.tanggal" />
-
-                            </div>
-
-                            <div class="col-span-full sm:col-span-2 relative">
-                                <label for="penanggung_jawab" class="text-sm">Penanggung Jawab</label>
-                                <TextInput id="penanggung_jawab" type="text" placeholder="Penanggung Jawab"
-                                    v-model="Form.penanggung_jawab" class="w-full text-gray-900" />
-
-                                <div class="w-full mx-auto absolute z-10 -bottom-24" v-if="ShowSelect">
-                                    <select id="countries" multiple ref="SelectElement"
-                                        @change="SelectChangeElement($event)"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-                                    </select>
-                                </div>
-
-                                <InputError :message="Form.errors.penanggung_jawab" />
-                            </div>
-
-                            <div class="col-span-full relative box-content">
-                                <label for="deskripsi" class="text-sm">Deskripsi</label>
-                                <quill-editor id="deskripsi" contentType="html" theme="snow"
-                                    v-model:content="Form.deskripsi" placeholder="@deskripsi"
-                                    class="w-full h-full text-gray-900 relative" />
-                                <InputError :message="Form.errors.deskripsi" />
-
-                            </div>
                         </div>
                         <PrimaryButton type="submit" class="col-span-full mt-20 text-center z-[100]">Simpan
                         </PrimaryButton>

@@ -25,7 +25,7 @@ class PasienController extends Controller
             'table_colums' => array_values(array_diff($columns, ['remember_token', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id', 'deskripsi'])),
             'data' => Pasien::filter(Request::only('search', 'order'))->paginate(10),
             'can' => [
-                'add' => true,
+                'add' => false,
                 'edit' => false,
                 'show' => false,
                 'delete' => false,
