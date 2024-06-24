@@ -16,5 +16,21 @@
         "tailwindcss": "^3.2.1",
         "vite": "^5.0.0",
         "vue": "^3.4.0"
+    },
+    "dependencies": {
+        "@inertiajs/progress": "^0.2.7",
+        "@popperjs/core": "^2.11.8",
+        "@vueup/vue-quill": "^1.2.0",
+        "chart.js": "^4.4.2",
+        "gsap": "^3.12.2",
+        "v-calendar": "^3.1.2",
+        "vue-chartjs": "^5.3.1",
+        "vue-pdf-embed": "^2.0.3",
+        "vue-sweetalert2": "^5.0.5",
+        "@fortawesome/fontawesome-svg-core": "^6.4.0",
+        "@fortawesome/free-brands-svg-icons": "^6.4.0",
+        "@fortawesome/free-regular-svg-icons": "^6.4.0",
+        "@fortawesome/free-solid-svg-icons": "^6.4.0",
+        "@fortawesome/vue-fontawesome": "^3.0.3"
     }
 }
