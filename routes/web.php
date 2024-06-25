@@ -53,8 +53,8 @@ Route::middleware(['auth', 'verified',])->group(function () {
 
             // reset password
 
-            // Route::get('/reset-password-pasien', 'resetpassword')->middleware(['auth', 'password.confirm'])->name('reset.password');
-            // Route::post('/reset-password-pasien', 'resetpasswordUpdate')->name('reset.password');
+            Route::get('/reset-password-pasien', 'resetpassword')->middleware(['auth', 'password.confirm'])->name('reset.password');
+            Route::post('/reset-password-pasien', 'resetpasswordUpdate')->name('reset.password');
         });
     });
 });

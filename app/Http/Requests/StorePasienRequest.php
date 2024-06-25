@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StorePasienRequest extends FormRequest
@@ -23,8 +24,12 @@ class StorePasienRequest extends FormRequest
     {
         return [
             "alamat" => "required|string|max:200",
-            "no_telpon" => "required|numeric|max:20",
+            "no_telpon" => "required",
             "tgl_lahir" => "required|date",
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username',
+            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
+            'password' => ['required','string'],
         ];
     }
 }

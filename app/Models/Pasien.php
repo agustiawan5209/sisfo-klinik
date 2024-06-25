@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Pasien extends Model
 {
@@ -32,4 +33,15 @@ class Pasien extends Model
      public function user(){
         return $this->hasOne(User::class,'id','user_id');
      }
+
+     protected $appends = [
+        'nama_pasien',
+    ];
+
+    public function namaPasien(): Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->user()->first()->name,
+        );
+    }
 }

@@ -25,7 +25,7 @@ const Form = useForm({
 })
 
 function submit() {
-    Form.post(route('Pegawai.reset.password'), {
+    Form.post(route('Pasien.reset.password'), {
         onError: (err) => {
             console.log(err)
         }
@@ -37,7 +37,7 @@ function submit() {
 
 <template>
 
-    <Head title="Pegawai" />
+    <Head title="Pasien" />
 
     <AuthenticatedLayout>
         <template #header>
@@ -49,7 +49,7 @@ function submit() {
                 <form @submit.prevent="submit()" novalidate="" action="" class="container flex flex-col mx-auto space-y-12">
                     <div class="space-y-2 col-span-full lg:col-span-1">
                         <p class="font-medium">Data Informasi Pengguna</p>
-                        <p class="text-xs"> Reset Password pegawai/staff {{ user.name }}  puskesmas</p>
+                        <p class="text-xs"> Reset Password Pasien {{ user.name }}</p>
                     </div>
                     <fieldset class="grid grid-cols-3 gap-6 p-6 rounded-md shadow-sm bg-gray-50">
                         <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">

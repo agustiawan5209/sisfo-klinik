@@ -20,6 +20,7 @@ const Form = useForm({
     name:'',
     alamat:'',
     username:'',
+    tgl_lahir:'',
     email:'',
     password:'',
     no_telpon:'',
@@ -69,6 +70,12 @@ function submit() {
                                 <label for="alamat" class="text-sm">Alamat</label>
                                 <TextInput id="alamat" type="text" v-model="Form.alamat" placeholder="" class="w-full text-gray-900"  />
                                 <InputError :message="Form.errors.alamat"/>
+
+                            </div>
+                            <div class="col-span-full">
+                                <label for="tgl_lahir" class="text-sm">Tanggal Lahir</label>
+                                <TextInput id="tgl_lahir" type="date" v-model="Form.tgl_lahir" placeholder="" class="w-full text-gray-900"  />
+                                <InputError :message="Form.errors.tgl_lahir"/>
 
                             </div>
                             <div class="col-span-full sm:col-span-2">

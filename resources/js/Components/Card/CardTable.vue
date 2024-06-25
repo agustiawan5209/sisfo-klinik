@@ -2,7 +2,7 @@
 
 import { Head, useForm, Link, usePage } from '@inertiajs/vue3';
 import { ref, watch, defineProps, inject, defineExpose, onMounted } from 'vue';
-import Dropdown from '@/Components/Dropdown.vue';
+import dropdownTable from '@/Components/dropdownTable.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import Modal from '@/Components/Modal.vue';
@@ -219,7 +219,7 @@ function truncateText(text) {
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800" v-if="TableData.data.length > 0">
+                            <tbody class="bg-white divide-y " v-if="TableData.data.length > 0">
                                 <tr v-for="(item, index) in TableData.data" :key="item.id" class="text-gray-700 dark:text-gray-400" :class="{ 'opacity-75 blur-sm': Form.processing }">
                                     <td class="px-2 py-1 md:px-4 md:py-3  text-xs font-medium text-gray-800"
                                         v-for="col in tableColums">
@@ -234,9 +234,9 @@ function truncateText(text) {
                                     </td>
                                     <td class="px-2 py-1 md:px-6 md:py-3 whitespace-nowrap text-end text-sm font-medium"
                                         v-if="cekAksi()">
-                                        <!-- Settings Dropdown -->
-                                        <div class="ml-3 relative">
-                                            <Dropdown align="top" width="48">
+                                        <!-- Settings dropdownTable -->
+                                        <div class="ml-3 relative z-50">
+                                            <dropdownTable align="top" width="48">
                                                 <template #trigger>
                                                     <span class="inline-flex rounded-md">
                                                         <button type="button"
@@ -253,14 +253,14 @@ function truncateText(text) {
                                                 <template #content>
                                                     <DropdownLink v-if="crud.edit"
                                                         :href="route(props.path + '.edit', { slug: item.id })"
-                                                        class="flex justify-start gap-3">
+                                                        class="flex justify-start gap-3 text-gray-700">
                                                         <font-awesome-icon class="text-green-500 hover:text-green-700"
                                                             :icon="['fas', 'pen-to-square']" />
                                                         Edit
                                                     </DropdownLink>
                                                     <DropdownLink v-if="crud.show"
                                                         :href="route(props.path + '.show', { slug: item.id })"
-                                                        class="flex justify-start gap-3">
+                                                        class="flex justify-start gap-3 text-gray-700">
                                                         <font-awesome-icon class="text-blue-500 hover:text-blue-700"
                                                             :icon="['fas', 'eye']" />
                                                         Detail
@@ -276,13 +276,13 @@ function truncateText(text) {
 
                                                     <DropdownLink v-if="crud.reset_password"
                                                         :href="route(props.path + '.reset.password', { slug: item.user.id })"
-                                                        class="flex justify-start gap-3">
+                                                        class="flex justify-start gap-3 text-gray-700">
                                                         <font-awesome-icon class="text-blue-500 hover:text-blue-700"
                                                             :icon="['fas', 'key']" />
                                                         Reset Password
                                                     </DropdownLink>
                                                 </template>
-                                            </Dropdown>
+                                            </dropdownTable>
                                         </div>
                                     </td>
                                 </tr>

@@ -22,8 +22,10 @@ class UpdatePasienRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'slug' => 'required|exists:pasiens,id',
+            'name' => 'required|string|max:255',
             "alamat" => "required|string|max:200",
-            "no_telpon" => "required|numeric|max:20",
+            "no_telpon" => "required",
             "tgl_lahir" => "required|date",
         ];
     }
