@@ -11,13 +11,19 @@ import TextInput from '@/Components/TextInput.vue';
 import { ref, defineProps } from 'vue';
 
 const props = defineProps({
-    pasien: {
+    jabatan: {
+        type: Object,
+        default:()=>({})
+    },
+    posyandus: {
         type: Object,
         default:()=>({})
     },
 })
 const Form = useForm({
     name:'',
+    posyandus_id:'',
+    jabatan:'',
     alamat:'',
     username:'',
     email:'',
@@ -26,7 +32,7 @@ const Form = useForm({
 })
 
 function submit() {
-    Form.post(route('Pasien.store'), {
+    Form.post(route('Pegawai.store'), {
         onError: (err) => {
             console.log(err)
         }
@@ -38,19 +44,19 @@ function submit() {
 
 <template>
 
-    <Head title="Pasien" />
+    <Head title="Pegawai" />
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Form Tambah Pasien</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Form Tambah Pegawai</h2>
         </template>
 
         <div class="py-4 relative box-content">
             <section class="p-6 bg-gray-100 text-gray-900">
                 <form @submit.prevent="submit()" novalidate="" action="" class="container flex flex-col mx-auto space-y-12">
                     <div class="space-y-2 col-span-full lg:col-span-1">
-                        <p class="font-medium">Data Informasi Pasien</p>
-                        <p class="text-xs">Tambahkan data Pasien</p>
+                        <p class="font-medium">Data Informasi Pegawai</p>
+                        <p class="text-xs">Tambahkan data pegawai/staff dari puskesmas</p>
                     </div>
                     <fieldset class="grid grid-cols-3 gap-6 p-6 rounded-md shadow-sm bg-gray-50">
                         <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
@@ -63,6 +69,24 @@ function submit() {
                                 <label for="no_telpon" class="text-sm">No. Telepon</label>
                                 <TextInput id="no_telpon" type="text" v-model="Form.no_telpon" placeholder="No. telpon" class="w-full text-gray-900"  />
                                 <InputError :message="Form.errors.no_telpon"/>
+
+                            </div>
+                            <div class="col-span-full sm:col-span-3">
+                                <label for="posyandus_id" class="text-sm">Posyandu</label>
+                                <select name="posyandus_id" id="posyandus_id" v-model="Form.posyandus_id" class="border-gray-300 focus:border-primary focus:ring-primary rounded-md shadow-sm w-full text-gray-900">
+                                    <option value="">-----</option>
+                                    <option v-for="pos in posyandus" :value="pos.id" >{{pos.nama}}</option>
+                                </select>
+                                <InputError :message="Form.errors.posyandus_id"/>
+
+                            </div>
+                            <div class="col-span-full sm:col-span-3">
+                                <label for="jabatan" class="text-sm">Jabatan</label>
+                                <select name="jabatan" id="jabatan" v-model="Form.jabatan" class="border-gray-300 focus:border-primary focus:ring-primary rounded-md shadow-sm w-full text-gray-900">
+                                    <option value="">-----</option>
+                                    <option v-for="jab in jabatan" :value="jab.name" >{{jab.name}}</option>
+                                </select>
+                                <InputError :message="Form.errors.jabatan"/>
 
                             </div>
                             <div class="col-span-full">
