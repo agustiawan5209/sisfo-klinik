@@ -18,6 +18,7 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'edit pasien']);
         Permission::create(['name' => 'delete pasien']);
         Permission::create(['name' => 'show pasien']);
+        Permission::create(['name' => 'reset pasien']);
 
         // Antrian Permission
         Permission::create(['name' => 'add antrian']);

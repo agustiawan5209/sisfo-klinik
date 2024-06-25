@@ -25,10 +25,12 @@ class PasienController extends Controller
             'table_colums' => array_values(array_diff($columns, ['remember_token', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id', 'deskripsi'])),
             'data' => Pasien::filter(Request::only('search', 'order'))->paginate(10),
             'can' => [
-                'add' => false,
-                'edit' => false,
-                'show' => false,
-                'delete' => false,
+                'add' => Auth::user()->can('add pasien'),
+                'edit' => Auth::user()->can('edit pasien'),
+                'show' => Auth::user()->can('show pasien'),
+                'delete' => Auth::user()->can('delete pasien'),
+                'reset' => Auth::user()->can('reset staff'),
+
             ]
         ]);
     }

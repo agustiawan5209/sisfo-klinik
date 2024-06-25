@@ -31,6 +31,7 @@ class RoleSeeder extends Seeder
             'edit pasien',
             'delete pasien',
             'show pasien',
+            'reset pasien',
 
         ]);
 
