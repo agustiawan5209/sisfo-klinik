@@ -48,9 +48,7 @@ class LayananController extends Controller
      */
     public function store(StoreLayananRequest $request)
     {
-
         $layanan = Layanan::create($request->all());
-
         return redirect()->route('Layanan.index')->with('message', 'Data Layanan Berhasil Di Simpan!!');
     }
 
@@ -94,6 +92,4 @@ class LayananController extends Controller
         $layanan->delete();
         return redirect()->route('Layanan.index')->with('message', 'Data Layanan Berhasil Di Hapus!!');
     }
-
-
 }

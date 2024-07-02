@@ -10,6 +10,10 @@ use Inertia\Inertia;
 
 class DaftarLayananController extends Controller
 {
+    /**
+     * success
+     * @return void
+     */
     public function success()
     {
         return Inertia::render('User/Layanan/Success');
