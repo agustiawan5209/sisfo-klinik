@@ -24,7 +24,6 @@ class LayananController extends Controller
         $tableName = 'layanans'; // Ganti dengan nama tabel yang Anda inginkan
         $columns = DB::getSchemaBuilder()->getColumnListing($tableName);
 
-
         // dd($columns);
         return Inertia::render('Admin/Layanan/Index', [
             'search' =>  Request::input('search'),

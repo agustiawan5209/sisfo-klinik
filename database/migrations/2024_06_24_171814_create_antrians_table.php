@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('antrians', function (Blueprint $table) {
             $table->id();
-            $table->string('nomor_antrian');
-            $table->date('tgl_lahir');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('nomor_antrian', 30);
+            $table->date('tanggal');
+            $table->enum('status', ['0','1'])->default('0');
             $table->timestamps();
         });
     }

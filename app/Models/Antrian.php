@@ -11,7 +11,9 @@ class Antrian extends Model
 
     protected $tables = 'antrians';
     protected $fillable = [
+        'user_id',
         'nomor_antrian',
-        'tgl_antrian',
+        'tanggal',
+        'status',
     ];
 }
