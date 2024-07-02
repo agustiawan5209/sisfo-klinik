@@ -33,6 +33,16 @@ class RoleSeeder extends Seeder
             'show pasien',
             'reset pasien',
 
+            'add layanan',
+            'edit layanan',
+            'delete layanan',
+            'show layanan',
+
+            'add pemeriksaan',
+            'edit pemeriksaan',
+            'delete pemeriksaan',
+            'show pemeriksaan',
+
         ]);
 
     }

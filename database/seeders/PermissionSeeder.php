@@ -26,5 +26,24 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'delete antrian']);
         Permission::create(['name' => 'show antrian']);
 
+        // Layanan Permission
+        Permission::create(['name' => 'add layanan']);
+        Permission::create(['name' => 'edit layanan']);
+        Permission::create(['name' => 'delete layanan']);
+        Permission::create(['name' => 'show layanan']);
+
+
+         // Daftar Layanan Permission
+         Permission::create(['name' => 'add daftar_layanan']);
+         Permission::create(['name' => 'edit daftar_layanan']);
+         Permission::create(['name' => 'delete daftar_layanan']);
+         Permission::create(['name' => 'show daftar_layanan']);
+
+         // Pemeriksaan Permission
+         Permission::create(['name' => 'add pemeriksaan']);
+         Permission::create(['name' => 'edit pemeriksaan']);
+         Permission::create(['name' => 'delete pemeriksaan']);
+         Permission::create(['name' => 'show pemeriksaan']);
+
     }
 }
