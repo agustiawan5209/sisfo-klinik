@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\PasienController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\PasienController;
+use App\Http\Controllers\LayananController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +41,7 @@ require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'verified',])->group(function () {
 
-    // Router Orang Tua
+    // Router Pasien
     Route::group(['prefix' => 'pasien', 'as' => "Pasien.", ], function () {
         Route::controller(PasienController::class)->group(function () {
             Route::get('/', 'index')->name('index');
@@ -55,6 +56,19 @@ Route::middleware(['auth', 'verified',])->group(function () {
 
             Route::get('/reset-password-pasien', 'resetpassword')->middleware(['auth', 'password.confirm'])->name('reset.password');
             Route::post('/reset-password-pasien', 'resetpasswordUpdate')->name('reset.password');
+        });
+    });
+
+    // Router Layanan
+    Route::group(['prefix' => 'layanan', 'as' => "Layanan.", ], function () {
+        Route::controller(LayananController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/tambah-data-layanan', 'create')->name('create');
+            Route::get('/ubah-data-layanan', 'edit')->name('edit');
+            Route::get('/detail-data-layanan', 'show')->name('show');
+            Route::post('/store-data-layanan', 'store')->name('store');
+            Route::put('/update-data-layanan', 'update')->name('update');
+            Route::delete('/hapus-data-layanan', 'destroy')->name('destroy');
         });
     });
 });

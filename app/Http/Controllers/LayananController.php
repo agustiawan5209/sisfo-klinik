@@ -29,13 +29,12 @@ class LayananController extends Controller
         return Inertia::render('Admin/Layanan/Index', [
             'search' =>  Request::input('search'),
             'table_colums' => array_values(array_diff($columns, ['remember_token', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id', 'deskripsi'])),
-            'data' => Layanan::with(['user'])->filter(Request::only('search', 'order'))->paginate(10),
+            'data' => Layanan::filter(Request::only('search', 'order'))->paginate(10),
             'can' => [
-                'add' => Auth::user()->can('add layanan'),
-                'edit' => Auth::user()->can('edit layanan'),
-                'show' => Auth::user()->can('show layanan'),
-                'delete' => Auth::user()->can('delete layanan'),
-
+                'add' => true,
+                'edit' => true,
+                'show' => false,
+                'delete' => true,
             ]
         ]);
     }
@@ -65,7 +64,7 @@ class LayananController extends Controller
     public function show(Layanan $layanan)
     {
         return Inertia::render('Admin/Layanan/Show', [
-            'layanan' => Layanan::with(['user'])->find(Request::input('slug'))
+            'layanan' => Layanan::find(Request::input('slug'))
         ]);
     }
 
@@ -75,7 +74,7 @@ class LayananController extends Controller
     public function edit(Layanan $layanan)
     {
         return Inertia::render('Admin/Layanan/Edit', [
-            'layanan' => Layanan::with(['user'])->find(Request::input('slug'))
+            'layanan' => Layanan::find(Request::input('slug'))
         ]);
     }
 
