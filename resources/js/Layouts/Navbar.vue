@@ -24,7 +24,7 @@ import NavLink from '@/Components/NavLink.vue';
         </li>
         <li class="relative px-6 py-3">
             <NavLink :href="route('Layanan.index')" :active="route().current('Layanan.index')">
-                <font-awesome-icon :icon="['fas', 'file']"/>
+                <font-awesome-icon :icon="['fas', 'pen']"/>
                 <span class="ml-4">Layanan</span>
             </NavLink>
         </li>
