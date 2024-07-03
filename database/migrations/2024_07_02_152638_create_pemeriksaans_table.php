@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('pemeriksaans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_layanan')->constrained('layanans');
+            $table->string('nama_layanan');
             $table->foreignId('id_pasien')->constrained('pasiens');
+            $table->string('nama_pasien');
             $table->string('nama_petugas');
             $table->text('hasil_pemeriksaan');
             $table->date('tgl_pemeriksaan');

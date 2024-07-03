@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\LayananController;
+use App\Http\Controllers\PemeriksaanController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -69,6 +70,19 @@ Route::middleware(['auth', 'verified',])->group(function () {
             Route::post('/store-data-layanan', 'store')->name('store');
             Route::put('/update-data-layanan', 'update')->name('update');
             Route::delete('/hapus-data-layanan', 'destroy')->name('destroy');
+        });
+    });
+
+    // Router Layanan
+    Route::group(['prefix' => 'pemeriksaan', 'as' => "Pemeriksaan.", ], function () {
+        Route::controller(PemeriksaanController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/tambah-data-pemeriksaan', 'create')->name('create');
+            Route::get('/ubah-data-pemeriksaan', 'edit')->name('edit');
+            Route::get('/detail-data-pemeriksaan', 'show')->name('show');
+            Route::post('/store-data-pemeriksaan', 'store')->name('store');
+            Route::put('/update-data-pemeriksaan', 'update')->name('update');
+            Route::delete('/hapus-data-pemeriksaan', 'destroy')->name('destroy');
         });
     });
 });

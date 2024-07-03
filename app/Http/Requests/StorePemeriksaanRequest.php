@@ -22,8 +22,8 @@ class StorePemeriksaanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id_layanan' => 'required|exists:pemeriksaans,id',
-            'id_pasien' => 'required|exists:pemeriksaans,id',
+            'id_layanan' => 'required|exists:layanans,id',
+            'id_pasien' => 'required|exists:pasiens,id',
             'nama_petugas' => 'required|string',
             'hasil_pemeriksaan' => 'required|string',
             'tgl_pemeriksaan' => 'required|string',

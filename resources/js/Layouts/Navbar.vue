@@ -28,5 +28,11 @@ import NavLink from '@/Components/NavLink.vue';
                 <span class="ml-4">Layanan</span>
             </NavLink>
         </li>
+        <li class="relative px-6 py-3">
+            <NavLink :href="route('Pemeriksaan.index')" :active="route().current('Pemeriksaan.index')">
+                <font-awesome-icon :icon="['fas', 'search']"/>
+                <span class="ml-4">Pemeriksaan</span>
+            </NavLink>
+        </li>
     </ul>
 </template>
