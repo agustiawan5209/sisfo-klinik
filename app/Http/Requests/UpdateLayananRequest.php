@@ -25,6 +25,7 @@ class UpdateLayananRequest extends FormRequest
             'slug'=> 'required|exists:layanans,id',
             'nama_layanan'=> 'required|string|max:100',
             'keterangan'=> 'required|string|max:200',
+            'harga'=> 'required|string|max:200',
         ];
     }
 }

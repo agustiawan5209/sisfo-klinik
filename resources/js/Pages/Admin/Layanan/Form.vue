@@ -19,6 +19,7 @@ const props = defineProps({
 const Form = useForm({
     nama_layanan:'',
     keterangan:'',
+    harga:'',
 })
 
 function submit() {
@@ -56,9 +57,14 @@ function submit() {
                                 <InputError :message="Form.errors.nama_layanan"/>
                             </div>
                             <div class="col-span-full sm:col-span-3">
-                                <label for="nama_layanan" class="text-sm">Keterangan</label>
-                                <TextInput id="nama_layanan" type="text" placeholder="Keterangan" v-model="Form.keterangan"  class="w-full text-gray-900"  />
+                                <label for="keterangan" class="text-sm">Keterangan</label>
+                                <TextInput id="keterangan" type="text" placeholder="Keterangan" v-model="Form.keterangan"  class="w-full text-gray-900"  />
                                 <InputError :message="Form.errors.keterangan"/>
+                            </div>
+                            <div class="col-span-full sm:col-span-3">
+                                <label for="harga" class="text-sm">Harga</label>
+                                <TextInput id="harga" type="text" placeholder="Harga" v-model="Form.harga"  class="w-full text-gray-900"  />
+                                <InputError :message="Form.errors.harga"/>
                             </div>
                         </div>
                         <PrimaryButton type="submit" class="col-span-full text-center">Simpan</PrimaryButton>

@@ -13,6 +13,7 @@ class Layanan extends Model
     protected $fillable = [
         'nama_layanan',
         'keterangan',
+        'harga',
     ];
 
      //  FIlter Data User
