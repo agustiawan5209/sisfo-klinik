@@ -150,12 +150,10 @@ import HomeLayout from '@/Layouts/HomeLayout.vue';
         <section
             class="relative bg-blue-teal-gradient px-4 sm:px-8 lg:px-16 xl:px-40 2xl:px-64 py-12 text-center md:text-left">
             <div class="md:flex md:items-center md:justify-center">
-                <h2 class="text-xl font-bold text-white">Get in touch with us today! <br class="block md:hidden">Call us
-                    on: +1
-                    562-789-1935</h2>
-                <a href="#"
-                    class="px-8 py-4 bg-white text-blue-600 rounded inline-block font-semibold md:ml-8 mt-4 md:mt-0">Book
-                    Appointment</a>
+                <h2 class="text-xl font-bold text-white">Dapatkan Layanan Anda Hari ini! <br class="block md:hidden">Hubungi Kami
+                    : +62 812-4275-5965</h2>
+                <Link :href="route('login')"
+                    class="px-8 py-4 bg-white text-blue-600 rounded inline-block font-semibold md:ml-8 mt-4 md:mt-0">Daftar Sekarang</Link>
             </div>
         </section>
         <!-- end cta -->

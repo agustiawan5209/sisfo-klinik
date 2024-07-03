@@ -20,7 +20,7 @@ import { Link } from '@inertiajs/vue3';
                                         d="M12,2C7.589,2,4,5.589,4,9.995C3.971,16.44,11.696,21.784,12,22c0,0,8.029-5.56,8-12C20,5.589,16.411,2,12,2z M12,14 c-2.21,0-4-1.79-4-4s1.79-4,4-4s4,1.79,4,4S14.21,14,12,14z" />
                                 </svg>
 
-                                <span class="ml-2">1985 Kerry Way, Whittier, CA, USA</span>
+                                <span class="ml-2">Karunrung, Kec. Rappocini, Kota Makassar, Sulawesi Selatan 90221</span>
                             </div>
                         </li>
                         <li class="ml-6">
@@ -31,7 +31,7 @@ import { Link } from '@inertiajs/vue3';
                                         d="M14.594,13.994l-1.66,1.66c-0.577-0.109-1.734-0.471-2.926-1.66c-1.193-1.193-1.553-2.354-1.661-2.926l1.661-1.66 l0.701-0.701L5.295,3.293L4.594,3.994l-1,1C3.42,5.168,3.316,5.398,3.303,5.643c-0.015,0.25-0.302,6.172,4.291,10.766 C11.6,20.414,16.618,20.707,18,20.707c0.202,0,0.326-0.006,0.358-0.008c0.245-0.014,0.476-0.117,0.649-0.291l1-1l0.697-0.697 l-5.414-5.414L14.594,13.994z" />
                                 </svg>
 
-                                <span class="ml-2">+1 562-789-1935</span>
+                                <span class="ml-2">+62 812-4275-5965</span>
                             </div>
                         </li>
                     </ul>
@@ -90,7 +90,7 @@ import { Link } from '@inertiajs/vue3';
             <div class="flex flex-wrap items-center justify-between py-6">
                 <div class="w-1/2 md:w-auto">
                     <a href="index.html" class="text-white font-bold text-2xl">
-                        DentalPro
+                        KLINIK FAHRI DENT K
                     </a>
                 </div>
 
@@ -118,9 +118,8 @@ import { Link } from '@inertiajs/vue3';
                                     href="#">Contact
                                     Us</a></li>
                             <li class="md:ml-6 mt-3 md:mt-0">
-                                <a class="inline-block font-semibold px-4 py-2 text-white bg-blue-600 md:bg-transparent md:text-white border border-white rounded"
-                                    href="book-appointment.html">Book
-                                    Appointment</a>
+                                <Link class="inline-block font-semibold px-4 py-2 text-white bg-blue-600 md:bg-transparent md:text-white border border-white rounded"
+                                    :href="route('login')">Masuk</Link>
                             </li>
                         </ul>
                     </nav>
@@ -195,8 +194,7 @@ import { Link } from '@inertiajs/vue3';
                                     </svg>
                                 </span>
                                 <span class="ml-3">
-                                    Mon - Fri: 9:00 - 19:00<br>
-                                    Closed on Weekends
+                                    Senin - Minggu: 9:00 - 22:00<br>
                                 </span>
                             </a>
                         </li>
@@ -210,7 +208,7 @@ import { Link } from '@inertiajs/vue3';
                                     </svg>
                                 </span>
                                 <span class="ml-3">
-                                    +1 562-789-1935
+                                    +62 812-4275-5965
                                 </span>
                             </a>
                         </li>
