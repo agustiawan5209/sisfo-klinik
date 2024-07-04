@@ -10,6 +10,7 @@ use App\Models\JadwalImunisasi;
 use App\Models\RiwayatImunisasi;
 use App\Http\Controllers\Controller;
 use App\Models\DaftarLayanan;
+use App\Models\Layanan;
 use App\Models\Puskesmas;
 use Illuminate\Support\Facades\Request;
 
@@ -50,5 +51,14 @@ class ApiModelController extends Controller
         ];
     }
 
+    public function getLayanan($id)
+    {
+        try {
+            $layanan = Layanan::find($id);
 
+            return response($layanan, 200);
+        } catch (\Throwable $th) {
+            return response("Error :". $th->getMessage(),500);
+        }
+    }
 }

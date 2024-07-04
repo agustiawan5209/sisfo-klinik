@@ -1,10 +1,37 @@
 <script setup>
 import UserLayout from '@/Layouts/UserLayout.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
 import Modal from '@/Components/Modal.vue';
-import { ref, watch, defineProps } from 'vue';
+import { ref, watch, defineProps, onMounted, inject } from 'vue';
 import axios from 'axios';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import TextInput from '@/Components/TextInput.vue';
+import InputError from '@/Components/InputError.vue';
+import InputLabel from '@/Components/InputLabel.vue';
+const swal = inject('$swal')
 
+const page = usePage()
+
+onMounted(() => {
+    if (page.props.message !== null) {
+        swal({
+            icon: "info",
+            title: 'Berhasil',
+            text: page.props.message,
+            showConfirmButton: true,
+            timer: 2000
+        });
+    }
+})
+function messageDisplay(message, icon) {
+    swal({
+        icon: icon,
+        title: 'Perhatian!!',
+        text: message,
+        showConfirmButton: true,
+        timer: 2000
+    });
+}
 const props = defineProps({
     search: {
         type: String,
@@ -41,13 +68,50 @@ const showModal = ref(false);
 const btnModal = ref(false);
 
 const formLayanan = useForm({
-    id_pasien : '',
+    id_pasien: '',
     id_layanan: '',
+    nama_layanan: '',
     tgl: '',
 })
 
-const getLayanan = async function(){
-    axios.get(route(''))
+const getLayanan = async function (id) {
+    axios.get(route('api.get.Layanan', { id: id }), {
+        params: {
+            id: id,
+        }
+    })
+        .then((response) => {
+            const element = response.data;
+            formLayanan.id_layanan = element.id;
+            formLayanan.nama_layanan = element.nama_layanan;
+            showModal.value = true;
+
+        }).catch((err) => {
+            console.log(err)
+            const error = err.response.data;
+            messageDisplay(error, "error")
+
+        })
+}
+
+function submit(){
+    formLayanan.post(route('User.Layanan.store'),{
+        preserveState: false,
+        onError: (err)=>{
+            var ul = "";
+            for(const key in err){
+                ul+= err[key]+ '\n';
+
+            }
+            // err.forEach((element,key)=>{
+            // })
+            messageDisplay(ul, 'error');
+        },
+        onFinish: ()=>{
+            showModal.value = false;
+        }
+
+    })
 }
 </script>
 
@@ -61,7 +125,29 @@ const getLayanan = async function(){
         </template>
 
 
+        <Modal :show="showModal" maxWidth="md">
+            <div class="w-full flex flex-col justify-center items-center py-4">
+                <div class="text-gray-700 text-center">
+                    <h3 class="text-xl md:text-2xl">Form Buat Antrian</h3>
+                    <p class="text-justify text-sm">Isi Form untuk Membuat Nomor Antrian <br>
+                    Isi Tanggal Sesuai Dengan Tanggal Anda Ingin Data Ke Klinik</p>
+                </div>
+                <form action="" @submit.prevent="submit" class="w-full md:w-[70%] border p-4 rounded-lg my-10">
+                    <div class="mt-2">
+                        <inputLabel value="Nama Layanan" />
+                        <TextInput class="w-full" type="text" v-model="formLayanan.nama_layanan"/>
+                    </div>
+                    <div class="mt-2">
+                        <inputLabel value="Tanggal Kedatangan" />
+                        <TextInput class="w-full" type="date" v-model="formLayanan.tgl"/>
+                    </div>
+                    <div class="mt-2 flex justify-center">
+                        <PrimaryButton type="submit" class="bg-green-500 hover:bg-green-700">Buat Antrian</PrimaryButton>
+                    </div>
 
+                </form>
+            </div>
+        </Modal>
         <div class="py-4 relative box-content">
             <div class="w-full overflow-hidden rounded-lg shadow-xs divide-y divide-gray-700 bg-gray-800">
                 <div class="w-full overflow-x-auto">
@@ -82,10 +168,10 @@ const getLayanan = async function(){
                                     {{ (layanan.current_page - 1) * layanan.per_page + index + 1 }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                   {{item.nama_layanan}}
+                                    {{ item.nama_layanan }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                   {{item.keterangan}}
+                                    {{ item.keterangan }}
                                 </td>
                                 <td class="px-4 py-3 text-xs">
                                     <span
@@ -94,7 +180,9 @@ const getLayanan = async function(){
                                     </span>
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    6/10/2020
+                                    <PrimaryButton type="button" @click="getLayanan(item.id)" class="bg-green-400">
+                                        Buat Antrian
+                                    </PrimaryButton>
                                 </td>
                             </tr>
                         </tbody>

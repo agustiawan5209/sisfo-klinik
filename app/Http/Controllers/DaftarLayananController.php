@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use App\Models\Pasien;
 use App\Models\Layanan;
 use App\Models\DaftarLayanan;
 use Illuminate\Support\Facades\DB;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use App\Http\Requests\StoreDaftarLayananRequest;
 use App\Http\Requests\UpdateDaftarLayananRequest;
+use App\Models\Antrian;
 
 class DaftarLayananController extends Controller
 {
@@ -19,7 +21,7 @@ class DaftarLayananController extends Controller
      */
     public function success()
     {
-        return Inertia::render('User/Layanan/Success');
+        return Inertia::render('User/Success');
     }
     /**
      * Display a listing of the resource.
@@ -32,7 +34,7 @@ class DaftarLayananController extends Controller
         // dd($columns);
         return Inertia::render('User/Layanan/Index', [
             'search' =>  Request::input('search'),
-            'table_colums' => array_values(array_diff($columns, ['remember_token', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id', 'hasil_pemeriksaan','id_layanan','id_pasien'])),
+            'table_colums' => array_values(array_diff($columns, ['remember_token', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id', 'hasil_pemeriksaan', 'id_layanan', 'id_pasien'])),
             'layanan' => Layanan::filter(Request::only('search', 'order'))->paginate(10),
             'can' => [
                 'add' => Auth::user()->can('add pasien'),
@@ -58,9 +60,36 @@ class DaftarLayananController extends Controller
      */
     public function store(StoreDaftarLayananRequest $request)
     {
-        $daftarLayanan = DaftarLayanan::create($request->all());
+        try {
+            $antrian = new AntrianController();
+            $nomor_antrian = $antrian->generateNomorAntrian($request->tgl);
 
-        return redirect()->route("User.Layanan.success")->with("message", "Data Layanan Berhasil Di Daftarkan");
+            DB::transaction(function () use ($request, $nomor_antrian) {
+
+                $table_antrian = Antrian::where('nomor_antrian', $nomor_antrian)->lockForUpdate()->first();
+                // dd($table_antrian);
+                if ($table_antrian != null ) {
+                    if($table_antrian->status == 1 || $table_antrian->status == "1"){
+                        return redirect()->route("User.Layanan.index")->with("message", "Data Gagal Didaftarkan. Nomor Antrian Sudah Ada");
+                    }
+                }
+            });
+            $pasien = Pasien::with(['user'])->where('user_id', Auth::user()->id)->first();
+            $data_antrian = $antrian->createAntrian($nomor_antrian);
+            $daftarLayanan = DaftarLayanan::create([
+                'id_pasien' => $pasien->id,
+                'nama_pasien' => $pasien->user->name,
+                'id_layanan' => $request->id_layanan,
+                'nama_layanan' => $request->nama_layanan,
+                'nomor_antrian' => $data_antrian->nomor_antrian,
+                'tgl' => $request->tgl,
+                'status' => '0',
+            ]);
+
+            return redirect()->route("User.Layanan.success")->with("message", "Data Layanan Berhasil Di Daftarkan");
+        } catch (\Throwable $th) {
+            return redirect()->route("User.Layanan.index")->with("message", $th->getMessage()   );
+        }
     }
 
     /**

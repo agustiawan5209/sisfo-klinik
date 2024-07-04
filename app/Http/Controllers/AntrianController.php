@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 class AntrianController extends Controller
 {
-    public function generateNomorAntrian()
+    public function generateNomorAntrian($tgl)
     {
-        $max_antrian = Antrian::select(['nomor_antrian'])->whereDate('created_at', Carbon::now()->format('Y-m-d'))->orderBy('id', 'desc')->first();
+        $max_antrian = Antrian::select(['nomor_antrian'])->whereDate('created_at', $tgl)->orderBy('id', 'desc')->first();
         // dd($max_antrian);
         if ($max_antrian == null) {
             $nomor = 1;
@@ -23,11 +23,13 @@ class AntrianController extends Controller
         return $nomor_antrian;
     }
 
-    public function createAntrian(){
+    public function createAntrian($nomor){
         $antrian = Antrian::create([
             'user_id'=> Auth::user()->id,
-            'nomor_antrian'=> $this->generateNomorAntrian(),
+            'nomor_antrian'=> $nomor,
             'tanggal'=> Carbon::now()->format('Y-m-d'),
         ]);
+
+        return $antrian;
     }
 }
