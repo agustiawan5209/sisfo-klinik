@@ -10,6 +10,7 @@ use App\Http\Controllers\LayananController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PemeriksaanController;
+use App\Http\Controllers\User\PemeriksaanController as UserPemeriksaanController;
 use App\Models\DaftarLayanan;
 
 /*
@@ -68,7 +69,13 @@ Route::middleware(['auth', 'verified',])->group(function () {
         });
         Route::group(['prefix' => 'antrian', 'as' => "Antrian.",], function () {
             Route::controller(AntrianUserController::class)->group(function () {
-                Route::get('/daftar', 'index')->name('index');
+                Route::get('/data', 'index')->name('index');
+
+            });
+        });
+        Route::group(['prefix' => 'pemeriksaan', 'as' => "Pemeriksaan.",], function () {
+            Route::controller(UserPemeriksaanController::class)->group(function () {
+                Route::get('/data', 'index')->name('index');
 
             });
         });

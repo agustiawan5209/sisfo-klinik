@@ -68,9 +68,9 @@ const User = usePage().props.auth.user
                                 <div>
                                     <span
                                         class="select-none flex items-center px-4 bg-blue-600 py-2 rounded-md">
-                                        <a href="javascript:;"
-                                            class="flex items-center flex-grow text-xs md:text-sm lg:text-base text-white ">Laporan
-                                            Pemeriksaan</a>
+                                        <Link :href="route('User.Pemeriksaan.index')"
+                                        class="flex items-center flex-grow text-xs md:text-sm lg:text-base text-white ">Laporan
+                                        Pemeriksaan</Link>
                                     </span>
                                 </div>
 
