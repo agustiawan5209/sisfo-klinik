@@ -34,6 +34,12 @@ class AntrianUserController extends Controller
             // ]
         ]);
     }
+    public function cetakAntrian($id)
+    {
+        return Inertia::render('User/Antrian/Cetak', [
+            'layanan' => DaftarLayanan::find($id),
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.

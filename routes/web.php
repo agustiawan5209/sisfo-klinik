@@ -70,6 +70,7 @@ Route::middleware(['auth', 'verified',])->group(function () {
         Route::group(['prefix' => 'antrian', 'as' => "Antrian.",], function () {
             Route::controller(AntrianUserController::class)->group(function () {
                 Route::get('/data', 'index')->name('index');
+                Route::get('/cetak-antrian/{id}', 'cetakAntrian')->name('cetak');
 
             });
         });

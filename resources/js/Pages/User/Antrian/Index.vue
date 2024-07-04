@@ -159,8 +159,7 @@ function submit(){
                                 <th class="px-4 py-3">Nama Antrian</th>
                                 <th class="px-4 py-3">Nama Layanan</th>
                                 <th class="px-4 py-3">tgl</th>
-                                    <!-- <th class="px-4 py-3">harga</th>
-                                    <th class="px-4 py-3">Aksi</th> -->
+                                    <th class="px-4 py-3">Cetak</th>
                             </tr>
                         </thead>
                         <tbody class=" divide-y divide-gray-700 bg-gray-800" v-if="layanan.data.length">
@@ -183,11 +182,13 @@ function submit(){
                                         {{ item.harga }}
                                     </span>
                                 </td> -->
-                                <!-- <td class="px-4 py-3 text-sm">
-                                    <PrimaryButton type="button" @click="getLayanan(item.id)" class="bg-green-400">
-                                        Buat Antrian
-                                    </PrimaryButton>
-                                </td> -->
+                                <td class="px-4 py-3 text-sm">
+                                    <Link :href="route('User.Antrian.cetak', {id: item.id})">
+                                        <PrimaryButton type="button"  class="bg-green-400">
+                                            Cetak Antrian
+                                        </PrimaryButton>
+                                    </Link>
+                                </td>
                             </tr>
                         </tbody>
                         <tbody class="divide-y divide-gray-700 bg-gray-800" v-else>
