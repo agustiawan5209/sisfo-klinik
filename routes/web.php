@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AntrianUserController;
 use App\Http\Controllers\DaftarLayananController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
@@ -62,6 +63,12 @@ Route::middleware(['auth', 'verified',])->group(function () {
                 Route::post('/store-daftar-layanan', 'store')->name('store');
                 Route::put('/update-daftar-layanan', 'update')->name('update');
                 Route::delete('/hapus-daftar-layanan', 'destroy')->name('destroy');
+
+            });
+        });
+        Route::group(['prefix' => 'antrian', 'as' => "Antrian.",], function () {
+            Route::controller(AntrianUserController::class)->group(function () {
+                Route::get('/daftar', 'index')->name('index');
 
             });
         });

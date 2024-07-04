@@ -53,15 +53,23 @@ const User = usePage().props.auth.user
                                     <span
                                         class="select-none flex items-center px-4 bg-blue-600 py-2 rounded-md">
                                         <Link :href="route('User.Layanan.index')"
-                                            class="flex items-center flex-grow text-[1.15rem] text-white ">Daftar
+                                            class="flex items-center flex-grow text-xs md:text-sm lg:text-base text-white ">Daftar
                                             Layanan</Link>
                                     </span>
                                 </div>
                                 <div>
                                     <span
                                         class="select-none flex items-center px-4 bg-blue-600 py-2 rounded-md">
+                                        <Link :href="route('User.Antrian.index')"
+                                            class="flex items-center flex-grow text-xs md:text-sm lg:text-base text-white ">Data
+                                            Antrian</Link>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span
+                                        class="select-none flex items-center px-4 bg-blue-600 py-2 rounded-md">
                                         <a href="javascript:;"
-                                            class="flex items-center flex-grow text-[1.15rem] text-white ">Laporan
+                                            class="flex items-center flex-grow text-xs md:text-sm lg:text-base text-white ">Laporan
                                             Pemeriksaan</a>
                                     </span>
                                 </div>
