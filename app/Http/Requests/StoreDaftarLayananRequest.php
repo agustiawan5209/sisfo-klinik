@@ -22,13 +22,13 @@ class StoreDaftarLayananRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id_pasien' => 'required|exists:pasiens,id',
-            'nama_pasien' => 'required|string',
+            // 'id_pasien' => 'required|exists:pasiens,id',
+            // 'nama_pasien' => 'required|string',
             'id_layanan' => 'required|exists:layanans,id',
             'nama_layanan' => 'required|string',
-            'nomor_antrian' => 'required|string',
+            // 'nomor_antrian' => 'required|string',
             'tgl' => 'required|date',
-            'status' => 'required|in_array:0,1,2',
+            // 'status' => 'required|in_array:0,1,2',
         ];
     }
 }

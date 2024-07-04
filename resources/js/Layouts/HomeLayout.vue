@@ -133,11 +133,11 @@ import { Link } from '@inertiajs/vue3';
         <footer class="relative bg-gray-900 text-white px-4 sm:px-8 lg:px-16 xl:px-40 2xl:px-64 py-12 lg:py-24">
             <div class="flex flex-col md:flex-row">
                 <div class="w-full lg:w-2/6 lg:mx-4 lg:pr-8">
-                    <h3 class="font-bold text-2xl">DentalPro</h3>
+                    <h3 class="font-bold text-2xl">KLINIK FAHRI DENT K</h3>
                     <p class="text-gray-400">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy.
                     </p>
 
-                    <form class="flex items-center mt-6">
+                    <!-- <form class="flex items-center mt-6">
                         <div class="w-full">
                             <label class="block uppercase tracking-wide text-gray-600 text-xs font-bold mb-2"
                                 for="grid-last-name">
@@ -152,10 +152,10 @@ import { Link } from '@inertiajs/vue3';
                                     class="bg-teal-500 hover:bg-teal-400 text-white px-4 py-2 text-sm font-bold rounded absolute top-0 right-0 my-2 mr-2">Subscribe</button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
                 </div>
 
-                <div class="w-full lg:w-1/6 mt-8 lg:mt-0 lg:mx-4">
+                <!-- <div class="w-full lg:w-1/6 mt-8 lg:mt-0 lg:mx-4">
                     <h5 class="uppercase tracking-wider font-semibold text-gray-500">Treatments</h5>
                     <ul class="mt-4">
                         <li class="mt-2"><a href="#" title="" class="opacity-75 hover:opacity-100">General Dentistry</a>
@@ -164,7 +164,7 @@ import { Link } from '@inertiajs/vue3';
                                 Dentistry</a></li>
                         <li class="mt-2"><a href="#" title="" class="opacity-75 hover:opacity-100">Oral Health</a></li>
                     </ul>
-                </div>
+                </div> -->
 
                 <div class="w-full lg:w-2/6 mt-8 lg:mt-0 lg:mx-4 lg:pr-8">
                     <h5 class="uppercase tracking-wider font-semibold text-gray-500">Contact Details</h5>
@@ -179,7 +179,7 @@ import { Link } from '@inertiajs/vue3';
                                     </svg>
                                 </span>
                                 <span class="ml-3">
-                                    1985 Kerry Way, Whittier, CA, USA
+                                    Karunrung, Kec. Rappocini, Kota Makassar, Sulawesi Selatan 90221
                                 </span>
                             </a>
                         </li>

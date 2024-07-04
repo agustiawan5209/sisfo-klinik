@@ -48,7 +48,7 @@ function ArrayToString(){
                     <span class="-mr-1 font-medium">Dashboard</span>
                 </NavLink>
             </li>
-            <li v-if="roleToCheck('Orang Tua')">
+            <li v-if="roleToCheck('Pasien')">
                 <NavLink :href="route('dashboard.pengguna')" :active="route().current('dashboard.pengguna')" :icon="['fas', 'home']">
 
                     <span class="-mr-1 font-medium">Dashboard</span>
@@ -74,10 +74,10 @@ function ArrayToString(){
                     :active="route().current('OrangTua.index') || route().current('OrangTua.create') || route().current('OrangTua.edit') || route().current('OrangTua.show')"
                     :icon="['fas', 'users-line']">
 
-                    <span class="group-hover:text-gray-700 capitalize">Orang Tua</span>
+                    <span class="group-hover:text-gray-700 capitalize">Pasien</span>
                 </NavLink>
             </li>
-            <li v-if="roleToCheck('Kader') || roleToCheck('Kepala') || roleToCheck('Orang Tua')">
+            <li v-if="roleToCheck('Kader') || roleToCheck('Kepala') || roleToCheck('Pasien')">
                 <NavLink :href="route('Jadwal.index')"
                     :active="route().current('Jadwal.index') || route().current('Jadwal.create') || route().current('Jadwal.edit') || route().current('Jadwal.show')"
                     :icon="['far', 'calendar-days']">
@@ -90,14 +90,14 @@ function ArrayToString(){
                     <span class="group-hover:text-gray-700 capitalize">Data Balita Dan Ibu Hamil</span>
                 </NavLink>
             </li> -->
-            <li v-if="roleToCheck('Kader') || roleToCheck('Orang Tua')">
+            <li v-if="roleToCheck('Kader') || roleToCheck('Pasien')">
                 <NavLink :href="route('Balita.index')"
                     :active="route().current('Balita.index') || route().current('Balita.create') || route().current('Balita.edit') || route().current('Balita.show')"
                     :icon="['fas', 'person-breastfeeding']">
                     <span class="group-hover:text-gray-700 capitalize">Data Balita</span>
                 </NavLink>
             </li>
-            <li v-if="roleToCheck('Kader') || roleToCheck('Orang Tua')">
+            <li v-if="roleToCheck('Kader') || roleToCheck('Pasien')">
                 <NavLink :href="route('Riwayat.index')"
                     :active="route().current('Riwayat.index') || route().current('Riwayat.create') || route().current('Riwayat.edit') || route().current('Riwayat.show')"
                     :icon="['fas', 'folder-open']">
@@ -105,7 +105,7 @@ function ArrayToString(){
                 </NavLink>
             </li>
 
-            <li v-if="roleToCheck('Kepala') || roleToCheck('Orang Tua') ">
+            <li v-if="roleToCheck('Kepala') || roleToCheck('Pasien') ">
                 <NavLink :href="route('Sertifikat.index')"
                     :active="route().current('Sertifikat.index') || route().current('Sertifikat.create') || route().current('Sertifikat.edit') || route().current('Sertifikat.show')"
                     :icon="['far', 'calendar-days']">

@@ -1,12 +1,15 @@
 <?php
 
+use App\Http\Controllers\DaftarLayananController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\LayananController;
-use App\Http\Controllers\PemeriksaanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PemeriksaanController;
+use App\Models\DaftarLayanan;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +31,12 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/validate-user', [DashboardController::class, 'validate'])->middleware(['auth', 'verified'])->name('validate');
+// Dashboard
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth', 'verified', 'role:Admin'])->name('dashboard');
+Route::get('/dashboard/pasien', [DashboardController::class, 'dashboardPengguna'])->middleware(['auth', 'verified', 'role:Pasien'])->name('dashboard.pengguna');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -38,12 +44,32 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::middleware(['auth', 'verified',])->group(function () {
 
+    // User
+    // Layanan
     // Router Pasien
-    Route::group(['prefix' => 'pasien', 'as' => "Pasien.", ], function () {
+    Route::group(['as' => "User.",], function () {
+        Route::group(['prefix' => 'layanan', 'as' => "Layanan.",], function () {
+            Route::controller(DaftarLayananController::class)->group(function () {
+                Route::get('/daftar', 'index')->name('index');
+                Route::get('/success', 'success')->name('success');
+                Route::get('/tambah-daftar-layanan', 'create')->name('create');
+                Route::get('/ubah-daftar-layanan', 'edit')->name('edit');
+                Route::get('/detail-daftar-layanan', 'show')->name('show');
+                Route::post('/store-daftar-layanan', 'store')->name('store');
+                Route::put('/update-daftar-layanan', 'update')->name('update');
+                Route::delete('/hapus-daftar-layanan', 'destroy')->name('destroy');
+
+            });
+        });
+    });
+
+
+    // Router Pasien
+    Route::group(['prefix' => 'pasien', 'as' => "Pasien.",], function () {
         Route::controller(PasienController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('/tambah-data-pasien', 'create')->name('create');
@@ -61,7 +87,7 @@ Route::middleware(['auth', 'verified',])->group(function () {
     });
 
     // Router Layanan
-    Route::group(['prefix' => 'layanan', 'as' => "Layanan.", ], function () {
+    Route::group(['prefix' => 'layanan', 'as' => "Layanan.",], function () {
         Route::controller(LayananController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('/tambah-data-layanan', 'create')->name('create');
@@ -74,7 +100,7 @@ Route::middleware(['auth', 'verified',])->group(function () {
     });
 
     // Router Layanan
-    Route::group(['prefix' => 'pemeriksaan', 'as' => "Pemeriksaan.", ], function () {
+    Route::group(['prefix' => 'pemeriksaan', 'as' => "Pemeriksaan.",], function () {
         Route::controller(PemeriksaanController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('/tambah-data-pemeriksaan', 'create')->name('create');

@@ -33,6 +33,7 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
+                'role' => auth()->hasUser() ? auth()->user()->getRoleNames()->toArray() : [],
             ],
             'message'=> fn () => $request->session()->get('message'),
         ];

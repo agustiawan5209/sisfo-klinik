@@ -195,7 +195,7 @@ function closeModal() {
                     </ul>
                 </div>
             </header>
-            <main class="h-full overflow-auto px-3">
+            <main class="h-full overflow-y-auto px-3">
                 <slot/>
             </main>
         </div>

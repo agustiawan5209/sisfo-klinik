@@ -78,7 +78,7 @@ watch(order, (value) => {
 
 const columsReplace = props.tableColums.map(element => {
     if(element == 'org_tua_id'){
-        return 'Orang Tua'
+        return 'Pasien'
     }else{
         return element.replace(/_|\b_id\b/g, ' ');
     }
@@ -165,7 +165,7 @@ function truncateText(text) {
     <div class="flex flex-col w-full">
         <div class="-m-1.5">
             <div class="p-1.5 min-w-full">
-                <div class="border divide-y divide-gray-200 max-w-7xl mb-8 overflow-x-auto rounded-lg shadow-xs bg-white">
+                <div class="border divide-y divide-gray-200 max-w-7xl mb-8 overflow-hidden rounded-lg shadow-xs bg-white">
                     <div class="py-3 px-4" v-if="crud.tambah">
                         <div class="relative max-w-xs">
                             <Link :href="route(props.path + '.create')">
@@ -208,14 +208,14 @@ function truncateText(text) {
                             <thead class="bg-gray-50">
                                 <tr class="text-xs font-semibold tracking-wide text-left uppercase border-b border-gray-700  text-gray-400 bg-gray-100">
                                     <th scope="col" v-for="item in columsReplace"
-                                        class="px-2 py-1 md:px-6 md:py-3 text-nowrap text-start text-xs font-medium text-gray-500 uppercase">
+                                        class="px-2 py-1 md:px-6 md:py-3 text-nowrap text-start text-xs font-medium text-gray-500 capitalize">
                                         <span v-if="item == 'id' || item == 'slug'">
                                             No.
                                         </span>
                                         <span v-else>{{ item }}</span>
                                     </th>
                                     <th scope="col" v-if="cekAksi()"
-                                        class=" px-2 py-1 md:px-6 md:py-3 text-end text-xs font-medium text-gray-500 uppercase">Aksi
+                                        class=" px-2 py-1 md:px-3 md:py-3 text-end text-xs font-medium text-gray-500 uppercase">Aksi
                                     </th>
                                 </tr>
                             </thead>

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
+use App\Models\Layanan;
 use App\Models\DaftarLayanan;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use App\Http\Requests\StoreDaftarLayananRequest;
 use App\Http\Requests\UpdateDaftarLayananRequest;
-use Illuminate\Support\Facades\Request;
-use Inertia\Inertia;
 
 class DaftarLayananController extends Controller
 {
@@ -23,7 +26,23 @@ class DaftarLayananController extends Controller
      */
     public function index()
     {
-        return Inertia::render('User/Layanan/Index');
+        $tableName = 'layanans'; // Ganti dengan nama tabel yang Anda inginkan
+        $columns = DB::getSchemaBuilder()->getColumnListing($tableName);
+
+        // dd($columns);
+        return Inertia::render('User/Layanan/Index', [
+            'search' =>  Request::input('search'),
+            'table_colums' => array_values(array_diff($columns, ['remember_token', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id', 'hasil_pemeriksaan','id_layanan','id_pasien'])),
+            'layanan' => Layanan::filter(Request::only('search', 'order'))->paginate(10),
+            'can' => [
+                'add' => Auth::user()->can('add pasien'),
+                'edit' => Auth::user()->can('edit pasien'),
+                'show' => Auth::user()->can('show pasien'),
+                'delete' => Auth::user()->can('delete pasien'),
+                'reset' => Auth::user()->can('reset pasien'),
+
+            ]
+        ]);
     }
 
     /**
@@ -41,7 +60,7 @@ class DaftarLayananController extends Controller
     {
         $daftarLayanan = DaftarLayanan::create($request->all());
 
-        return redirect()->route("DaftarLayanan.success")->with("message", "Data Layanan Berhasil Di Daftarkan");
+        return redirect()->route("User.Layanan.success")->with("message", "Data Layanan Berhasil Di Daftarkan");
     }
 
     /**
@@ -71,7 +90,7 @@ class DaftarLayananController extends Controller
     {
         $daftarLayanan = DaftarLayanan::create($request->all());
 
-        return redirect()->route("DaftarLayanan.success")->with("message", "Data Layanan Berhasil Di Ubah");
+        return redirect()->route("User.Layanan.success")->with("message", "Data Layanan Berhasil Di Ubah");
     }
 
     /**
@@ -81,6 +100,6 @@ class DaftarLayananController extends Controller
     {
         $daftarLayanan = DaftarLayanan::find(Request::input('slug'));
 
-        return redirect()->route("DaftarLayanan.success")->with("message", "Data Layanan Berhasil Di Hapus");
+        return redirect()->route("User.Layanan.success")->with("message", "Data Layanan Berhasil Di Hapus");
     }
 }

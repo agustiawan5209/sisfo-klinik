@@ -28,7 +28,7 @@ const props = defineProps({
         default: () => ({}),
     },
 })
-console.log(props.can);
+
 const crud = ref({
     tambah: props.can.add,
     edit: props.can.edit,
@@ -48,7 +48,7 @@ const crud = ref({
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Data Pemeriksaan</h2>
         </template>
 
-        <div class="py-4 relative overflow-x-auto">
+        <div class="py-4 relative ">
             <CardTable @update:search="search = $event" @update:order="order" :slug="null" path="Pemeriksaan" :TableData="data" :tableColums="table_colums" :crud="crud" />
         </div>
     </AuthenticatedLayout>

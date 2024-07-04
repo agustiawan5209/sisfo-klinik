@@ -1,9 +1,35 @@
 <script setup>
-import { Link } from '@inertiajs/vue3';
+import { ref } from 'vue';
+import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+import Dropdown from '@/Components/Dropdown.vue';
+import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
+import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import { Link, usePage } from '@inertiajs/vue3';
+import Sidebar from '@/Components/Sidebar/Sidebar.vue';
+
+const showingNavigationDropdown = ref(false);
+const Page = usePage().props.auth;
+const Roles = Page.role;
+function roleToCheck(role) {
+    if (Array.isArray(Roles)) {
+        return Roles.includes(role)
+    }else{
+        return false;
+    }
+}
+
+function ArrayToString(){
+    if (Array.isArray(Roles)) {
+        return Roles.reduce((a,b)=>{
+
+            return String(a+ ','+b).toString();
+        })
+    }
+}
 </script>
 <template>
-    <ul class="mt-6">
+    <ul class="mt-6" v-if="roleToCheck('Admin')">
         <li class="relative px-6 py-3">
 
             <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
@@ -16,6 +42,7 @@ import NavLink from '@/Components/NavLink.vue';
                 <span class="ml-4">Dashboard</span>
             </NavLink>
         </li>
+
         <li class="relative px-6 py-3">
             <NavLink :href="route('Pasien.index')" :active="route().current('Pasien.index')">
                 <font-awesome-icon :icon="['fas', 'file']"/>
@@ -32,6 +59,15 @@ import NavLink from '@/Components/NavLink.vue';
             <NavLink :href="route('Pemeriksaan.index')" :active="route().current('Pemeriksaan.index')">
                 <font-awesome-icon :icon="['fas', 'search']"/>
                 <span class="ml-4">Pemeriksaan</span>
+            </NavLink>
+        </li>
+    </ul>
+    <ul class="mt-6" v-if="roleToCheck('Pasien')">
+        <li v-if="roleToCheck('Pasien')">
+            <NavLink :href="route('dashboard.pengguna')" :active="route().current('dashboard.pengguna')" >
+                <font-awesome-icon :icon="['fas', 'home']"/>
+
+                <span class="ml-4">Dashboard</span>
             </NavLink>
         </li>
     </ul>

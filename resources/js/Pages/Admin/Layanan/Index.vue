@@ -28,7 +28,7 @@ const props = defineProps({
         default: () => ({}),
     },
 })
-console.log(props.can);
+
 const crud = ref({
     tambah: props.can.add,
     edit: props.can.edit,
