@@ -24,7 +24,10 @@ class StorePemeriksaanRequest extends FormRequest
         return [
             'id_layanan' => 'required|exists:layanans,id',
             'id_pasien' => 'required|exists:pasiens,id',
+            'id_pendaftaran' => 'required|exists:daftar_layanans,id',
             'nama_petugas' => 'required|string',
+            'nama_layanan' => 'required|string',
+            'nama_pasien' => 'required|string',
             'hasil_pemeriksaan' => 'required|string',
             'tgl_pemeriksaan' => 'required|string',
         ];

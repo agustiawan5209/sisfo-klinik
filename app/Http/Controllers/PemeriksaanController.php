@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use App\Http\Requests\StorePemeriksaanRequest;
 use App\Http\Requests\UpdatePemeriksaanRequest;
+use App\Models\DaftarLayanan;
+use Carbon\Carbon;
 
 class PemeriksaanController extends Controller
 {
@@ -46,6 +48,7 @@ class PemeriksaanController extends Controller
         return Inertia::render('Admin/Pemeriksaan/Form', [
             'layanan'=> Layanan::all(),
             'pasien'=> Pasien::with(['user'])->get(),
+            'pendaftaran'=> DaftarLayanan::whereDate('tgl', Carbon::now()->format('Y-m-d'))->get(),
         ]);
     }
 
@@ -54,18 +57,10 @@ class PemeriksaanController extends Controller
      */
     public function store(StorePemeriksaanRequest $request)
     {
-        $pasien = Pasien::with(['user'])->find($request->id_pasien);
-        $layanan = Layanan::find($request->id_layanan);
+        // $pasien = Pasien::with(['user'])->find($request->id_pasien);
+        // $layanan = Layanan::find($request->id_layanan);
 
-        $pemeriksaan = Pemeriksaan::create([
-            'id_pasien'=> $request->id_pasien,
-            'nama_pasien'=> $pasien->user->name,
-            'id_layanan'=> $request->id_layanan,
-            'nama_layanan'=> $layanan->nama_layanan,
-            'hasil_pemeriksaan'=> $request->hasil_pemeriksaan,
-            'tgl_pemeriksaan'=> $request->tgl_pemeriksaan,
-            'nama_petugas'=> $request->nama_petugas,
-        ]);
+        $pemeriksaan = Pemeriksaan::create($request->all());
         return redirect()->route('Pemeriksaan.index')->with('message', 'Data Pasien Berhasil Di Simpan!!');
 
     }

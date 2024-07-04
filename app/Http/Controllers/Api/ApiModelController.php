@@ -61,4 +61,14 @@ class ApiModelController extends Controller
             return response("Error :". $th->getMessage(),500);
         }
     }
+    public function getPendaftaran($id)
+    {
+        try {
+            $layanan = DaftarLayanan::find($id);
+
+            return response($layanan, 200);
+        } catch (\Throwable $th) {
+            return response("Error :". $th->getMessage(),500);
+        }
+    }
 }

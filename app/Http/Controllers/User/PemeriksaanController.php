@@ -6,6 +6,8 @@ use Inertia\Inertia;
 use App\Models\Pemeriksaan;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Layanan;
+use App\Models\Pasien;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 
@@ -56,7 +58,11 @@ class PemeriksaanController extends Controller
      */
     public function show(Pemeriksaan $pemeriksaan)
     {
-        //
+        return Inertia::render('User/Pemeriksaan/Show', [
+            'pemeriksaan' => Pemeriksaan::find(Request::input('slug')),
+            'layanan'=> Layanan::all(),
+            'pasien'=> Pasien::all(),
+        ]);
     }
 
     /**

@@ -76,6 +76,7 @@ Route::middleware(['auth', 'verified',])->group(function () {
         Route::group(['prefix' => 'pemeriksaan', 'as' => "Pemeriksaan.",], function () {
             Route::controller(UserPemeriksaanController::class)->group(function () {
                 Route::get('/data', 'index')->name('index');
+                Route::get('/detail-pemeriksaan', 'show')->name('show');
 
             });
         });

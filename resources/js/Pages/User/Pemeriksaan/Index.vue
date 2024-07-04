@@ -159,10 +159,11 @@ function submit(){
                                 <th class="px-4 py-3">Nama Pasien</th>
                                 <th class="px-4 py-3">Nama Layanan</th>
                                 <th class="px-4 py-3">Nama Petugas</th>
-                                <th class="px-4 py-3">Hasil Pemeriksaan</th>
+                                <!-- <th class="px-4 py-3">Hasil Pemeriksaan</th> -->
                                 <th class="px-4 py-3">Tanggal Pemeriksaan</th>
                                     <!-- <th class="px-4 py-3">harga</th>
-                                    <th class="px-4 py-3">Aksi</th> -->
+                                     -->
+                                     <th class="px-4 py-3">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class=" divide-y divide-gray-700 bg-gray-800" v-if="pemeriksaan.data.length">
@@ -179,9 +180,9 @@ function submit(){
                                 <td class="px-4 py-3 text-sm">
                                     {{ item.nama_petugas }}
                                 </td>
-                                <td class="px-4 py-3 text-sm">
+                                <!-- <td class="px-4 py-3 text-sm">
                                     {{ item.hasil_pemeriksaan }}
-                                </td>
+                                </td> -->
                                 <td class="px-4 py-3 text-sm">
                                     {{ item.tgl_pemeriksaan }}
                                 </td>
@@ -191,11 +192,13 @@ function submit(){
                                         {{ item.harga }}
                                     </span>
                                 </td> -->
-                                <!-- <td class="px-4 py-3 text-sm">
-                                    <PrimaryButton type="button" @click="getLayanan(item.id)" class="bg-green-400">
-                                        Buat Antrian
-                                    </PrimaryButton>
-                                </td> -->
+                                <td class="px-4 py-3 text-sm">
+                                    <Link :href="route('User.Pemeriksaan.show', {slug: item.id})">
+                                        <PrimaryButton type="button"  class="bg-green-400">
+                                            Detail
+                                        </PrimaryButton>
+                                    </Link>
+                                </td>
                             </tr>
                         </tbody>
                         <tbody class="divide-y divide-gray-700 bg-gray-800" v-else>

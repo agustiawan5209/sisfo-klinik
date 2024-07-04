@@ -21,4 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('get-jadwal-data', [ApiModelController::class, 'getJadwal'])->name('api.jadwal.getJadwal');
 Route::get('get-layanan-data/{id}', [ApiModelController::class, 'getLayanan'])->name('api.get.Layanan');
+Route::get('get-pendaftaran/{id}', [ApiModelController::class, 'getPendaftaran'])->name('api.get.Pendaftaran');
 
