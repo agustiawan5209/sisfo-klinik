@@ -175,7 +175,7 @@ function submit(){
                                 </td>
                                 <td class="px-4 py-3 text-xs">
                                     <span
-                                        class="px-2 py-1 font-semibold leading-tight rounded-full bg-green-700 text-green-100">
+                                        class="px-2 py-1 font-semibold leading-tight rounded-full whitespace-nowrap bg-green-700 text-green-100">
                                         {{ item.harga }}
                                     </span>
                                 </td>

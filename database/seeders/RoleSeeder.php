@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Pasien;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -45,5 +46,20 @@ class RoleSeeder extends Seeder
 
         ]);
 
+        $org = User::factory(30)
+            ->afterCreating(function (User $user) {
+                $role = Role::findByName('Pasien'); // Replace 'user' with your actual role name
+                if ($role) {
+                    $user->assignRole($role); // Assign 'user' role to the user
+                }
+                $user->givePermissionTo([
+                    'add antrian',
+                    'edit antrian',
+                    'delete antrian',
+                    'show antrian',
+                ]);
+            })
+            ->has(Pasien::factory())
+            ->create();
     }
 }
