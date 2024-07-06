@@ -12,7 +12,7 @@ import HomeLayout from '@/Layouts/HomeLayout.vue';
           <div class="bg-gray-100">
             <section class="cover bg-blue-teal-gradient relative bg-blue-600 px-4 sm:px-8 lg:px-16 xl:px-40 2xl:px-64 overflow-hidden py-48 flex
           items-center min-h-screen">
-                <div class="h-full absolute top-0 left-0 z-0">
+                <div class="h-full w-full absolute top-0 left-0 z-0">
                     <img src="images/cover-bg.jpg" alt="" class="w-full h-full object-cover opacity-20">
                 </div>
 
@@ -38,12 +38,9 @@ import HomeLayout from '@/Layouts/HomeLayout.vue';
                 <div class="w-full lg:w-1/2 lg:px-8">
                     <h2 class="text-3xl leading-tight font-bold mt-4">Selamat Datang Di Website KLINIK FAHRI DENT KOTA MAKASSAR
                     </h2>
-                    <p class="text-lg mt-4 font-semibold">Excellence in Dentistry in the Heart of NY</p>
-                    <p class="mt-2 leading-relaxed">Donec convallis sollicitudin facilisis. Integer nisl ligula,
-                        accumsan non
-                        tincidunt ac, imperdiet in enim.
-                        Donec efficitur ullamcorper metus, eu venenatis nunc. Nam eget neque tempus, mollis sem a,
-                        faucibus mi.</p>
+                    <p class="text-lg mt-4 font-semibold">Ahli Gigi Sulawesi </p>
+                    <p class="mt-2 leading-relaxed">Selalu
+                        Melayani pembuatan dan pemasangan Gigi palsu yang berkualitas dan bergaransi.</p>
                 </div>
 
                 <div class="w-full lg:w-1/2 lg:px-8 mt-12 lg:mt-0">
@@ -52,11 +49,9 @@ import HomeLayout from '@/Layouts/HomeLayout.vue';
                             <div class="w-16 h-16 bg-blue-600 rounded-full"></div>
                         </div>
                         <div class="md:ml-8 mt-4 md:mt-0">
-                            <h4 class="text-xl font-bold leading-tight">Everything You Need Under One Roof</h4>
-                            <p class="mt-2 leading-relaxed">Our comprehensive services allow you to receive all needed
-                                dental care
-                                right here in our state-of-art
-                                office – from dental cleanings and fillings to dental implants and extractions.</p>
+                            <h4 class="text-xl font-bold leading-tight">Semua yang Anda Butuhkan</h4>
+                            <p class="mt-2 leading-relaxed">
+                                Layanan kami yang komprehensif memungkinkan Anda untuk mendapatkan semua perawatan gigi yang dibutuhkan di sini, di kantor kami yang canggih - mulai dari pembersihan dan penambalan gigi hingga implan dan pencabutan gigi.</p>
                         </div>
                     </div>
 
@@ -65,13 +60,9 @@ import HomeLayout from '@/Layouts/HomeLayout.vue';
                             <div class="w-16 h-16 bg-blue-600 rounded-full"></div>
                         </div>
                         <div class="md:ml-8 mt-4 md:mt-0">
-                            <h4 class="text-xl font-bold leading-tight">Our Patient-Focused Approach</h4>
-                            <p class="mt-2 leading-relaxed">Your treatment plan will perfectly match your needs,
-                                lifestyle, and goals.
-                                Even if it’s been years
-                                since you last visited the dentist, we can help. Our comfortable office, compassionate
-                                team, and
-                                minimally-invasive treatments will help you feel completely at ease.</p>
+                            <h4 class="text-xl font-bold leading-tight">Penanganan Pasien</h4>
+                            <p class="mt-2 leading-relaxed">
+                                Rencana perawatan Anda akan disesuaikan dengan kebutuhan, gaya hidup, dan tujuan Anda. Bahkan jika sudah bertahun-tahun sejak terakhir kali Anda mengunjungi dokter gigi, kami dapat membantu Anda. Kantor kami yang nyaman, tim kami yang penuh kasih, dan perawatan invasif minimal akan membantu Anda merasa nyaman.</p>
                         </div>
                     </div>
                 </div>
@@ -82,9 +73,9 @@ import HomeLayout from '@/Layouts/HomeLayout.vue';
                     <div class="bg-white rounded-lg border border-gray-300 p-8">
                         <img src="images/teeth-whitening.svg" alt="" class="h-20 mx-auto">
 
-                        <h4 class="text-xl font-bold mt-4">Teeth Whitening</h4>
-                        <p class="mt-1">Let us show you how our experience.</p>
-                        <a href="#" class="block mt-4">Read More</a>
+                        <h4 class="text-xl font-bold mt-4">Pemutihan Gigi</h4>
+                        <p class="mt-1">Gigi kusam dapat menurunkan rasa percaya diri. Pemutihan gigi adalah solusi untuk mendapatkan senyum cerah berkilau</p>
+                        <!-- <a href="#" class="block mt-4">Read More</a> -->
                     </div>
                 </div>
 
@@ -92,9 +83,9 @@ import HomeLayout from '@/Layouts/HomeLayout.vue';
                     <div class="bg-white rounded-lg border border-gray-300 p-8">
                         <img src="images/oral-surgery.svg" alt="" class="h-20 mx-auto">
 
-                        <h4 class="text-xl font-bold mt-4">Oral Surgery</h4>
-                        <p class="mt-1">Let us show you how our experience.</p>
-                        <a href="#" class="block mt-4">Read More</a>
+                        <h4 class="text-xl font-bold mt-4">Pemeriksaan Gigi</h4>
+                        <p class="mt-1">Pemeriksaan gigi rutin adalah kunci untuk menjaga kesehatan gigi dan mulut. Pemeriksaan ini membantu mendeteksi dan mencegah masalah gigi sejak dini, seperti gigi berlubang, penyakit gusi, dan kanker mulut.</p>
+                        <!-- <a href="#" class="block mt-4">Read More</a> -->
                     </div>
                 </div>
 
@@ -102,9 +93,9 @@ import HomeLayout from '@/Layouts/HomeLayout.vue';
                     <div class="bg-white rounded-lg border border-gray-300 p-8">
                         <img src="images/painless-dentistry.svg" alt="" class="h-20 mx-auto">
 
-                        <h4 class="text-xl font-bold mt-4">Painless Dentistry</h4>
-                        <p class="mt-1">Let us show you how our experience.</p>
-                        <a href="#" class="block mt-4">Read More</a>
+                        <h4 class="text-xl font-bold mt-4">Perawatan Dengan Ahlinya</h4>
+                        <p class="mt-1">Perawatan gigi oleh dokter gigi ahli sangat penting untuk menjaga kesehatan gigi dan mulut.</p>
+                        <!-- <a href="#" class="block mt-4">Read More</a> -->
                     </div>
                 </div>
 
@@ -112,9 +103,9 @@ import HomeLayout from '@/Layouts/HomeLayout.vue';
                     <div class="bg-white rounded-lg border border-gray-300 p-8">
                         <img src="images/periodontics.svg" alt="" class="h-20 mx-auto">
 
-                        <h4 class="text-xl font-bold mt-4">Periodontics</h4>
-                        <p class="mt-1">Let us show you how our experience.</p>
-                        <a href="#" class="block mt-4">Read More</a>
+                        <h4 class="text-xl font-bold mt-4">periodontologi</h4>
+                        <p class="mt-1">Periodonsia atau periodontologi merupakan cabang dari ilmu kedokteran gigi yang mempelajari tentang struktur pendukung gigi, termasuk penyakit dan kondisi yang mempengaruhinya.</p>
+                        <!-- <a href="#" class="block mt-4">Read More</a> -->
                     </div>
                 </div>
             </div>
@@ -122,7 +113,7 @@ import HomeLayout from '@/Layouts/HomeLayout.vue';
         <!-- end about -->
 
         <!-- start testimonials -->
-        <section class="relative bg-gray-100 px-4 sm:px-8 lg:px-16 xl:px-40 2xl:px-64 py-16 lg:py-32">
+        <!-- <section class="relative bg-gray-100 px-4 sm:px-8 lg:px-16 xl:px-40 2xl:px-64 py-16 lg:py-32">
             <div class="flex flex-col lg:flex-row lg:-mx-8">
                 <div class="w-full lg:w-1/2 lg:px-8">
                     <h2 class="text-3xl leading-tight font-bold mt-4">Why choose the Mesothelioma Center?</h2>
@@ -143,7 +134,7 @@ import HomeLayout from '@/Layouts/HomeLayout.vue';
                     <p class="italic text-sm mt-2 text-center">Aenean ante nisi, gravida non mattis semper.</p>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!-- end testimonials -->
 
         <!-- start cta -->

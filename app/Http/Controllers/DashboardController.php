@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Pasien;
+use App\Models\Pemeriksaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,7 +37,8 @@ class DashboardController extends Controller
     public function dashboard()
     {
         return Inertia::render('Dashboard',[
-            'pengguna'=> Pasien::count(),
+            'pasien'=> Pasien::count(),
+            'pemeriksaan'=> Pemeriksaan::count(),
         ]);
     }
 

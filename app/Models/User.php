@@ -48,6 +48,6 @@ class User extends Authenticatable
 
 
     public function pasien(){
-        return $this->hasOne(Pasien::class, 'user_id', 'id');
+        return $this->belongsTo(Pasien::class, 'id', 'user_id');
     }
 }

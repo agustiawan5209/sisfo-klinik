@@ -106,7 +106,7 @@ import { Link } from '@inertiajs/vue3';
                     <nav
                         class="w-full bg-white md:bg-transparent rounded shadow-lg px-6 py-4 mt-4 text-center md:p-0 md:mt-0 md:shadow-none">
                         <ul class="md:flex items-center">
-                            <li><a class="py-2 inline-block md:text-white md:hidden lg:block font-semibold"
+                            <!-- <li><a class="py-2 inline-block md:text-white md:hidden lg:block font-semibold"
                                     href="#">About Us</a></li>
                             <li class="md:ml-4"><a class="py-2 inline-block md:text-white md:px-2 font-semibold"
                                     href="#">Treatments</a></li>
@@ -116,7 +116,7 @@ import { Link } from '@inertiajs/vue3';
                                     class="py-2 inline-block md:text-white md:px-2 font-semibold" href="#">Blog</a></li>
                             <li class="md:ml-4"><a class="py-2 inline-block md:text-white md:px-2 font-semibold"
                                     href="#">Contact
-                                    Us</a></li>
+                                    Us</a></li> -->
                             <li class="md:ml-6 mt-3 md:mt-0">
                                 <Link class="inline-block font-semibold px-4 py-2 text-white bg-blue-600 md:bg-transparent md:text-white border border-white rounded"
                                     :href="route('login')">Masuk</Link>
@@ -134,8 +134,8 @@ import { Link } from '@inertiajs/vue3';
             <div class="flex flex-col md:flex-row">
                 <div class="w-full lg:w-2/6 lg:mx-4 lg:pr-8">
                     <h3 class="font-bold text-2xl">KLINIK FAHRI DENT K</h3>
-                    <p class="text-gray-400">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy.
-                    </p>
+                    <!-- <p class="text-gray-400">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy.
+                    </p> -->
 
                     <!-- <form class="flex items-center mt-6">
                         <div class="w-full">
@@ -167,7 +167,7 @@ import { Link } from '@inertiajs/vue3';
                 </div> -->
 
                 <div class="w-full lg:w-2/6 mt-8 lg:mt-0 lg:mx-4 lg:pr-8">
-                    <h5 class="uppercase tracking-wider font-semibold text-gray-500">Contact Details</h5>
+                    <h5 class="uppercase tracking-wider font-semibold text-gray-500">Kontak</h5>
                     <ul class="mt-4">
                         <li>
                             <a href="#" title="" class=" flex items-center opacity-75 hover:opacity-100">
@@ -212,7 +212,7 @@ import { Link } from '@inertiajs/vue3';
                                 </span>
                             </a>
                         </li>
-                        <li class="mt-4">
+                        <!-- <li class="mt-4">
                             <a href="#" title="" class=" flex items-center opacity-75 hover:opacity-100">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -225,12 +225,12 @@ import { Link } from '@inertiajs/vue3';
                                     dentalpro@example.com
                                 </span>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
 
                 <div class="w-full lg:w-1/6 mt-8 lg:mt-0 lg:mx-4">
-                    <h5 class="uppercase tracking-wider font-semibold text-gray-500">We're Social</h5>
+                    <h5 class="uppercase tracking-wider font-semibold text-gray-500">Social Media</h5>
                     <ul class="mt-4 flex">
                         <li>
                             <a href="#" target="_blank" title="">
@@ -274,7 +274,7 @@ import { Link } from '@inertiajs/vue3';
                         </li>
                     </ul>
 
-                    <p class="text-sm text-gray-400 mt-12">© 2018 ProDentists. <br class="hidden lg:block">All Rights
+                    <p class="text-sm text-gray-400 mt-12">© 2024 KlinikDenta. <br class="hidden lg:block">All Rights
                         Reserved.
                     </p>
                 </div>

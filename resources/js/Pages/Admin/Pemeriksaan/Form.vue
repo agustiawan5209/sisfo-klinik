@@ -126,16 +126,16 @@ function submit() {
                                 <InputError :message="Form.errors.id_layanan"/>
                             </div>
                             <div class="col-span-full sm:col-span-3">
-                                <label for="id_layanan" class="text-sm">ID Layanan</label>
-                                <TextInput id="id_layanan" type="text" placeholder="" v-model="Form.id_layanan"  class="w-full text-gray-900"  />
+                                <label for="nama_layanan" class="text-sm">ID Layanan</label>
+                                <TextInput id="nama_layanan" readonly type="text" placeholder="" v-model="Form.nama_layanan"  class="w-full text-gray-900"  />
 
-                                <InputError :message="Form.errors.id_layanan"/>
+                                <InputError :message="Form.errors.nama_layanan"/>
                             </div>
                             <div class="col-span-full sm:col-span-3">
-                                <label for="id_pasien" class="text-sm">Nama Pasien</label>
-                                <TextInput id="nama_petugas" type="text" placeholder="nama Pemeriksaan" v-model="Form.id_pasien"  class="w-full text-gray-900"  />
+                                <label for="nama_pasien" class="text-sm">Nama Pasien</label>
+                                <TextInput id="nama_petugas" readonly type="text" placeholder="nama Pemeriksaan" v-model="Form.nama_pasien"  class="w-full text-gray-900"  />
 
-                                <InputError :message="Form.errors.id_pasien"/>
+                                <InputError :message="Form.errors.nama_pasien"/>
                             </div>
 
                             <div class="col-span-full sm:col-span-3">

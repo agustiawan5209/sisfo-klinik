@@ -3,16 +3,18 @@
 namespace App\Http\Controllers\User;
 
 use Inertia\Inertia;
+use App\Models\Pasien;
+use App\Models\Layanan;
 use App\Models\Pemeriksaan;
+use App\Models\DaftarLayanan;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Layanan;
-use App\Models\Pasien;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 
 class PemeriksaanController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */

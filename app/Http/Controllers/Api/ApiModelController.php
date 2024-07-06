@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DaftarLayanan;
 use App\Models\Layanan;
 use App\Models\Puskesmas;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 
 class ApiModelController extends Controller
@@ -33,7 +34,8 @@ class ApiModelController extends Controller
 
     public function getJadwal()
     {
-        $jadwal = DaftarLayanan::all();
+        $user_id = User::find(Request::input('user'))->pasien->id;
+        $jadwal = DaftarLayanan::where('id_pasien', $user_id)->get();
         $data = [];
         $tanggal = [];
 
@@ -48,6 +50,7 @@ class ApiModelController extends Controller
         return [
             'data' => $data,
             'tanggal' => array_values(array_unique($tanggal)),
+            'pasien'=> Auth::user()
         ];
     }
 

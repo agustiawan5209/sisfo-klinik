@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch, onMounted } from 'vue';
-import { router } from '@inertiajs/vue3';
+import { router , usePage } from '@inertiajs/vue3';
 import { Calendar, DatePicker, Popover } from 'v-calendar';
 import 'v-calendar/style.css';
 import axios from 'axios';
@@ -23,9 +23,10 @@ const AttributeData = ref([{
     dates: new Date(),
 },])
 
+const user_id = usePage().props.auth.user.id;
 onMounted(() => {
     // dates.value = new Date();
-    axios.get(route('api.jadwal.getJadwal'))
+    axios.get(route('api.jadwal.getJadwal', {user:  user_id}))
         .then((res) => {
             if (res.status == 200) {
                 const Jadwal = res.data.data;
@@ -51,8 +52,9 @@ onMounted(() => {
                 console.log('Error Data Gagal Didapat')
             }
         })
-        .catch(err => {
-            console.error('Error :' + err)
+        .catch((err) => {
+            console.log(err)
+            // console.error('Error :' + err)
         })
 })
 </script>
