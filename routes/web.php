@@ -9,6 +9,7 @@ use App\Http\Controllers\PasienController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PemeriksaanController;
 use App\Http\Controllers\User\PemeriksaanController as UserPemeriksaanController;
 use App\Models\DaftarLayanan;
@@ -125,6 +126,13 @@ Route::middleware(['auth', 'verified',])->group(function () {
             Route::post('/store-data-pemeriksaan', 'store')->name('store');
             Route::put('/update-data-pemeriksaan', 'update')->name('update');
             Route::delete('/hapus-data-pemeriksaan', 'destroy')->name('destroy');
+        });
+    });
+
+    Route::group(['prefix' => 'laporan', 'as' => "Laporan."], function () {
+        Route::controller(LaporanController::class)->group(function () {
+            Route::get('/q', 'index')->name('index');
+            Route::get('/cetak', 'cetakPDF')->name('cetak');
         });
     });
 });

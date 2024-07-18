@@ -61,6 +61,12 @@ function ArrayToString(){
                 <span class="ml-4">Pemeriksaan</span>
             </NavLink>
         </li>
+        <li class="relative px-6 py-3">
+            <NavLink :href="route('Laporan.index')" :active="route().current('Laporan.index')">
+                <font-awesome-icon :icon="['fas', 'file-pdf']"/>
+                <span class="ml-4">Laporan</span>
+            </NavLink>
+        </li>
     </ul>
     <ul class="mt-6" v-if="roleToCheck('Pasien')">
         <li v-if="roleToCheck('Pasien')">
