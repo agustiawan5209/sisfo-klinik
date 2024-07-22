@@ -12,6 +12,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PemeriksaanController;
 use App\Http\Controllers\User\PemeriksaanController as UserPemeriksaanController;
+use App\Http\Controllers\User\ProfileController as UserProfileController;
 use App\Models\DaftarLayanan;
 
 /*
@@ -134,5 +135,11 @@ Route::middleware(['auth', 'verified',])->group(function () {
             Route::get('/q', 'index')->name('index');
             Route::get('/cetak', 'cetakPDF')->name('cetak');
         });
+    });
+
+    Route::group( ['prefix'=> 'user', 'as'=> 'User.'], function () {
+        Route::get('/profile', [UserProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [UserProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [UserProfileController::class, 'destroy'])->name('profile.destroy');
     });
 });
