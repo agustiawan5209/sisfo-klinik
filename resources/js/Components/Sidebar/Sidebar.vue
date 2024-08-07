@@ -27,102 +27,54 @@ function ArrayToString(){
         })
     }
 }
-
 </script>
-
-
 <template>
-    <div class="aside-anime">
+    <ul class="mt-6" v-if="roleToCheck('Admin')">
+        <li class="relative px-6 py-3">
 
-        <div class="hidden md:block mt-8 text-center">
-            <ApplicationLogo class="m-auto h-10 w-10 rounded-md object-cover lg:h-12 lg:w-12" />
-            <h5 class="mt-4 text-xl font-semibold text-gray-600 lg:block">{{ $page.props.auth.user.name }}
-            </h5>
-            <span class=" text-gray-400 lg:block">{{ ArrayToString() }}</span>
-        </div>
+            <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                    <path
+                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                    </path>
+                </svg>
+                <span class="ml-4">Dashboard</span>
+            </NavLink>
+        </li>
 
-        <ul class="mt-8 space-y-1 tracking-wide text-sm">
-            <li v-if="roleToCheck('Kader') || roleToCheck('Kepala')">
-                <NavLink :href="route('dashboard')" :active="route().current('dashboard')" :icon="['fas', 'home']">
+        <li class="relative px-6 py-3">
+            <NavLink :href="route('Pasien.index')" :active="route().current('Pasien.index')">
+                <font-awesome-icon :icon="['fas', 'file']"/>
+                <span class="ml-4">Pasien</span>
+            </NavLink>
+        </li>
+        <li class="relative px-6 py-3">
+            <NavLink :href="route('Layanan.index')" :active="route().current('Layanan.index')">
+                <font-awesome-icon :icon="['fas', 'pen']"/>
+                <span class="ml-4">Layanan</span>
+            </NavLink>
+        </li>
+        <li class="relative px-6 py-3">
+            <NavLink :href="route('Pemeriksaan.index')" :active="route().current('Pemeriksaan.index')">
+                <font-awesome-icon :icon="['fas', 'search']"/>
+                <span class="ml-4">Pemeriksaan</span>
+            </NavLink>
+        </li>
+        <li class="relative px-6 py-3">
+            <NavLink :href="route('Laporan.index')" :active="route().current('Laporan.index')">
+                <font-awesome-icon :icon="['fas', 'file-pdf']"/>
+                <span class="ml-4">Laporan</span>
+            </NavLink>
+        </li>
+    </ul>
+    <ul class="mt-6" v-if="roleToCheck('Pasien')">
+        <li v-if="roleToCheck('Pasien')">
+            <NavLink :href="route('dashboard.pengguna')" :active="route().current('dashboard.pengguna')" >
+                <font-awesome-icon :icon="['fas', 'home']"/>
 
-                    <span class="-mr-1 font-medium">Dashboard</span>
-                </NavLink>
-            </li>
-            <li v-if="roleToCheck('Pasien')">
-                <NavLink :href="route('dashboard.pengguna')" :active="route().current('dashboard.pengguna')" :icon="['fas', 'home']">
-
-                    <span class="-mr-1 font-medium">Dashboard</span>
-                </NavLink>
-            </li>
-            <li v-if="roleToCheck('Kepala')">
-                <NavLink :href="route('Posyandus.index')"
-                    :active="route().current('Posyandus.index') || route().current('Posyandus.create') || route().current('Posyandus.edit') || route().current('Posyandus.show')"
-                    :icon="['fas', 'house-medical-flag']">
-                    <span class="group-hover:text-gray-700 capitalize">Data Posyandu</span>
-                </NavLink>
-            </li>
-
-            <li v-if="roleToCheck('Kader') || roleToCheck('Kepala')">
-                <NavLink :href="route('Pegawai.index')"
-                    :active="route().current('Pegawai.index') || route().current('Pegawai.create') || route().current('Pegawai.edit') || route().current('Pegawai.show')"
-                    :icon="['fas', 'user-group']">
-                    <span class="group-hover:text-gray-700 capitalize">Staff Posyandu</span>
-                </NavLink>
-            </li>
-            <li v-if="roleToCheck('Kader') || roleToCheck('Kepala')">
-                <NavLink :href="route('OrangTua.index')"
-                    :active="route().current('OrangTua.index') || route().current('OrangTua.create') || route().current('OrangTua.edit') || route().current('OrangTua.show')"
-                    :icon="['fas', 'users-line']">
-
-                    <span class="group-hover:text-gray-700 capitalize">Pasien</span>
-                </NavLink>
-            </li>
-            <li v-if="roleToCheck('Kader') || roleToCheck('Kepala') || roleToCheck('Pasien')">
-                <NavLink :href="route('Jadwal.index')"
-                    :active="route().current('Jadwal.index') || route().current('Jadwal.create') || route().current('Jadwal.edit') || route().current('Jadwal.show')"
-                    :icon="['far', 'calendar-days']">
-                    <span class="group-hover:text-gray-700 capitalize">Jadwal Imunisasi</span>
-                </NavLink>
-            </li>
-
-            <!-- <li v-if="roleToCheck('Kader') || roleToCheck('Kepala')">
-                <NavLink href="#" :icon="['fas','chart-pie']">
-                    <span class="group-hover:text-gray-700 capitalize">Data Balita Dan Ibu Hamil</span>
-                </NavLink>
-            </li> -->
-            <li v-if="roleToCheck('Kader') || roleToCheck('Pasien')">
-                <NavLink :href="route('Balita.index')"
-                    :active="route().current('Balita.index') || route().current('Balita.create') || route().current('Balita.edit') || route().current('Balita.show')"
-                    :icon="['fas', 'person-breastfeeding']">
-                    <span class="group-hover:text-gray-700 capitalize">Data Balita</span>
-                </NavLink>
-            </li>
-            <li v-if="roleToCheck('Kader') || roleToCheck('Pasien')">
-                <NavLink :href="route('Riwayat.index')"
-                    :active="route().current('Riwayat.index') || route().current('Riwayat.create') || route().current('Riwayat.edit') || route().current('Riwayat.show')"
-                    :icon="['fas', 'folder-open']">
-                    <span class="group-hover:text-gray-700 capitalize">Riwayat Imunisasi</span>
-                </NavLink>
-            </li>
-
-            <li v-if="roleToCheck('Kepala') || roleToCheck('Pasien') ">
-                <NavLink :href="route('Sertifikat.index')"
-                    :active="route().current('Sertifikat.index') || route().current('Sertifikat.create') || route().current('Sertifikat.edit') || route().current('Sertifikat.show')"
-                    :icon="['far', 'calendar-days']">
-                    <span class="group-hover:text-gray-700 capitalize">Sertifikat Imunisasi</span>
-                </NavLink>
-            </li>
-            <!-- Setting -->
-            <li v-if="roleToCheck('Kepala')">
-                <NavLink :href="route('SettingPuskesmas.create')" :icon="['fas', 'gears']">
-                    <span class="group-hover:text-gray-700 capitalize">Pengaturan</span>
-                </NavLink>
-            </li>
-        </ul>
-    </div>
-    <div class="-mx-6 flex items-center justify-between border-t px-6 pt-4">
-        <NavLink :href="route('logout')" method="post" as="button" :icon="['fas', 'right-from-bracket']">
-            <span class="group-hover:text-gray-700 capitalize">Logout</span>
-        </NavLink>
-    </div>
+                <span class="ml-4">Dashboard</span>
+            </NavLink>
+        </li>
+    </ul>
 </template>

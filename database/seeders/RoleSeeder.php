@@ -18,6 +18,7 @@ class RoleSeeder extends Seeder
     {
         $role = Role::create(['name' => 'Admin']);
         $orangtua = Role::create(['name' => 'Pasien']);
+        $klinik = Role::create(['name' => 'Klinik']);
 
         $user = User::factory()->create([
             'name' => 'admin',
@@ -61,5 +62,15 @@ class RoleSeeder extends Seeder
             })
             ->has(Pasien::factory())
             ->create();
+
+
+
+            $user_klinik = User::factory()->create([
+                'name' => 'klinik',
+                'username' => 'klinik',
+                'email' => 'klinik@gmail.com',
+                'password' => bcrypt('12345678'),
+            ]);
+            $user_klinik->assignRole($klinik);
     }
 }
