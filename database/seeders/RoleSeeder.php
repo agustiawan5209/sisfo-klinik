@@ -47,7 +47,7 @@ class RoleSeeder extends Seeder
 
         ]);
 
-        $org = User::factory(30)
+        $org = User::factory(10)
             ->afterCreating(function (User $user) {
                 $role = Role::findByName('Pasien'); // Replace 'user' with your actual role name
                 if ($role) {
@@ -59,18 +59,24 @@ class RoleSeeder extends Seeder
                     'delete antrian',
                     'show antrian',
                 ]);
+
+                $pasien = Pasien::create([
+                    'user_id' => $user->id,
+                    'alamat' => fake()->address(),
+                    'no_telpon' => fake()->phoneNumber(),
+                    'tgl_lahir' => fake()->dateTimeBetween('-3 years', '3 years')->format('Y-m-d'),
+                ]);
             })
-            ->has(Pasien::factory())
             ->create();
 
 
 
-            $user_klinik = User::factory()->create([
-                'name' => 'klinik',
-                'username' => 'klinik',
-                'email' => 'klinik@gmail.com',
-                'password' => bcrypt('12345678'),
-            ]);
-            $user_klinik->assignRole($klinik);
+        $user_klinik = User::factory()->create([
+            'name' => 'klinik',
+            'username' => 'klinik',
+            'email' => 'klinik@gmail.com',
+            'password' => bcrypt('12345678'),
+        ]);
+        $user_klinik->assignRole($klinik);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AntrianController;
 use App\Http\Controllers\AntrianUserController;
 use App\Http\Controllers\DaftarLayananController;
 use Inertia\Inertia;
@@ -50,11 +51,11 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-Route::middleware(['auth', 'verified',])->group(function () {
+Route::middleware(['auth', 'verified', 'role:Admin|Pasien|Klinik'])->group(function () {
 
     // User
     // Layanan
-    // Router Pasien
+    // Router User/Pasien
     Route::group(['as' => "User.",], function () {
         Route::group(['prefix' => 'layanan', 'as' => "Layanan.",], function () {
             Route::controller(DaftarLayananController::class)->group(function () {
@@ -114,6 +115,15 @@ Route::middleware(['auth', 'verified',])->group(function () {
             Route::post('/store-data-layanan', 'store')->name('store');
             Route::put('/update-data-layanan', 'update')->name('update');
             Route::delete('/hapus-data-layanan', 'destroy')->name('destroy');
+        });
+    });
+    // Router Layanan
+    Route::group(['prefix' => 'antrian', 'as' => "Admin.Antrian.",], function () {
+        Route::controller(AntrianController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/ubah-data-antrian', 'edit')->name('edit');
+            Route::get('/detail-data-antrian', 'show')->name('show');
+            Route::put('/update-data-antrian', 'update')->name('update');
         });
     });
 

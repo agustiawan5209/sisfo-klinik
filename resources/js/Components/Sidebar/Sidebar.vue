@@ -43,6 +43,7 @@ function ArrayToString(){
             </NavLink>
         </li>
 
+
         <li class="relative px-6 py-3">
             <NavLink :href="route('Pasien.index')" :active="route().current('Pasien.index')">
                 <font-awesome-icon :icon="['fas', 'file']"/>
@@ -53,6 +54,12 @@ function ArrayToString(){
             <NavLink :href="route('Layanan.index')" :active="route().current('Layanan.index')">
                 <font-awesome-icon :icon="['fas', 'pen']"/>
                 <span class="ml-4">Layanan</span>
+            </NavLink>
+        </li>
+        <li class="relative px-6 py-3">
+            <NavLink :href="route('Admin.Antrian.index')" :active="route().current('Admin.Antrian.index')">
+                <font-awesome-icon :icon="['fas', 'file']"/>
+                <span class="ml-4">Antrian</span>
             </NavLink>
         </li>
         <li class="relative px-6 py-3">

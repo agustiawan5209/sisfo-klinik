@@ -1,5 +1,5 @@
 <script setup>
-import UserLayout from '@/Layouts/UserLayout.vue';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
 import Modal from '@/Components/Modal.vue';
 import { ref, watch, defineProps, onMounted, inject } from 'vue';
@@ -68,46 +68,32 @@ const showModal = ref(false);
 const btnModal = ref(false);
 
 const formLayanan = useForm({
-    id_pasien: '',
-    id_layanan: '',
-    nama_layanan: '',
-    tgl: '',
+    slug: '',
+    status: '',
+    jam_pemeriksaan: '',
 })
 
-const getLayanan = async function (id) {
-    axios.get(route('api.get.Layanan', { id: id }), {
-        params: {
-            id: id,
-        }
-    })
-        .then((response) => {
-            const element = response.data;
-            formLayanan.id_layanan = element.id;
-            formLayanan.nama_layanan = element.nama_layanan;
-            showModal.value = true;
-
-        }).catch((err) => {
-            console.log(err)
-            const error = err.response.data;
-            messageDisplay(error, "error")
-
-        })
+const getLayanan = function (item) {
+    showModal.value = true;
+    formLayanan.slug = item.id;
+    formLayanan.status = item.status;
+    formLayanan.jam_pemeriksaan = item.jam_pemeriksaan;
 }
 
-function submit(){
-    formLayanan.post(route('User.Layanan.store'),{
+function submit() {
+    formLayanan.put(route('Admin.Antrian.update'), {
         preserveState: false,
-        onError: (err)=>{
+        onError: (err) => {
             var ul = "";
-            for(const key in err){
-                ul+= err[key]+ '\n';
+            for (const key in err) {
+                ul += err[key] + '\n';
 
             }
             // err.forEach((element,key)=>{
             // })
             messageDisplay(ul, 'error');
         },
-        onFinish: ()=>{
+        onFinish: () => {
             showModal.value = false;
         }
 
@@ -119,7 +105,7 @@ function submit(){
 
     <Head title="Layanan" />
 
-    <UserLayout>
+    <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Data Layanan</h2>
         </template>
@@ -128,21 +114,33 @@ function submit(){
         <Modal :show="showModal" maxWidth="md">
             <div class="w-full flex flex-col justify-center items-center py-4">
                 <div class="text-gray-700 text-center">
-                    <h3 class="text-xl md:text-2xl">Form Buat Antrian</h3>
-                    <p class="text-justify text-sm">Isi Form untuk Membuat Nomor Antrian <br>
-                    Isi Tanggal Sesuai Dengan Tanggal Anda Ingin Data Ke Klinik</p>
+                    <h3 class="text-xl md:text-2xl">Form update</h3>
+                    <p class="text-justify text-sm">Update status antrian<br>
+                        Lakukan Konfirmasi nomor antrian untuk pasien</p>
                 </div>
                 <form action="" @submit.prevent="submit" class="w-full md:w-[70%] border p-4 rounded-lg my-10">
-                    <div class="mt-2">
-                        <inputLabel value="Nama Layanan" />
-                        <TextInput class="w-full" type="text" v-model="formLayanan.nama_layanan"/>
+                    <div class="col-span-full sm:col-span-2">
+                        <label for="jam_pemeriksaan" class="text-sm">Jam Pemeriksaan</label>
+                        <TextInput id="jam_pemeriksaan" type="text" v-model="formLayanan.jam_pemeriksaan" placeholder="00:00 WITA."
+                            class="w-full text-gray-900" />
+                        <InputError :message="formLayanan.errors.jam_pemeriksaan" />
+
                     </div>
-                    <div class="mt-2">
-                        <inputLabel value="Tanggal Kedatangan" />
-                        <TextInput class="w-full" type="date" v-model="formLayanan.tgl"/>
+                    <div class="col-span-full sm:col-span-2">
+                        <label for="Antrian" class="text-sm">Status Antrian</label>
+                        <select id="Antrian" v-model="formLayanan.status"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                            <option value='0'>Belum Dikonfirmasi</option>
+                            <option value='1'>Konfirmasi (Konfirmasi antrian)</option>
+                            <option value='2'>Selesai (Pelayanan Telah Selesai Dilakukan)</option>
+                        </select>
+                        <InputError :message="formLayanan.errors.status" />
+
                     </div>
+
                     <div class="mt-2 flex justify-center">
-                        <PrimaryButton type="submit" class="bg-green-500 hover:bg-green-700">Buat Antrian</PrimaryButton>
+                        <PrimaryButton type="submit" class="bg-green-500 hover:bg-green-700">Update Status Layanan
+                        </PrimaryButton>
                     </div>
 
                 </form>
@@ -154,48 +152,40 @@ function submit(){
                     <table class="w-full whitespace-no-wrap">
                         <thead>
                             <tr
-                                class="text-xs font-semibold tracking-wide text-left uppercase border-b border-gray-700  text-gray-100 bg-gray-800">
+                                class="text-xs font-semibold tracking-wide text-left uppercase border-b border-gray-700  text-gray-400 bg-gray-800">
                                 <th class="px-4 py-3">No</th>
-                                <th class="px-4 py-3">Nama Antrian</th>
+                                <th class="px-4 py-3">Nama Pasien</th>
                                 <th class="px-4 py-3">Nama Layanan</th>
+                                <th class="px-4 py-3">Nomor Antrian </th>
+                                <th class="px-4 py-3">Tanggal</th>
                                 <th class="px-4 py-3">Jam Pemeriksaan</th>
-                                <th class="px-4 py-3">Status Layanan</th>
-                                <th class="px-4 py-3">tgl</th>
-                                    <th class="px-4 py-3">Cetak</th>
+                                <th class="px-4 py-3">Status</th>
                             </tr>
                         </thead>
                         <tbody class=" divide-y divide-gray-700 bg-gray-800" v-if="layanan.data.length">
-                            <tr class="text-gray-100" v-for="(item, index) in layanan.data">
+                            <tr class="text-gray-200" v-for="(item, index) in layanan.data">
                                 <td class="px-4 py-3">
                                     {{ (layanan.current_page - 1) * layanan.per_page + index + 1 }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{ item.nomor_antrian }}
+                                    {{ item.nama_pasien }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     {{ item.nama_layanan }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{ item.jam_pemeriksaan }}
-                                </td>
-                                <td class="px-4 py-3 text-sm">
-                                    {{ item.status_layanan }}
+                                    {{ item.nomor_antrian }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     {{ item.tgl }}
                                 </td>
-                                <!-- <td class="px-4 py-3 text-xs">
-                                    <span
-                                        class="px-2 py-1 font-semibold leading-tight rounded-full bg-green-700 text-green-100">
-                                        {{ item.harga }}
-                                    </span>
-                                </td> -->
                                 <td class="px-4 py-3 text-sm">
-                                    <Link :href="route('User.Antrian.cetak', {id: item.id})">
-                                        <PrimaryButton type="button"  class="bg-green-400">
-                                            Cetak Antrian
-                                        </PrimaryButton>
-                                    </Link>
+                                    {{ item.jam_pemeriksaan }}
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    <PrimaryButton type="button" @click="getLayanan(item)" class="bg-blue-400">
+                                        {{ item.status_layanan }}
+                                    </PrimaryButton>
                                 </td>
                             </tr>
                         </tbody>
@@ -221,5 +211,5 @@ function submit(){
                 </div>
             </div>
         </div>
-    </UserLayout>
+    </AuthenticatedLayout>
 </template>

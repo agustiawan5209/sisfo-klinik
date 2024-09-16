@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('id_layanan')->constrained('layanans');
             $table->string('nama_layanan', 50);
             $table->string('nomor_antrian', 50);
+            $table->string('jam_pemeriksaan', 50);
             $table->date('tgl');
             $table->enum('status', ['0','1','2'])->comment('0 = nonaktif, 1 = aktif, 2 = selesai');
             $table->timestamps();
