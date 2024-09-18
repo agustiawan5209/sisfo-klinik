@@ -48,7 +48,7 @@ class PemeriksaanController extends Controller
         return Inertia::render('Admin/Pemeriksaan/Form', [
             'layanan'=> Layanan::all(),
             'pasien'=> Pasien::with(['user'])->get(),
-            'pendaftaran'=> DaftarLayanan::whereDate('tgl', Carbon::now()->format('Y-m-d'))->get(),
+            'pendaftaran'=> DaftarLayanan::all(),
         ]);
     }
 

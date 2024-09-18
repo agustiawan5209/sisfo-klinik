@@ -96,7 +96,7 @@ const showingNavigationDropdown = ref(false);
 
             <div class="flex flex-wrap items-center justify-between py-6">
                 <div class="w-1/2 md:w-auto">
-                    <a href="index.html" class="text-white font-bold text-2xl">
+                    <a href="/" class="text-white font-bold text-2xl">
                         KLINIK FAHRI DENT K
                     </a>
                 </div>

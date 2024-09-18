@@ -151,9 +151,11 @@ function submit() {
                             </div>
                             <div class="col-span-full">
                                 <label for="hasil_pemeriksaan" class="text-sm">Hasil Pemeriksaan</label>
-                                <quill-editor id="hasil_pemeriksaan" contentType="html" theme="snow"
+                                <div class="bg-white w-full h-max">
+                                    <quill-editor id="hasil_pemeriksaan" contentType="html" theme="snow"
                                 v-model:content="Form.hasil_pemeriksaan" placeholder="@hasil_pemeriksaan"
                                 class="w-full text-gray-900" />
+                                </div>
                                 <InputError :message="Form.errors.hasil_pemeriksaan" class="mt-10"/>
                             </div>
                         </div>

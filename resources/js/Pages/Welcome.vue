@@ -22,10 +22,10 @@ import HomeLayout from '@/Layouts/HomeLayout.vue';
                             PEMERIKSAAN GIGI</h1>
                         <p class="text-blue-100 text-xl md:text-2xl leading-snug mt-4">
                             KLINIK FAHRI DENT KOTA MAKASSAR</p>
-                        <a href="#"
+                        <Link :href="route('User.Layanan.index')"
                             class="px-8 py-4 bg-teal-500 text-white rounded inline-block mt-8 font-semibold">
                         Pendaftaran Antrian
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </section>

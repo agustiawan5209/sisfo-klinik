@@ -75,8 +75,8 @@ function closeModal() {
         <!-- Desktop sidebar -->
         <aside class="z-20 hidden w-[17%] overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0">
             <div class="py-4 text-gray-500 dark:text-gray-400">
-                <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="#">
-                    Sisfo Klinik
+                <a class="ml-6 text-lg capitalize font-bold text-gray-800 dark:text-gray-200" href="#">
+                    klinik fahri dent
                 </a>
                 <Navbar />
             </div>
@@ -88,8 +88,8 @@ function closeModal() {
         <aside class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden"
             v-show="isSideMenuOpen" @click.away="closeSideMenu" @keydown.escape="closeSideMenu">
             <div class="py-4 text-gray-500 dark:text-gray-400">
-                <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="#">
-                    Sisfo Klinik
+                <a class="ml-6 text-lg capitalize font-bold text-gray-800 dark:text-gray-200" href="#">
+                    klinik fahri dent
                 </a>
                 <Navbar/>
             </div>
