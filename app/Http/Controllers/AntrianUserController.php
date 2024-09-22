@@ -23,7 +23,8 @@ class AntrianUserController extends Controller
         return Inertia::render('User/Antrian/Index', [
             'search' =>  Request::input('search'),
             'table_colums' => array_values(array_diff($columns, ['remember_token', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id', 'hasil_pemeriksaan', 'id_layanan', 'id_pasien'])),
-            'layanan' => DaftarLayanan::filter(Request::only('search', 'order'))
+            'layanan' => DaftarLayanan::filterBySearch(Request::input('search'))
+            ->filterByOrder(Request::input('order'))
             ->paginate(10),
             // 'can' => [
             //     'add' => Auth::user()->can('add pasien'),

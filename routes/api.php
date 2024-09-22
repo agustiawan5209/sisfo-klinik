@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiModelController;
+use App\Http\Controllers\Api\GrafikController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ Route::get('get-jadwal-data', [ApiModelController::class, 'getJadwal'])->name('a
 Route::get('get-layanan-data/{id}', [ApiModelController::class, 'getLayanan'])->name('api.get.Layanan');
 Route::get('get-pendaftaran/{id}', [ApiModelController::class, 'getPendaftaran'])->name('api.get.Pendaftaran');
 
+
+Route::get('antrian-grafik', [GrafikController::class,'allAntrian'])->name('grafik.antrian');

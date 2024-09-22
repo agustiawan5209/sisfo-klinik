@@ -13,6 +13,7 @@ class Pasien extends Model
     protected $tables = 'pasiens';
     protected $fillable = [
         'user_id',
+        'id_pasien',
         'alamat',
         'no_telpon',
         'tgl_lahir',

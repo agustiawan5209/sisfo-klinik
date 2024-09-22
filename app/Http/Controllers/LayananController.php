@@ -48,7 +48,14 @@ class LayananController extends Controller
      */
     public function store(StoreLayananRequest $request)
     {
-        $layanan = Layanan::create($request->all());
+        $data = $request->all();
+        // Mendapatkan ID terakhir
+        $lastId = Layanan::max('id') + 1;
+
+        // Membuat kode transaksi dengan format yang diinginkan
+        $id_layanan = 'LN-' . str_pad($lastId, 3, '0', STR_PAD_LEFT);
+        $data['id_layanan'] = $id_layanan;
+        $layanan = Layanan::create($data);
         return redirect()->route('Layanan.index')->with('message', 'Data Layanan Berhasil Di Simpan!!');
     }
 

@@ -10,7 +10,7 @@ watch(dates, (value) => {
     const Jadwal = new Date(value)
     const search = `${Jadwal.getFullYear()}-${String(Jadwal.getMonth() + 1).padStart(2, '0')}-${Jadwal.getDate().toString().padStart(2, '0')}`;
 
-    router.get(route('Jadwal.index', {search: search}))
+    router.get(route('Admin.Antrian.index', {date: search}))
 })
 const Loaded = ref(false)
 const AttributeData = ref([{
@@ -26,7 +26,7 @@ const AttributeData = ref([{
 const user_id = usePage().props.auth.user.id;
 onMounted(() => {
     // dates.value = new Date();
-    axios.get(route('api.jadwal.getJadwal', {user:  user_id}))
+    axios.get(route('grafik.antrian', {user:  user_id}))
         .then((res) => {
             if (res.status == 200) {
                 const Jadwal = res.data.data;

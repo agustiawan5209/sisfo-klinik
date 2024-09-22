@@ -44,7 +44,12 @@ class AntrianController extends Controller
         return Inertia::render('Admin/Antrian/Index', [
             'search' =>  Request::input('search'),
             'table_colums' => array_values(array_diff($columns, ['remember_token', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id', 'hasil_pemeriksaan', 'id_layanan', 'id_pasien'])),
-            'layanan' => DaftarLayanan::filter(Request::only('search', 'order'))->paginate(10),
+            'layanan' => DaftarLayanan::filterBySearch(Request::input('search'))
+            ->filterByOrder(Request::input('order'))
+            ->filterByRole(Request::input('order'))
+            ->filterByDate(Request::input('date'))
+            ->orderBy('status', 'desc')
+            ->paginate(10),
             'can' => [
                 'add' =>  false,
                 'edit' =>  true,

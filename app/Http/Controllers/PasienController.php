@@ -24,6 +24,7 @@ class PasienController extends Controller
         $tableName = 'pasiens'; // Ganti dengan nama tabel yang Anda inginkan
         // $columns = DB::getSchemaBuilder()->getColumnListing($tableName);
         $columns[] = 'id';
+        $columns[] = 'id_pasien';
         $columns[] = 'nama_pasien';
         $columns[] = 'no_telpon';
         $columns[] = 'alamat';
@@ -75,8 +76,13 @@ class PasienController extends Controller
             ]);
         }
 
+        $lastId = Pasien::max('id') + 1;
+
+        // Membuat kode transaksi dengan format yang diinginkan
+        $id_pasien = 'LN-' . str_pad($lastId, 3, '0', STR_PAD_LEFT);
         $pasien = new Pasien([
             'user_id' => $user->id,
+            'id_pasien'=> $id_pasien,
             'alamat' => $request->alamat,
             'tgl_lahir' => $request->tgl_lahir,
             'no_telpon' => $request->no_telpon,

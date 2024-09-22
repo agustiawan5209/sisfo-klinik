@@ -2,6 +2,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import {ref, defineProps} from 'vue';
+import CardCalendar from '@/Components/Card/CardCalendar.vue';
 
 const props = defineProps({
     pasien: {
@@ -68,6 +69,10 @@ const props = defineProps({
                         </p>
                     </div>
                 </div>
+            </div>
+            <div class="relative w-full ">
+                <h3 class=" text-xs md:text-base lg:text-lg font-semibold text-center">Kalender Jadwal Antrian</h3>
+                <CardCalendar />
             </div>
 
 

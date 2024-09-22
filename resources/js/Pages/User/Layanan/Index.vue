@@ -82,8 +82,12 @@ const getLayanan = async function (id) {
     })
         .then((response) => {
             const element = response.data;
+            var layananid = element.nama_layanan + '|' + element.id_layanan;
+            if (element.id_layanan == null) {
+                layananid = element.nama_layanan
+            }
             formLayanan.id_layanan = element.id;
-            formLayanan.nama_layanan = element.nama_layanan;
+            formLayanan.nama_layanan = layananid;
             showModal.value = true;
 
         }).catch((err) => {
@@ -94,20 +98,20 @@ const getLayanan = async function (id) {
         })
 }
 
-function submit(){
-    formLayanan.post(route('User.Layanan.store'),{
+function submit() {
+    formLayanan.post(route('User.Layanan.store'), {
         preserveState: false,
-        onError: (err)=>{
+        onError: (err) => {
             var ul = "";
-            for(const key in err){
-                ul+= err[key]+ '\n';
+            for (const key in err) {
+                ul += err[key] + '\n';
 
             }
             // err.forEach((element,key)=>{
             // })
             messageDisplay(ul, 'error');
         },
-        onFinish: ()=>{
+        onFinish: () => {
             showModal.value = false;
         }
 
@@ -130,19 +134,20 @@ function submit(){
                 <div class="text-gray-700 text-center">
                     <h3 class="text-xl md:text-2xl">Form Buat Antrian</h3>
                     <p class="text-justify text-sm">Isi Form untuk Membuat Nomor Antrian <br>
-                    Isi Tanggal Sesuai Dengan Tanggal Anda Ingin Data Ke Klinik</p>
+                        Isi Tanggal Sesuai Dengan Tanggal Anda Ingin Data Ke Klinik</p>
                 </div>
                 <form action="" @submit.prevent="submit" class="w-full md:w-[70%] border p-4 rounded-lg my-10">
                     <div class="mt-2">
                         <inputLabel value="Nama Layanan" />
-                        <TextInput class="w-full" type="text" v-model="formLayanan.nama_layanan"/>
+                        <TextInput class="w-full" type="text" v-model="formLayanan.nama_layanan" />
                     </div>
                     <div class="mt-2">
                         <inputLabel value="Tanggal Kedatangan" />
-                        <TextInput class="w-full" type="date" v-model="formLayanan.tgl"/>
+                        <TextInput class="w-full" type="date" v-model="formLayanan.tgl" />
                     </div>
                     <div class="mt-2 flex justify-center">
-                        <PrimaryButton type="submit" class="bg-green-500 hover:bg-green-700">Buat Antrian</PrimaryButton>
+                        <PrimaryButton type="submit" class="bg-green-500 hover:bg-green-700">Buat Antrian
+                        </PrimaryButton>
                     </div>
 
                 </form>
@@ -156,6 +161,7 @@ function submit(){
                             <tr
                                 class="text-xs font-semibold tracking-wide text-left uppercase border-b border-gray-700  text-gray-400 bg-gray-800">
                                 <th class="px-4 py-3">No</th>
+                                <th class="px-4 py-3">ID Layanan</th>
                                 <th class="px-4 py-3">Nama Layanan</th>
                                 <th class="px-4 py-3">keterangan</th>
                                 <th class="px-4 py-3">harga</th>
@@ -166,6 +172,9 @@ function submit(){
                             <tr class="text-gray-400" v-for="(item, index) in layanan.data">
                                 <td class="px-4 py-3">
                                     {{ (layanan.current_page - 1) * layanan.per_page + index + 1 }}
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    {{ item.id_layanan }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     {{ item.nama_layanan }}

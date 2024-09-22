@@ -73,7 +73,7 @@ function closeModal() {
 <template>
     <div class="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden" :class="{ 'overflow-hidden': isSideMenuOpen }">
         <!-- Desktop sidebar -->
-        <aside class="z-20 hidden w-[17%] overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0">
+        <aside class="z-20 hidden w-[17%] overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0 shadow-lg">
             <div class="py-4 text-gray-500 dark:text-gray-400">
                 <a class="ml-6 text-lg capitalize font-bold text-gray-800 dark:text-gray-200" href="#">
                     klinik fahri dent
@@ -109,7 +109,7 @@ function closeModal() {
                     </button>
                     <!-- Search input -->
                     <div class="flex justify-center flex-1 lg:pr-32">
-                        <div class="relative w-full max-w-xl pr-6 focus-within:text-purple-500">
+                        <!-- <div class="relative w-full max-w-xl pr-6 focus-within:text-purple-500">
                             <div class="absolute inset-y-0 flex items-center pl-2">
                                 <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
@@ -120,11 +120,11 @@ function closeModal() {
                             <input
                                 class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"
                                 type="text" placeholder="Search for projects" aria-label="Search" />
-                        </div>
+                        </div> -->
                     </div>
                     <ul class="flex items-center flex-shrink-0 space-x-6">
                         <!-- Theme toggler -->
-                        <li class="flex">
+                        <!-- <li class="flex">
                             <button class="rounded-md focus:outline-none focus:shadow-outline-purple"
                                 @click="toggleThemeF" aria-label="Toggle color mode">
                                 <template v-if="!dark">
@@ -141,7 +141,7 @@ function closeModal() {
                                     </svg>
                                 </template>
                             </button>
-                        </li>
+                        </li> -->
 
                         <!-- Profile menu -->
                         <li class="relative">

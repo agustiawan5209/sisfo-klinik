@@ -47,18 +47,35 @@ class DaftarLayanan extends Model
                 break;
         }
         return new Attribute(
-            get: fn()=> $value,
+            get: fn() => $value,
         );
     }
-    //  Filter Data
-    public function scopeFilter($query, $filter)
+
+
+    public function scopeFilterBySearch($query, $search)
     {
-        $query->when($filter['search'] ?? null, function ($query, $search) {
+        $query->when($search ?? null, function ($query, $search) {
             $query->where('nama_layanan', 'like', '%' . $search . '%')
                 ->orWhere('nomor_antrian', 'like', '%' . $search . '%');
-        })->when($filter['order'] ?? null, function ($query, $order) {
+        });
+    }
+
+    public function scopeFilterByOrder($query, $order)
+    {
+        $query->when($order ?? null, function ($query, $order) {
             $query->orderBy('id', $order);
-        })->when(Auth::user()->hasRole('Pasien'), function ($query, $trashed) {
+        });
+    }
+    public function scopeFilterByDate($query, $date)
+    {
+        $query->when($date ?? null, function ($query, $date) {
+            $query->whereDate('tgl', $date);
+        });
+    }
+
+    public function scopeFilterByRole($query, $role)
+    {
+        $query->when(Auth::user()->hasRole('Pasien'), function ($query, $role) {
             $query->where('id_pasien', Auth::user()->pasien->id);
         });
     }
