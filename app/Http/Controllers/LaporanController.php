@@ -14,8 +14,17 @@ class LaporanController extends Controller
     public function index(Request $request)
     {
         $tableName = 'pemeriksaans'; // Ganti dengan nama tabel yang Anda inginkan
-        $columns = DB::getSchemaBuilder()->getColumnListing($tableName);
-
+        // $columns = DB::getSchemaBuilder()->getColumnListing($tableName);
+        $columns = [
+            // 'id_layanan',
+            // 'id_pendaftaran',
+            'nama_layanan',
+            // 'id_pasien',
+            'nama_pasien',
+            'nama_petugas',
+            'hasil_pemeriksaan',
+            'tgl_pemeriksaan',
+        ];
         return Inertia::render('Admin/Laporan/Index', [
             'search' =>  Request::input('search'),
             'table_colums' => array_values(array_diff($columns, ['remember_token', 'status', 'id_pendaftaran', 'id_pasien', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id', 'deskripsi'])),

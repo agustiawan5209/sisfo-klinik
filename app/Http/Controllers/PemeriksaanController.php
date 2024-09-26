@@ -57,9 +57,11 @@ class PemeriksaanController extends Controller
      */
     public function store(StorePemeriksaanRequest $request)
     {
-        // $pasien = Pasien::with(['user'])->find($request->id_pasien);
-        // $layanan = Layanan::find($request->id_layanan);
-
+        $pasien = Pasien::with(['user'])->find($request->id_pasien);
+        $layanan = Layanan::with(['user'])->find($request->id_layanan);
+        $data = $request->all();
+        // $data['nama_layanan'] = $request->nama_layanan . "|". $request->id_layanan;
+        // $data['nama_pasien'] = $request->nama_pasien . "|". $request->id_pasien;
         $pemeriksaan = Pemeriksaan::create($request->all());
         return redirect()->route('Pemeriksaan.index')->with('message', 'Data Pasien Berhasil Di Simpan!!');
 

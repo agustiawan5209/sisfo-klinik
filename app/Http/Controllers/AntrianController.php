@@ -48,7 +48,7 @@ class AntrianController extends Controller
             ->filterByOrder(Request::input('order'))
             ->filterByRole(Request::input('order'))
             ->filterByDate(Request::input('date'))
-            ->orderBy('status', 'desc')
+            ->orderBy('status', 'asc')
             ->paginate(10),
             'can' => [
                 'add' =>  false,

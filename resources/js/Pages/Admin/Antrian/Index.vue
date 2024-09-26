@@ -238,7 +238,7 @@ function submit() {
                             <tr
                                 class="text-xs font-semibold tracking-wide text-left uppercase border-b border-gray-700  text-gray-900 bg-white">
                                 <th class="px-4 py-3">No</th>
-                                <th class="px-4 py-3">Nama Pasien</th>
+                                <th class="px-4 py-3">Nama Pasien | ID Pasien</th>
                                 <th class="px-4 py-3">Nama Layanan | ID layanan</th>
                                 <th class="px-4 py-3">Nomor Antrian </th>
                                 <th class="px-4 py-3">Tanggal</th>

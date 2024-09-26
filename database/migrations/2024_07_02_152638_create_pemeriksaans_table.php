@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nama_layanan');
             $table->foreignId('id_pasien')->constrained('pasiens');
             $table->foreignId('id_pendaftaran')->constrained('daftar_layanans');
+
             $table->string('nama_pasien');
             $table->string('nama_petugas');
             $table->text('hasil_pemeriksaan');
