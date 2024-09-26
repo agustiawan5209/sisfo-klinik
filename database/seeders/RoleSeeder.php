@@ -59,8 +59,12 @@ class RoleSeeder extends Seeder
                     'delete antrian',
                     'show antrian',
                 ]);
+                $lastId = $user->id;
 
+                // Membuat kode transaksi dengan format yang diinginkan
+                $id_pasien = 'LN-' . str_pad($lastId, 3, '0', STR_PAD_LEFT);
                 $pasien = Pasien::create([
+                    'id_pasien' => $id_pasien,
                     'user_id' => $user->id,
                     'alamat' => fake()->address(),
                     'no_telpon' => fake()->phoneNumber(),
