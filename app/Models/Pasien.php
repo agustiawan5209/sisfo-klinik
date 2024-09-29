@@ -19,30 +19,34 @@ class Pasien extends Model
         'tgl_lahir',
     ];
 
-     //  FIlter Data User
-     public function scopeFilter($query, $filter)
-     {
-         $query->when($filter['search'] ?? null, function ($query, $search) {
-             $query->where('alamat', 'like', '%' . $search . '%')
-                 ->orWhere('no_telpon', 'like', '%' . $search . '%')
-                 ->orWhereDate('tgl_lahir', 'like', '%' . $search . '%');
-         })->when($filter['order'] ?? null, function ($query, $order) {
-             $query->orderBy('id', $order);
-         });
-     }
 
-     public function user(){
-        return $this->hasOne(User::class,'id','user_id');
-     }
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 
-     protected $appends = [
+    protected $appends = [
         'nama_pasien',
     ];
 
     public function namaPasien(): Attribute
     {
         return new Attribute(
-            get: fn () => $this->user()->first()->name,
+            get: fn() => $this->user()->first()->name,
         );
+    }
+
+    //  FIlter Data User
+    public function scopeFilter($query, $filter)
+    {
+        $query->when($filter['search'] ?? null, function ($query, $search) {
+            $query->where('no_telpon', 'like', '%' . $search . '%')
+                ->orWhereHas('user', function ($query) use ($search) {
+                    $query->where('name', 'like', '%' . $search . '%');
+                })
+                ->orWhereDate('tgl_lahir', 'like', '%' . $search . '%');
+        })->when($filter['order'] ?? null, function ($query, $order) {
+            $query->orderBy('id', $order);
+        });
     }
 }

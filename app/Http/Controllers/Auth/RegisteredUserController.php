@@ -67,7 +67,7 @@ class RegisteredUserController extends Controller
         $lastId = Pasien::max('id') + 1;
 
         // Membuat kode transaksi dengan format yang diinginkan
-        $id_pasien = 'PN-' . str_pad($lastId, 3, '0', STR_PAD_LEFT);
+        $id_pasien = str_pad($lastId, 3, '0', STR_PAD_LEFT);
         $pasien = new Pasien([
             'user_id' => $user->id,
             'id_pasien'=> $id_pasien,

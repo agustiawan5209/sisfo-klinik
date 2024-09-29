@@ -146,11 +146,11 @@ function submit() {
 
 <template>
 
-    <Head title="Layanan" />
+    <Head title="Antrian" />
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-900 leading-tight">Data Layanan</h2>
+            <h2 class="font-semibold text-xl text-gray-900 leading-tight">Data Antrian</h2>
         </template>
 
 

@@ -27,8 +27,11 @@ class PemeriksaanController extends Controller
         // dd($columns);
         return Inertia::render('Admin/Pemeriksaan/Index', [
             'search' =>  Request::input('search'),
-            'table_colums' => array_values(array_diff($columns, ['remember_token', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id', 'hasil_pemeriksaan','id_layanan','id_pasien'])),
-            'data' => Pemeriksaan::filter(Request::only('search', 'order'))->paginate(10),
+            'table_colums' => array_values(array_diff($columns, ['remember_token', 'id_pendaftaran', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id', 'hasil_pemeriksaan','id_layanan','id_pasien'])),
+            'pemeriksaan' => Pemeriksaan::filterBySearch(Request::input('search'))
+            ->filterByOrder(Request::input('order'))
+            ->filterByDate(Request::input('date'))
+            ->paginate(10),
             'can' => [
                 'add' => Auth::user()->can('add pasien'),
                 'edit' => Auth::user()->can('edit pasien'),
@@ -57,9 +60,6 @@ class PemeriksaanController extends Controller
      */
     public function store(StorePemeriksaanRequest $request)
     {
-        $pasien = Pasien::with(['user'])->find($request->id_pasien);
-        $layanan = Layanan::with(['user'])->find($request->id_layanan);
-        $data = $request->all();
         // $data['nama_layanan'] = $request->nama_layanan . "|". $request->id_layanan;
         // $data['nama_pasien'] = $request->nama_pasien . "|". $request->id_pasien;
         $pemeriksaan = Pemeriksaan::create($request->all());

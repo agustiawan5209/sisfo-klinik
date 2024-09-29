@@ -46,8 +46,8 @@ class AntrianController extends Controller
             'table_colums' => array_values(array_diff($columns, ['remember_token', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id', 'hasil_pemeriksaan', 'id_layanan', 'id_pasien'])),
             'layanan' => DaftarLayanan::filterBySearch(Request::input('search'))
             ->filterByOrder(Request::input('order'))
-            ->filterByRole(Request::input('order'))
             ->filterByDate(Request::input('date'))
+            ->filterByRole(Request::input('order'))
             ->orderBy('status', 'asc')
             ->paginate(10),
             'can' => [
