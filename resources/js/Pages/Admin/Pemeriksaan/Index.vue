@@ -6,6 +6,7 @@ import { ref, watch, defineProps, onMounted, inject } from 'vue';
 import axios from 'axios';
 import dropdownTable from '@/Components/dropdownTable.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 const swal = inject('$swal')
 
 const page = usePage()
@@ -91,7 +92,7 @@ watch(date, (value) => {
     })
 })
 
-function resetFilter(){
+function resetFilter() {
     search.value = '';
     date.value = '';
 }
@@ -153,6 +154,13 @@ function submit() {
 
         <div class="py-4 relative box-content">
             <div class="w-full overflow-hidden rounded-lg shadow-xs divide-y divide-gray-700 bg-white">
+                <div class="py-3 px-4" v-if="crud.tambah">
+                    <div class="relative max-w-xs">
+                        <Link :href="route('Pemeriksaan.create')">
+                        <PrimaryButton type="button">Tambah Data</PrimaryButton>
+                        </Link>
+                    </div>
+                </div>
                 <div class="py-3 px-4 flex justify-between">
                     <div class="flex gap-4">
                         <div class="relative max-w-xs">
@@ -177,7 +185,8 @@ function submit() {
                                 class="py-1 md:py-2 ps-9 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
                         </div>
                         <div class="relative max-w-xs">
-                            <button type="reset" @click="resetFilter()" class="py-1 md:py-2 border px-2 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">Reset</button>
+                            <button type="reset" @click="resetFilter()"
+                                class="py-1 md:py-2 border px-2 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">Reset</button>
                         </div>
                     </div>
                     <div class="relative max-w-xs flex items-center gap-2">
@@ -207,7 +216,8 @@ function submit() {
                                 <th class="px-4 py-3">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody class=" divide-y divide-gray-700 bg-white" v-if="pemeriksaan.data.length" :class="{ 'opacity-75 blur-sm': Form.processing }">
+                        <tbody class=" divide-y divide-gray-700 bg-white" v-if="pemeriksaan.data.length"
+                            :class="{ 'opacity-75 blur-sm': Form.processing }">
                             <tr class="text-gray-900" v-for="(item, index) in pemeriksaan.data">
                                 <td class="px-4 py-3">
                                     {{ (pemeriksaan.current_page - 1) * pemeriksaan.per_page + index + 1 }}
@@ -256,8 +266,7 @@ function submit() {
                                                         :icon="['fas', 'eye']" />
                                                     Detail
                                                 </DropdownLink>
-                                                <button type="button" v-if="crud.delete"
-                                                    @click="showDeleteModal(item)"
+                                                <button type="button" v-if="crud.delete" @click="showDeleteModal(item)"
                                                     class="flex justify-start gap-3 w-full px-4 py-1 text-start text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
                                                     <font-awesome-icon class="text-red-500 hover:text-red-700"
                                                         :icon="['fas', 'trash-can']" />
