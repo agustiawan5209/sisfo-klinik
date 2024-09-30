@@ -34,7 +34,7 @@ class PemeriksaanController extends Controller
             ->paginate(10),
             'can' => [
                 'add' => Auth::user()->can('add pasien'),
-                'edit' => Auth::user()->can('edit pasien'),
+                'edit' => false,
                 'show' => Auth::user()->can('show pasien'),
                 'delete' => Auth::user()->can('delete pasien'),
                 'reset' => Auth::user()->can('reset pasien'),
