@@ -266,29 +266,37 @@ function deleteItem() {
                                 <th class="px-4 py-3">Nama Pasien | ID Pasien</th>
                                 <th class="px-4 py-3">Nama Layanan | ID Layanan</th>
                                 <th class="px-4 py-3">Nama Petugas </th>
-                                <th class="px-4 py-3">TanggalPemeriksaan</th>
+                                <th class="px-4 py-3">Tanggal Pemeriksaan</th>
+                                <th class="px-4 py-3">Hasil Pemeriksaan</th>
                                 <th class="px-4 py-3">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class=" divide-y divide-gray-700 bg-white" v-if="pemeriksaan.data.length"
                             :class="{ 'opacity-75 blur-sm': Form.processing }">
                             <tr class="text-gray-900" v-for="(item, index) in pemeriksaan.data">
-                                <td class="px-4 py-3">
+                                <td class="px-4 py-3 border-x border-gray-600">
                                     {{ (pemeriksaan.current_page - 1) * pemeriksaan.per_page + index + 1 }}
                                 </td>
-                                <td class="px-4 py-3 text-sm">
+                                <td class="px-4 py-3 border-x border-gray-600 text-sm">
                                     {{ item.nama_pasien }}
+
+                                    <div class="border-t border-black"  v-if="item.pasien !=null">
+                                        Tgl lahir: {{ item.pasien.tgl_lahir }}
+                                    </div>
                                 </td>
-                                <td class="px-4 py-3 text-sm">
+                                <td class="px-4 py-3 border-x border-gray-600 text-sm">
                                     {{ item.nama_layanan }}
                                 </td>
-                                <td class="px-4 py-3 text-sm">
+                                <td class="px-4 py-3 border-x border-gray-600 text-sm">
                                     {{ item.nama_petugas }}
                                 </td>
-                                <td class="px-4 py-3 text-sm">
+                                <td class="px-4 py-3 border-x border-gray-600 text-sm">
                                     {{ item.tgl_pemeriksaan }}
                                 </td>
-                                <td class="px-4 py-3 text-sm">
+                                <td class="px-4 py-3 border-x border-gray-600 text-sm">
+                                    <p v-html="item.hasil_pemeriksaan"></p>
+                                </td>
+                                <td class="px-4 py-3 border-x border-gray-600 text-sm">
                                     <!-- Settings dropdownTable -->
                                     <div class="ml-3 relative z-50">
                                         <dropdownTable align="top" width="48">

@@ -27,6 +27,7 @@ class PasienController extends Controller
         $columns[] = 'id_pasien';
         $columns[] = 'nama_pasien';
         $columns[] = 'no_telpon';
+        $columns[] = 'tgl_lahir';
         $columns[] = 'alamat';
 
         // dd($columns);

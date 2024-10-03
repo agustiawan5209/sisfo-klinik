@@ -45,6 +45,7 @@ class LaporanController extends Controller
     {
         // Ambil data penyewaan berdasarkan id
         $data = Pemeriksaan::whereBetween('created_at', Request::only('start_date', 'end_date'))
+        ->with(['pasien'])
             ->get();
 
 

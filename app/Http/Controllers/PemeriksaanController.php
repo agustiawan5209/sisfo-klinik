@@ -31,6 +31,7 @@ class PemeriksaanController extends Controller
             'pemeriksaan' => Pemeriksaan::filterBySearch(Request::input('search'))
             ->filterByOrder(Request::input('order'))
             ->filterByDate(Request::input('date'))
+            ->with(['pasien'])
             ->paginate(10),
             'can' => [
                 'add' => Auth::user()->can('add pasien'),

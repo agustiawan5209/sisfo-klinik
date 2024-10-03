@@ -21,6 +21,10 @@ class Pemeriksaan extends Model
         'tgl_pemeriksaan',
     ];
 
+
+    public function pasien(){
+        return $this->hasOne(Pasien::class,'id','id_pasien');
+    }
     /**
      * scopeFilter
      *

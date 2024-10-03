@@ -44,14 +44,16 @@
         <hr>
     </div>
     <div class="content">
-        <h1>Data Penyewaan</h1>
+        <h1>Data Laporan Pemeriksaan</h1>
         <table>
             <thead>
                 <tr>
                     <th>No.</th>
                     <th>Nama Pasien</th>
+                    <th>Tanggal Lahir Pasien</th>
                     <th>Nama Layanan</th>
                     <th>Nama Petugas</th>
+                    <th>Tanggal Pemeriksaan</th>
                     <th>Hasil Pemeriksaan</th>
                 </tr>
             </thead>
@@ -60,8 +62,10 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->nama_pasien }}</td>
+                        <td>{{ $item->pasien->tgl_lahir }}</td>
                         <td>{{ $item->nama_layanan }}</td>
                         <td>{{ $item->nama_petugas }}</td>
+                        <td>{{ $item->tgl_pemeriksaan }}</td>
                         <td>{!! $item->hasil_pemeriksaan !!}</td>
                     </tr>
                 @endforeach
