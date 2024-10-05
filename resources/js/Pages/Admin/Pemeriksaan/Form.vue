@@ -57,6 +57,7 @@ const Form = useForm({
     nama_pasien: '',
     nama_layanan: '',
     nama_petugas: '',
+    nama_dokter: '',
     hasil_pemeriksaan: '',
     tgl_pemeriksaan: '',
 })
@@ -142,6 +143,11 @@ function submit() {
                                 <label for="nama_petugas" class="text-sm">Nama Petugas</label>
                                 <TextInput id="nama_petugas" type="text" placeholder="nama Pemeriksaan" v-model="Form.nama_petugas"  class="w-full text-gray-900"  />
                                 <InputError :message="Form.errors.nama_petugas"/>
+                            </div>
+                            <div class="col-span-full sm:col-span-3">
+                                <label for="nama_dokter" class="text-sm">Nama Dokter</label>
+                                <TextInput id="nama_dokter" type="text" placeholder="nama Pemeriksaan" v-model="Form.nama_dokter"  class="w-full text-gray-900"  />
+                                <InputError :message="Form.errors.nama_dokter"/>
                             </div>
 
                             <div class="col-span-full sm:col-span-3">

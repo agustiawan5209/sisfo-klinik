@@ -20,6 +20,7 @@ return new class extends Migration
 
             $table->string('nama_pasien');
             $table->string('nama_petugas');
+            $table->string('nama_dokter');
             $table->text('hasil_pemeriksaan');
             $table->date('tgl_pemeriksaan');
             $table->timestamps();

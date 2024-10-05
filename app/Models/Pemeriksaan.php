@@ -17,6 +17,7 @@ class Pemeriksaan extends Model
         'id_pasien',
         'nama_pasien',
         'nama_petugas',
+        'nama_dokter',
         'hasil_pemeriksaan',
         'tgl_pemeriksaan',
     ];
@@ -38,6 +39,7 @@ class Pemeriksaan extends Model
             $query->where('nama_layanan', 'like', '%' . $search . '%')
                 ->orWhere('nama_pasien', 'like', '%' . $search . '%')
                 ->orWhere('nama_petugas', 'like', '%' . $search . '%')
+                ->orWhere('nama_dokter', 'like', '%' . $search . '%')
                 ->orWhere('tgl_pemeriksaan', 'like', '%' . $search . '%');
         })->when($filter['order'] ?? null, function ($query, $order) {
             $query->orderBy('id', $order);
@@ -50,6 +52,7 @@ class Pemeriksaan extends Model
             $query->where('nama_layanan', 'like', '%' . $search . '%')
             ->orWhere('nama_pasien', 'like', '%' . $search . '%')
             ->orWhere('nama_petugas', 'like', '%' . $search . '%')
+            ->orWhere('nama_dokter', 'like', '%' . $search . '%')
             ->orWhere('tgl_pemeriksaan', 'like', '%' . $search . '%');
         });
     }

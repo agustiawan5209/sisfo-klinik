@@ -266,6 +266,7 @@ function deleteItem() {
                                 <th class="px-4 py-3">Nama Pasien | ID Pasien</th>
                                 <th class="px-4 py-3">Nama Layanan | ID Layanan</th>
                                 <th class="px-4 py-3">Nama Petugas </th>
+                                <th class="px-4 py-3">Nama Dokter </th>
                                 <th class="px-4 py-3">Tanggal Pemeriksaan</th>
                                 <th class="px-4 py-3">Hasil Pemeriksaan</th>
                                 <th class="px-4 py-3">Aksi</th>
@@ -289,6 +290,9 @@ function deleteItem() {
                                 </td>
                                 <td class="px-4 py-3 border-x border-gray-600 text-sm">
                                     {{ item.nama_petugas }}
+                                </td>
+                                <td class="px-4 py-3 border-x border-gray-600 text-sm">
+                                    {{ item.nama_dokter }}
                                 </td>
                                 <td class="px-4 py-3 border-x border-gray-600 text-sm">
                                     {{ item.tgl_pemeriksaan }}

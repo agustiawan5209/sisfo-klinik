@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\DaftarLayanan;
 use App\Models\Pemeriksaan;
 use Inertia\Inertia;
-use App\Models\Penyewaan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use PDF;
@@ -43,17 +42,17 @@ class LaporanController extends Controller
 
     public function cetakPDF()
     {
-        // Ambil data penyewaan berdasarkan id
+        // Ambil data pemeriksaan berdasarkan id
         $data = Pemeriksaan::whereBetween('created_at', Request::only('start_date', 'end_date'))
         ->with(['pasien'])
             ->get();
 
 
 
-        // Load view untuk PDF dan pass data penyewaan
-        $pdf = PDF::loadView('pdf.penyewaan', compact('data'));
+        // Load view untuk PDF dan pass data pemeriksaan
+        $pdf = PDF::loadView('pdf.pemeriksaan', compact('data'));
 
         // Unduh PDF
-        return $pdf->download('penyewaan.pdf');
+        return $pdf->download('pemeriksaan.pdf');
     }
 }

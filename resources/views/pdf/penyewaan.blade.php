@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Data Penyewaan</title>
+    <title>Data Pemeriksaan</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
