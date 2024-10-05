@@ -41,7 +41,7 @@ export default {
                 // },
                 title: {
                     display: true,
-                    text: 'Jumlah Riwayat Imunisasi  '
+                    text: 'Jumlah Pemeriksaan Pasien '
                 }
             }
         },
