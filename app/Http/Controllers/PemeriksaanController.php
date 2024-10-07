@@ -27,15 +27,15 @@ class PemeriksaanController extends Controller
         // dd($columns);
         return Inertia::render('Admin/Pemeriksaan/Index', [
             'search' =>  Request::input('search'),
-            'table_colums' => array_values(array_diff($columns, ['remember_token', 'id_pendaftaran', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id', 'hasil_pemeriksaan','id_layanan','id_pasien'])),
+            'table_colums' => array_values(array_diff($columns, ['remember_token', 'id_pendaftaran', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id', 'hasil_pemeriksaan', 'id_layanan', 'id_pasien'])),
             'pemeriksaan' => Pemeriksaan::filterBySearch(Request::input('search'))
-            ->filterByOrder(Request::input('order'))
-            ->filterByDate(Request::input('date'))
-            ->with(['pasien'])
-            ->paginate(10),
+                ->filterByOrder(Request::input('order'))
+                ->filterByDate(Request::input('date'))
+                ->with(['pasien'])
+                ->paginate(10),
             'can' => [
                 'add' => Auth::user()->can('add pasien'),
-                'edit' => false,
+                'edit' => true,
                 'show' => Auth::user()->can('show pasien'),
                 'delete' => Auth::user()->can('delete pasien'),
                 'reset' => Auth::user()->can('reset pasien'),
@@ -50,9 +50,9 @@ class PemeriksaanController extends Controller
     public function create()
     {
         return Inertia::render('Admin/Pemeriksaan/Form', [
-            'layanan'=> Layanan::all(),
-            'pasien'=> Pasien::with(['user'])->get(),
-            'pendaftaran'=> DaftarLayanan::all(),
+            'layanan' => Layanan::all(),
+            'pasien' => Pasien::with(['user'])->get(),
+            'pendaftaran' => DaftarLayanan::all(),
         ]);
     }
 
@@ -65,7 +65,6 @@ class PemeriksaanController extends Controller
         // $data['nama_pasien'] = $request->nama_pasien . "|". $request->id_pasien;
         $pemeriksaan = Pemeriksaan::create($request->all());
         return redirect()->route('Pemeriksaan.index')->with('message', 'Data Pasien Berhasil Di Simpan!!');
-
     }
 
     /**
@@ -75,8 +74,8 @@ class PemeriksaanController extends Controller
     {
         return Inertia::render('Admin/Pemeriksaan/Show', [
             'pemeriksaan' => Pemeriksaan::find(Request::input('slug')),
-            'layanan'=> Layanan::all(),
-            'pasien'=> Pasien::all(),
+            'layanan' => Layanan::all(),
+            'pasien' => Pasien::all(),
         ]);
     }
 
@@ -87,8 +86,9 @@ class PemeriksaanController extends Controller
     {
         return Inertia::render('Admin/Pemeriksaan/Edit', [
             'pemeriksaan' => Pemeriksaan::find(Request::input('slug')),
-            'layanan'=> Layanan::all(),
-            'pasien'=> Pasien::all(),
+            'layanan' => Layanan::all(),
+            'pasien' => Pasien::with(['user'])->get(),
+            'pendaftaran' => DaftarLayanan::all(),
         ]);
     }
 

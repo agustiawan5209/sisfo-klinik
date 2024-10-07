@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
 use App\Http\Requests\StorePasienRequest;
 use App\Http\Requests\UpdatePasienRequest;
+use App\Models\DaftarLayanan;
 
 class PasienController extends Controller
 {
@@ -135,7 +136,8 @@ class PasienController extends Controller
     public function destroy(Pasien $pasien)
     {
         $pasien = Pasien::find(Request::input('slug'));
-        $pasien->delete();
+        DaftarLayanan::where('id_pasien', $pasien->id)->delete();
+        $user = User::find($pasien->user_id)->delete();
         return redirect()->route('Pasien.index')->with('message', 'Data Pasien Berhasil Di Hapus!!');
     }
 

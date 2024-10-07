@@ -22,9 +22,13 @@ class UpdatePemeriksaanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id_layanan' => 'required|exists:pemeriksaans,id',
-            'id_pasien' => 'required|exists:pemeriksaans,id',
+            'id_layanan' => 'required|exists:layanans,id',
+            'id_pasien' => 'required',
+            'id_pendaftaran' => 'required',
             'nama_petugas' => 'required|string',
+            'nama_layanan' => 'required|string',
+            'nama_pasien' => 'required|string',
+            'nama_dokter' => 'required|string',
             'hasil_pemeriksaan' => 'required|string',
             'tgl_pemeriksaan' => 'required|string',
         ];

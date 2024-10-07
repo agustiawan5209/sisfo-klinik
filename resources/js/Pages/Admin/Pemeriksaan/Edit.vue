@@ -49,17 +49,21 @@ const props = defineProps({
         type: Object,
         default:()=>({})
     },
+    pemeriksaan: {
+        type: Object,
+        default:()=>({})
+    },
 })
 const Form = useForm({
-    id_pasien:'',
-    id_layanan:'',
-    id_pendaftaran:'',
-    nama_pasien: '',
-    nama_layanan: '',
-    nama_petugas: '',
-    nama_dokter: '',
-    hasil_pemeriksaan: '',
-    tgl_pemeriksaan: '',
+    id_pasien:props.pemeriksaan.id_pasien,
+    id_layanan:props.pemeriksaan.id_layanan,
+    id_pendaftaran:props.pemeriksaan.id_pendaftaran,
+    nama_pasien: props.pemeriksaan.nama_pasien,
+    nama_layanan: props.pemeriksaan.nama_layanan,
+    nama_petugas: props.pemeriksaan.nama_petugas,
+    nama_dokter: props.pemeriksaan.nama_dokter,
+    hasil_pemeriksaan: props.pemeriksaan.hasil_pemeriksaan,
+    tgl_pemeriksaan: props.pemeriksaan.tgl_pemeriksaan,
 })
 
 const getPendaftaran = async function (event) {
@@ -88,7 +92,7 @@ const getPendaftaran = async function (event) {
 
 
 function submit() {
-    Form.post(route('Pemeriksaan.store'), {
+    Form.put(route('Pemeriksaan.update', {slug: props.pemeriksaan.id}), {
         onError: (err) => {
             console.log(err)
         }
@@ -104,15 +108,15 @@ function submit() {
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Form Tambah Pemeriksaan</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Form Edit Pemeriksaan</h2>
         </template>
 
         <div class="py-4 relative box-content">
             <section class="p-6 bg-gray-100 text-gray-900">
                 <form @submit.prevent="submit()" novalidate="" action="" class="container flex flex-col mx-auto space-y-12">
                     <div class="space-y-2 col-span-full lg:col-span-1">
-                        <p class="font-medium text-xl">Buat Informasi Pemeriksaan Kesehatan Gigi Klinik Fahri Dent K</p>
-                        <p class="text-xs">Tambahkan data</p>
+                        <p class="font-medium text-xl">Edit Informasi Pemeriksaan Kesehatan Gigi Klinik Fahri Dent K</p>
+                        <p class="text-xs">Edit data</p>
                     </div>
                     <fieldset class="grid grid-cols-3 gap-6 p-6 rounded-md shadow-sm bg-gray-50">
                         <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
