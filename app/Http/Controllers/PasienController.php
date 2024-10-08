@@ -121,7 +121,7 @@ class PasienController extends Controller
     public function update(UpdatePasienRequest $request, Pasien $pasien)
     {
         $pasien = Pasien::find(Request::input('slug'));
-        $user = User::find($pasien->user_id)->update(['name'=> $request->name]);
+        $user = User::find($pasien->user_id)->update(['name'=> $request->name, 'phone'=> $request->no_telpon]);
         $pasien->update([
             'alamat' => $request->alamat,
             'tanggal_lahir' => $request->tanggal_lahir,
