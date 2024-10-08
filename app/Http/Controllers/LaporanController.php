@@ -8,6 +8,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use PDF;
+
 class LaporanController extends Controller
 {
     public function index(Request $request)
@@ -36,7 +37,7 @@ class LaporanController extends Controller
                 'delete' => false,
                 'reset_password' => false,
             ],
-            'datelaporan'=>Request::only('start_date', 'end_date'),
+            'datelaporan' => Request::only('start_date', 'end_date'),
         ]);
     }
 
@@ -44,7 +45,7 @@ class LaporanController extends Controller
     {
         // Ambil data pemeriksaan berdasarkan id
         $data = Pemeriksaan::whereBetween('created_at', Request::only('start_date', 'end_date'))
-        ->with(['pasien'])
+            ->with(['pasien'])
             ->get();
 
 
@@ -53,6 +54,6 @@ class LaporanController extends Controller
         $pdf = PDF::loadView('pdf.pemeriksaan', compact('data'));
 
         // Unduh PDF
-        return $pdf->download('pemeriksaan.pdf');
+        return $pdf->stream('pemeriksaan.pdf');
     }
 }
