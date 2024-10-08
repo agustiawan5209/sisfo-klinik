@@ -64,6 +64,7 @@ class PasienController extends Controller
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
+            'phone' => $request->no_telpon,
             'password' => Hash::make($request->password),
             'remember_token' => Str::random(60),
         ]);
