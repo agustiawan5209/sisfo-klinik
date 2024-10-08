@@ -49,7 +49,7 @@
             <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Nama Pasien | Tanggal Lahir Pasien</th>
+                    <th style="font-size:12px;">Nama Pasien | Tanggal Lahir Pasien</th>
                     <th>Nama Layanan</th>
                     <th>Nama Petugas</th>
                     <th>Nama Dokter</th>

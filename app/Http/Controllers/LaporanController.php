@@ -54,6 +54,6 @@ class LaporanController extends Controller
         $pdf = PDF::loadView('pdf.pemeriksaan', compact('data'));
 
         // Unduh PDF
-        return $pdf->stream('pemeriksaan.pdf');
+        return $pdf->download('pemeriksaan.pdf');
     }
 }
