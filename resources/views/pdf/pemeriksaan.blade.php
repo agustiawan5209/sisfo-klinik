@@ -32,6 +32,9 @@
             padding: 8px;
             text-align: left;
         }
+        .ttd *{
+            border: 0px;
+        }
     </style>
 </head>
 <body>
@@ -76,6 +79,30 @@
                     </tr>
                 @endforeach
             </tbody>
+        </table>
+    </div>
+      {{-- TTD --}}
+      <div class="ttd" style="width:100%; position: relative; padding: 0px 0px; ">
+        <table style="width: 300px; position: absolute; right:30px; top:0; margin-top: 30px;">
+            <tr>
+                <td style="font-weight: 0; padding: 4px 0px;"> Makassar, {{ date('j F Y') }}</td>
+            </tr>
+            <tr>
+                <td style="font-weight: 0; padding: 20px 0px;"></td>
+            </tr>
+            <tr>
+                <td style="font-weight: 0; padding: 20px 0px;"></td>
+            </tr>
+            <tr>
+                <td style="font-weight: 0; padding: 4px 0px; text-align: center;">
+                    <span>........................
+                    </span>
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight: 0; padding: 4px 0px;"> NIP: .................</td>
+            </tr>
         </table>
     </div>
 </body>
