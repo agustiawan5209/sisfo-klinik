@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Request;
 use App\Http\Requests\StorePasienRequest;
 use App\Http\Requests\UpdatePasienRequest;
 use App\Models\DaftarLayanan;
-
+use PDF;
 class PasienController extends Controller
 {
     /**
@@ -35,7 +35,11 @@ class PasienController extends Controller
         return Inertia::render('Admin/Pasien/Index', [
             'search' =>  Request::input('search'),
             'table_colums' => array_values(array_diff($columns, ['remember_token', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id', 'deskripsi'])),
-            'data' => Pasien::with(['user'])->filter(Request::only('search', 'order'))->paginate(10),
+            'data' => Pasien::with(['user'])->filter(Request::only('search', 'order'))
+            ->when(Request::input('start_date') !=null && Request::input('end_date') != null, function($query){
+                $query->whereBetween('created_at', [Request::input('start_date'), Request::input('end_date')]);
+            })
+            ->paginate(10),
             'can' => [
                 'add' => Auth::user()->can('add pasien'),
                 'edit' => Auth::user()->can('edit pasien'),
@@ -167,5 +171,21 @@ class PasienController extends Controller
         ]);
         return redirect()->route('Pasien.index')->with('message', 'Password Pasien berhasil Di Ubah!');
 
+    }
+
+    public function cetakPDF()
+    {
+        // Ambil data pemeriksaan berdasarkan id
+        $data = Pasien::whereBetween('created_at', Request::only('start_date', 'end_date'))
+            ->with(['user'])
+            ->get();
+
+
+
+        // Load view untuk PDF dan pass data pemeriksaan
+        $pdf = PDF::loadView('pdf.pasien', compact('data'));
+
+        // Unduh PDF
+        return $pdf->download('pasien.pdf');
     }
 }

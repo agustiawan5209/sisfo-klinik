@@ -97,6 +97,7 @@ Route::middleware(['auth', 'verified', 'role:Admin|Pasien|Klinik'])->group(funct
             Route::post('/store-data-pasien', 'store')->name('store');
             Route::put('/update-data-pasien', 'update')->name('update');
             Route::delete('/hapus-data-pasien', 'destroy')->name('destroy');
+            Route::get('/cetak', 'cetakPDF')->name('cetak');
 
             // reset password
 
