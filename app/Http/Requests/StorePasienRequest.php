@@ -24,7 +24,7 @@ class StorePasienRequest extends FormRequest
     {
         return [
             "alamat" => "required|string|max:200",
-            "no_telpon" => "required",
+            "no_telpon" => "required|max:12",
             "tgl_lahir" => "required|date",
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users,username',

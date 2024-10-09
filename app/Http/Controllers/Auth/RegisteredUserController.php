@@ -35,7 +35,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             "alamat" => "required|string|max:200",
-            "no_telpon" => "required",
+            "no_telpon" => "required|max:12",
             "tgl_lahir" => "required|date",
             'username' => 'required|string|max:255',
             'name' => 'required|string|max:255',
