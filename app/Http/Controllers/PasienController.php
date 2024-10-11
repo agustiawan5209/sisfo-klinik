@@ -29,6 +29,7 @@ class PasienController extends Controller
         $columns[] = 'nama_pasien';
         $columns[] = 'no_telpon';
         $columns[] = 'tgl_lahir';
+        $columns[] = 'tgl_pendaftaran';
         $columns[] = 'alamat';
 
         // dd($columns);
@@ -37,7 +38,7 @@ class PasienController extends Controller
             'table_colums' => array_values(array_diff($columns, ['remember_token', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id', 'deskripsi'])),
             'data' => Pasien::with(['user'])->filter(Request::only('search', 'order'))
             ->when(Request::input('start_date') !=null && Request::input('end_date') != null, function($query){
-                $query->whereBetween('created_at', [Request::input('start_date'), Request::input('end_date')]);
+                $query->whereBetween('tgl_pendaftaran', [Request::input('start_date'), Request::input('end_date')]);
             })
             ->paginate(10),
             'can' => [
@@ -93,6 +94,7 @@ class PasienController extends Controller
             'alamat' => $request->alamat,
             'tgl_lahir' => $request->tgl_lahir,
             'no_telpon' => $request->no_telpon,
+            'tgl_pendaftaran' => $request->tgl_pendaftaran,
         ]);
         $pasien->save();
 
@@ -176,7 +178,7 @@ class PasienController extends Controller
     public function cetakPDF()
     {
         // Ambil data pemeriksaan berdasarkan id
-        $data = Pasien::whereBetween('created_at', Request::only('start_date', 'end_date'))
+        $data = Pasien::whereBetween('tgl_pendaftaran', Request::only('start_date', 'end_date'))
             ->with(['user'])
             ->get();
 

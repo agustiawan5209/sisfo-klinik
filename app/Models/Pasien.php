@@ -17,6 +17,7 @@ class Pasien extends Model
         'alamat',
         'no_telpon',
         'tgl_lahir',
+        'tgl_pendaftaran',
     ];
 
 
@@ -44,7 +45,7 @@ class Pasien extends Model
                 ->orWhereHas('user', function ($query) use ($search) {
                     $query->where('name', 'like', '%' . $search . '%');
                 })
-                ->orWhereDate('tgl_lahir', 'like', '%' . $search . '%');
+                ->orWhereDate('tgl_pendaftaran', 'like', '%' . $search . '%');
         })->when($filter['order'] ?? null, function ($query, $order) {
             $query->orderBy('id', $order);
         });

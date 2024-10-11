@@ -214,7 +214,13 @@ const downloadPDF = () => {
             <div class="p-1.5 min-w-full">
                 <div
                     class="border divide-y divide-gray-200 max-w-7xl mb-8 overflow-hidden rounded-lg shadow-xs bg-white">
-
+                    <div class="py-3 px-4" v-if="crud.tambah">
+                        <div class="relative max-w-xs">
+                            <Link :href="route(props.path + '.create')">
+                            <PrimaryButton type="button">Tambah Data</PrimaryButton>
+                            </Link>
+                        </div>
+                    </div>
                     <div class="py-3 px-4 flex justify-between">
                         <div class="flex gap-3 items-center">
                             <div class="relative max-w-xs flex items-center">

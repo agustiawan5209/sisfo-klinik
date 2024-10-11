@@ -75,6 +75,7 @@ class RegisteredUserController extends Controller
             'alamat' => $request->alamat,
             'tgl_lahir' => $request->tgl_lahir,
             'no_telpon' => $request->no_telpon,
+            'tgl_pendaftaran' => $user->created_at,
         ]);
         $pasien->save();
 

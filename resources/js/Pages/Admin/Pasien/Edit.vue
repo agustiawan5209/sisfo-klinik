@@ -22,6 +22,7 @@ const Form = useForm({
     alamat:props.pasien.alamat,
     username:props.pasien.user.username,
     tgl_lahir:props.pasien.tgl_lahir,
+    tgl_pendaftaran:props.pasien.tgl_pendaftaran,
     email:props.pasien.user.email,
     password:props.pasien.user.password,
     no_telpon:props.pasien.no_telpon,
@@ -77,6 +78,12 @@ function submit() {
                                 <label for="tgl_lahir" class="text-sm">Tanggal Lahir</label>
                                 <TextInput id="tgl_lahir" type="date" v-model="Form.tgl_lahir" placeholder="" class="w-full text-gray-900"  />
                                 <InputError :message="Form.errors.tgl_lahir"/>
+
+                            </div>
+                            <div class="col-span-full">
+                                <label for="tgl_pendaftaran" class="text-sm">Tanggal Pendaftaran</label>
+                                <TextInput id="tgl_pendaftaran" type="date" v-model="Form.tgl_pendaftaran" placeholder="" class="w-full text-gray-900"  />
+                                <InputError :message="Form.errors.tgl_pendaftaran"/>
 
                             </div>
                         </div>

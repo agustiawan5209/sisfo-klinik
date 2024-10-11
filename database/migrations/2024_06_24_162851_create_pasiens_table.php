@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('alamat',100)->nullable();
             $table->string('no_telpon',20)->nullable();
             $table->date('tgl_lahir');
+            $table->date('tgl_pendaftaran');
             $table->timestamps();
         });
     }

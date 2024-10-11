@@ -62,6 +62,11 @@ const props = defineProps({
                                         <td class="text-sm border-b text-gray-600"> {{ pasien.pasien }} </td>
                                     </tr>
                                     <tr class="">
+                                        <td class="text-sm border-b py-2 font-bold capitalize">Tempat/Tanggal Lahir</td>
+                                        <td>:</td>
+                                        <td class="text-sm border-b text-gray-600"> {{ pasien.tempat }} / {{ pasien.tgl_lahir }} </td>
+                                    </tr>
+                                    <tr class="">
                                         <td class="text-sm border-b py-2 font-bold capitalize">nomor telpon</td>
                                         <td>:</td>
                                         <td class="text-sm border-b text-gray-600"> {{ pasien.no_telpon }} </td>
