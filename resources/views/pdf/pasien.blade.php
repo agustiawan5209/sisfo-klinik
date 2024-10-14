@@ -91,13 +91,10 @@
             </tr>
             <tr>
                 <td style="font-weight: 0; padding: 4px 0px; text-align: center;">
-                    <span>........................
+                    <span>Admin KLINIK FAHRI DENT K
                     </span>
                     <hr>
                 </td>
-            </tr>
-            <tr>
-                <td style="font-weight: 0; padding: 4px 0px;"> NIP: .................</td>
             </tr>
         </table>
     </div>
