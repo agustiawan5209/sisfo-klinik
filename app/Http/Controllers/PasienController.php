@@ -188,6 +188,6 @@ class PasienController extends Controller
         $pdf = PDF::loadView('pdf.pasien', compact('data'));
 
         // Unduh PDF
-        return $pdf->stream('pasien.pdf');
+        return $pdf->download('pasien.pdf');
     }
 }
