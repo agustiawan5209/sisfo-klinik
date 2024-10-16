@@ -53,7 +53,7 @@
                 <tr>
                     <th>No.</th>
                     <th style="font-size:12px;">Nama Pasien | Tanggal Lahir Pasien</th>
-                    <th>Nama Layanan</th>
+                    <th>Nama Layanan | ID Layanan</th>
                     <th>Nama Petugas</th>
                     <th>Nama Dokter</th>
                     <th>Tanggal Pemeriksaan</th>
@@ -72,8 +72,8 @@
                             @endif
                         </td>
                         <td>{{ $item->nama_layanan }}</td>
-                        <td>{{ $item->nama_dokter }}</td>
                         <td>{{ $item->nama_petugas }}</td>
+                        <td>{{ $item->nama_dokter }}</td>
                         <td>{{ $item->tgl_pemeriksaan }}</td>
                         <td>{!! $item->hasil_pemeriksaan !!}</td>
                     </tr>
@@ -95,13 +95,10 @@
             </tr>
             <tr>
                 <td style="font-weight: 0; padding: 4px 0px; text-align: center;">
-                    <span>........................
+                    <span>Admin KLINIK FAHRI DENT K
                     </span>
                     <hr>
                 </td>
-            </tr>
-            <tr>
-                <td style="font-weight: 0; padding: 4px 0px;"> NIP: .................</td>
             </tr>
         </table>
     </div>

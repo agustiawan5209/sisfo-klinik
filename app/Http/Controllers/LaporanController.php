@@ -22,6 +22,7 @@ class LaporanController extends Controller
             // 'id_pasien',
             'nama_pasien',
             'nama_petugas',
+            'nama_dokter',
             'hasil_pemeriksaan',
             'tgl_pemeriksaan',
         ];
