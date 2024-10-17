@@ -18,13 +18,13 @@ class LaporanController extends Controller
         $columns = [
             // 'id_layanan',
             // 'id_pendaftaran',
+            'tgl_pemeriksaan',
             'nama_layanan',
             // 'id_pasien',
             'nama_pasien',
             'nama_petugas',
             'nama_dokter',
             'hasil_pemeriksaan',
-            'tgl_pemeriksaan',
         ];
         return Inertia::render('Admin/Laporan/Index', [
             'search' =>  Request::input('search'),

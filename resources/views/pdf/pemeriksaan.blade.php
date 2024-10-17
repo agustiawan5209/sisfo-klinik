@@ -85,7 +85,9 @@
       <div class="ttd" style="width:100%; position: relative; padding: 0px 0px; ">
         <table style="width: 300px; position: absolute; right:30px; top:0; margin-top: 30px;">
             <tr>
-                <td style="font-weight: 0; padding: 4px 0px;"> Makassar, {{ date('j F Y') }}</td>
+                <td style="font-weight: 0; padding: 4px 0px; text-align: center;"> Makassar, {{ date('j F Y') }} <br>
+                    <span>Admin KLINIK FAHRI DENT K
+                    </span> </td>
             </tr>
             <tr>
                 <td style="font-weight: 0; padding: 20px 0px;"></td>
@@ -95,7 +97,7 @@
             </tr>
             <tr>
                 <td style="font-weight: 0; padding: 4px 0px; text-align: center;">
-                    <span>Admin KLINIK FAHRI DENT K
+                    <span>Khairil Anwar
                     </span>
                     <hr>
                 </td>
