@@ -132,6 +132,7 @@ class PasienController extends Controller
             'alamat' => $request->alamat,
             'tanggal_lahir' => $request->tanggal_lahir,
             'no_telpon' => $request->no_telpon,
+            'tgl_pendaftaran'=> $request->tgl_pendaftaran,
         ]);
 
         return redirect()->route('Pasien.index')->with('message', 'Data Pasien Berhasil Di Ubah!!');
