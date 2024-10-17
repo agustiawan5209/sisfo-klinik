@@ -52,11 +52,11 @@
             <thead>
                 <tr>
                     <th>No.</th>
+                    <th>Tanggal Pemeriksaan</th>
                     <th style="font-size:12px;">Nama Pasien | Tanggal Lahir Pasien</th>
                     <th>Nama Layanan | ID Layanan</th>
                     <th>Nama Petugas</th>
                     <th>Nama Dokter</th>
-                    <th>Tanggal Pemeriksaan</th>
                     <th>Hasil Pemeriksaan</th>
                 </tr>
             </thead>
@@ -64,6 +64,8 @@
                 @foreach ($data as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->tgl_pemeriksaan }}</td>
+
                         <td>{{ $item->nama_pasien }}
 
                             @if ($item->pasien != null)
@@ -74,7 +76,6 @@
                         <td>{{ $item->nama_layanan }}</td>
                         <td>{{ $item->nama_petugas }}</td>
                         <td>{{ $item->nama_dokter }}</td>
-                        <td>{{ $item->tgl_pemeriksaan }}</td>
                         <td>{!! $item->hasil_pemeriksaan !!}</td>
                     </tr>
                 @endforeach
