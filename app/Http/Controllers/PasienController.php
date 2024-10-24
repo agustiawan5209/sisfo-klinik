@@ -26,10 +26,10 @@ class PasienController extends Controller
         // $columns = DB::getSchemaBuilder()->getColumnListing($tableName);
         $columns[] = 'id';
         $columns[] = 'id_pasien';
+        $columns[] = 'tgl_pendaftaran';
         $columns[] = 'nama_pasien';
         $columns[] = 'no_telpon';
         $columns[] = 'tgl_lahir';
-        $columns[] = 'tgl_pendaftaran';
         $columns[] = 'alamat';
 
         // dd($columns);
