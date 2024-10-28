@@ -31,6 +31,7 @@ class AntrianController extends Controller
         $antrian = Antrian::create([
             'user_id' => Auth::user()->id,
             'tanggal' => Carbon::now()->format('Y-m-d'),
+            'nomor_antrian'=> $nomor,
         ]);
 
         return $antrian;
