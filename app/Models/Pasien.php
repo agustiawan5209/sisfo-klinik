@@ -28,7 +28,7 @@ class Pasien extends Model
 
     public function daftarlayanan()
     {
-        return $this->hasMany(Daftarlayanan::class, 'id_pasien', 'id');
+        return $this->hasMany(DaftarLayanan::class, 'id_pasien', 'id');
     }
 
     protected $appends = [
