@@ -40,7 +40,7 @@
 <body>
     <div class="header">
         {{-- <img src="{{ asset('path/to/logo.png') }}" alt="Logo Perusahaan"> --}}
-        <h1>KLINIK FAHRI DENT K</h1>
+        <h1>KLINIK FAHRI DENT</h1>
         <h2>Laporan Pemeriksaan</h2>
         <p>Karunrung, Kec. Rappocini, Kota Makassar, Sulawesi Selatan 90221</p>
         <p>Telepon:  +62 812-4275-5965</p>
@@ -87,7 +87,7 @@
         <table style="width: 300px; position: absolute; right:30px; top:0; margin-top: 30px;">
             <tr>
                 <td style="font-weight: 0; padding: 4px 0px; text-align: center;"> Makassar, {{ date('j F Y') }} <br>
-                    <span>Admin KLINIK FAHRI DENT K
+                    <span>Admin KLINIK FAHRI DENT
                     </span> </td>
             </tr>
             <tr>

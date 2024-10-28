@@ -52,7 +52,7 @@ const printElement = () => {
                 <div class="card">  <!-- Tambahkan ref di sini -->
                     <h1
                         class="relative flex justify-between items-center sm:py-6 py-5 sm:px-[1.875rem] px-4 flex-wrap border-b border-border text-body-text text-3xl">
-                        Klinik Fahri Dent K
+                        Klinik Fahri Dent
                         <p>{{ layanan.tgl }}</p>
                     </h1>
                     <div class="flex justify-center items-center">

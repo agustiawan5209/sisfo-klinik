@@ -115,7 +115,7 @@ function submit() {
             <section class="p-6 bg-gray-100 text-gray-900">
                 <form @submit.prevent="submit()" novalidate="" action="" class="container flex flex-col mx-auto space-y-12">
                     <div class="space-y-2 col-span-full lg:col-span-1">
-                        <p class="font-medium text-xl">Edit Informasi Pemeriksaan Kesehatan Gigi Klinik Fahri Dent K</p>
+                        <p class="font-medium text-xl">Edit Informasi Pemeriksaan Kesehatan Gigi Klinik Fahri Dent</p>
                         <p class="text-xs">Edit data</p>
                     </div>
                     <fieldset class="grid grid-cols-3 gap-6 p-6 rounded-md shadow-sm bg-gray-50">
