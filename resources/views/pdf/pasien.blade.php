@@ -40,7 +40,7 @@
 </head>
 <body>
     <div class="header">
-        {{-- <img src="{{ asset('path/to/logo.png') }}" alt="Logo Perusahaan"> --}}
+        <img src="{{ public_path('images/logo.png') }}" alt="Logo Perusahaan">
         <h1>KLINIK FAHRI DENT </h1>
         <h2>Laporan Pasien</h2>
         <p>Karunrung, Kec. Rappocini, Kota Makassar, Sulawesi Selatan 90221</p>
@@ -53,24 +53,37 @@
             <thead>
                 <tr>
                     <th>No.</th>
+                    <th>ID Pasien</th>
+                    <th>Tanggal Pendaftaran</th>
                     <th style="font-size:12px;">Nama Pasien </th>
-                    <th>Tanggal Lahir</th>
                     <th>No. Telpon</th>
+                    <th>Tanggal Lahir</th>
                     <th>Alamat</th>
+                    <th>Daftar Layanan</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($data as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->id_pasien }}
+                        <td>{{ $item->tgl_pendaftaran }}
                         <td>{{ $item->user->name }}
                         </td>
+                        <td>{{ $item->no_telpon }}</td>
                         <td>
                             {{ $item->tgl_lahir }}
                         </td>
-                        <td>{{ $item->no_telpon }}</td>
                         <td>{{ $item->alamat }}</td>
-
+                        <td>
+                            @if (count($item->daftarlayanan) > 0)
+                                <ul>
+                                    @foreach ($item->daftarlayanan as $col)
+                                        {{ $col->nama_layanan }}
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

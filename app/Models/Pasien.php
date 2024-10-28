@@ -26,6 +26,11 @@ class Pasien extends Model
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 
+    public function daftarlayanan()
+    {
+        return $this->hasMany(Daftarlayanan::class, 'id_pasien', 'id');
+    }
+
     protected $appends = [
         'nama_pasien',
     ];

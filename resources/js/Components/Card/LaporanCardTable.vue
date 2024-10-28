@@ -310,6 +310,13 @@ const downloadPDF = () => {
                                                 <p class="whitespace-nowrap text-xs">{{ item.status }}</p>
                                             </span>
                                         </span>
+                                        <span v-else-if="col == 'daftar_layanan'">
+                                            <ul v-if="item.daftarlayanan.length > 0">
+                                                <li class="border-b" v-for="layanan in item.daftarlayanan">
+                                                    {{ layanan.nama_layanan }}
+                                                </li>
+                                            </ul>
+                                        </span>
                                         <span v-else :class="col == 'tanggal' ? 'whitespace-nowrap' : ''">{{ item[col]
                                             }}</span>
                                     </td>

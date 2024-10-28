@@ -31,12 +31,13 @@ class PasienController extends Controller
         $columns[] = 'no_telpon';
         $columns[] = 'tgl_lahir';
         $columns[] = 'alamat';
+        $columns[] = 'daftar_layanan';
 
         // dd($columns);
         return Inertia::render('Admin/Pasien/Index', [
             'search' =>  Request::input('search'),
             'table_colums' => array_values(array_diff($columns, ['remember_token', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id', 'deskripsi'])),
-            'data' => Pasien::with(['user'])->filter(Request::only('search', 'order'))
+            'data' => Pasien::with(['user','daftarlayanan'])->filter(Request::only('search', 'order'))
             ->when(Request::input('start_date') !=null && Request::input('end_date') != null, function($query){
                 $query->whereBetween('tgl_pendaftaran', [Request::input('start_date'), Request::input('end_date')]);
             })
@@ -180,13 +181,13 @@ class PasienController extends Controller
     {
         // Ambil data pemeriksaan berdasarkan id
         $data = Pasien::whereBetween('tgl_pendaftaran', Request::only('start_date', 'end_date'))
-            ->with(['user'])
+            ->with(['user','daftarlayanan'])
             ->get();
 
 
 
         // Load view untuk PDF dan pass data pemeriksaan
-        $pdf = PDF::loadView('pdf.pasien', compact('data'));
+        $pdf = PDF::loadView('pdf.pasien', compact('data'))->setPaper('A4', 'landscape');
 
         // Unduh PDF
         return $pdf->download('pasien.pdf');

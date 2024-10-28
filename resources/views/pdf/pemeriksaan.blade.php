@@ -39,7 +39,7 @@
 </head>
 <body>
     <div class="header">
-        {{-- <img src="{{ asset('path/to/logo.png') }}" alt="Logo Perusahaan"> --}}
+        <img src="{{ public_path('images/logo.png') }}" alt="Logo Perusahaan">
         <h1>KLINIK FAHRI DENT</h1>
         <h2>Laporan Pemeriksaan</h2>
         <p>Karunrung, Kec. Rappocini, Kota Makassar, Sulawesi Selatan 90221</p>
