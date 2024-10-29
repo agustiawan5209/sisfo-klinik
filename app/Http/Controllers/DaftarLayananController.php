@@ -61,20 +61,20 @@ class DaftarLayananController extends Controller
     public function store(StoreDaftarLayananRequest $request)
     {
         try {
-            $antrian = new AntrianController();
-            $nomor_antrian = $antrian->generateNomorAntrian($request->tgl);
+            // $antrian = new AntrianController();
+            // $nomor_antrian = $antrian->generateNomorAntrian($request->tgl);
 
-            DB::transaction(function () use ($request, $nomor_antrian) {
+            // DB::transaction(function () use ($request, $nomor_antrian) {
 
-                $table_antrian = Antrian::where('nomor_antrian', $nomor_antrian)->lockForUpdate()->first();
-                // dd($table_antrian);
-                if ($table_antrian != null ) {
-                    if($table_antrian->status == 1 || $table_antrian->status == "1"){
-                        return redirect()->route("User.Layanan.index")->with("message", "Data Gagal Didaftarkan. Nomor Antrian Sudah Ada");
-                    }
-                }
-            });
-            $data_antrian = $antrian->createAntrian($nomor_antrian);
+            //     $table_antrian = Antrian::where('nomor_antrian', $nomor_antrian)->lockForUpdate()->first();
+            //     // dd($table_antrian);
+            //     if ($table_antrian != null ) {
+            //         if($table_antrian->status == 1 || $table_antrian->status == "1"){
+            //             return redirect()->route("User.Layanan.index")->with("message", "Data Gagal Didaftarkan. Nomor Antrian Sudah Ada");
+            //         }
+            //     }
+            // });
+            // $data_antrian = $antrian->createAntrian($nomor_antrian);
             $pasien = Pasien::with(['user'])->where('user_id', Auth::user()->id)->first();
             // dd($pasien);
             $daftarLayanan = DaftarLayanan::create([
@@ -82,7 +82,7 @@ class DaftarLayananController extends Controller
                 'nama_pasien' => $pasien->user->name . '|'. $pasien->id_pasien,
                 'id_layanan' => $request->id_layanan,
                 'nama_layanan' => $request->nama_layanan,
-                'nomor_antrian' => $data_antrian->nomor_antrian,
+                'nomor_antrian' => null,
                 'tgl' => $request->tgl,
                 'status' => '0',
             ]);

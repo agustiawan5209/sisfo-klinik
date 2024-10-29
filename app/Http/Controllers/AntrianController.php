@@ -31,7 +31,7 @@ class AntrianController extends Controller
         $antrian = Antrian::create([
             'user_id' => Auth::user()->id,
             'tanggal' => Carbon::now()->format('Y-m-d'),
-            'nomor_antrian'=> $nomor,
+            'nomor_antrian' => $nomor,
         ]);
 
         return $antrian;
@@ -94,23 +94,26 @@ class AntrianController extends Controller
         try {
             $daftarLayanan = DaftarLayanan::find(Request::input('slug'));
 
-            $nomor_antrian = $this->generateNomorAntrian($daftarLayanan->tgl);
+            if ($daftarLayanan->status == 0) {
+                $nomor_antrian = $this->generateNomorAntrian($daftarLayanan->tgl);
 
-            DB::transaction(function () use ($daftarLayanan, $nomor_antrian) {
+                DB::transaction(function () use ($daftarLayanan, $nomor_antrian) {
 
-                $table_antrian = Antrian::where('nomor_antrian', $nomor_antrian)->lockForUpdate()->first();
-                // dd($table_antrian);
-                if ($table_antrian != null) {
-                    if ($table_antrian->status == 1 || $table_antrian->status == "1") {
-                        return redirect()->route("Admin.Antrian.index")->with("message", "Data Gagal Didaftarkan. Nomor Antrian Sudah Ada");
+                    $table_antrian = Antrian::where('nomor_antrian', $nomor_antrian)->lockForUpdate()->first();
+                    // dd($table_antrian);
+                    if ($table_antrian != null) {
+                        if ($table_antrian->status == 1 || $table_antrian->status == "1") {
+                            return redirect()->route("Admin.Antrian.index")->with("message", "Data Gagal Didaftarkan. Nomor Antrian Sudah Ada");
+                        }
                     }
-                }
-            });
-            $data_antrian = $this->createAntrian($nomor_antrian);
-
+                });
+                $data_antrian = $this->createAntrian($nomor_antrian);
+                $daftarLayanan->update([
+                    'nomor_antrian' => $data_antrian->nomor_antrian,
+                ]);
+            }
             $daftarLayanan->update([
                 'status' => Request::input('status'),
-                'nomor_antrian' => $nomor_antrian,
                 'jam_pemeriksaan' => Request::input('jam_pemeriksaan'),
             ]);
 
