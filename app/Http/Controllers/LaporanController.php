@@ -30,6 +30,7 @@ class LaporanController extends Controller
             'search' =>  Request::input('search'),
             'table_colums' => array_values(array_diff($columns, ['remember_token', 'status', 'id_pendaftaran', 'id_pasien', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id', 'deskripsi'])),
             'data' => Pemeriksaan::whereBetween('created_at', [Request::input('start_date'), Request::input('end_date')])
+            ->orderBy('tgl_pemeriksaan', 'desc')
                 ->paginate(10),
             'can' => [
                 'add' => false,
@@ -46,13 +47,14 @@ class LaporanController extends Controller
     {
         // Ambil data pemeriksaan berdasarkan id
         $data = Pemeriksaan::whereBetween('created_at', Request::only('start_date', 'end_date'))
+        ->orderBy('tgl_pemeriksaan', 'desc')
             ->with(['pasien'])
             ->get();
 
 
 
         // Load view untuk PDF dan pass data pemeriksaan
-        $pdf = PDF::loadView('pdf.pemeriksaan', compact('data'));
+        $pdf = PDF::loadView('pdf.pemeriksaan', compact('data'))->setPaper('a4', 'landscape');
 
         // Unduh PDF
         return $pdf->download('pemeriksaan.pdf');

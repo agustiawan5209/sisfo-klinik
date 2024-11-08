@@ -89,32 +89,14 @@ class AntrianController extends Controller
         Request::validate([
             'slug' => 'required|exists:daftar_layanans,id',
             'status' => 'required',
-            'jam_pemeriksaan' => 'required',
+            // 'jam_pemeriksaan' => 'required',
         ]);
+        // dd(Request::all());
         try {
-            $daftarLayanan = DaftarLayanan::find(Request::input('slug'));
 
-            if ($daftarLayanan->status == 0) {
-                $nomor_antrian = $this->generateNomorAntrian($daftarLayanan->tgl);
-
-                DB::transaction(function () use ($daftarLayanan, $nomor_antrian) {
-
-                    $table_antrian = Antrian::where('nomor_antrian', $nomor_antrian)->lockForUpdate()->first();
-                    // dd($table_antrian);
-                    if ($table_antrian != null) {
-                        if ($table_antrian->status == 1 || $table_antrian->status == "1") {
-                            return redirect()->route("Admin.Antrian.index")->with("message", "Data Gagal Didaftarkan. Nomor Antrian Sudah Ada");
-                        }
-                    }
-                });
-                $data_antrian = $this->createAntrian($nomor_antrian);
-                $daftarLayanan->update([
-                    'nomor_antrian' => $data_antrian->nomor_antrian,
-                ]);
-            }
-            $daftarLayanan->update([
+            $daftarLayanan->find(Request::input('slug'))->update([
                 'status' => Request::input('status'),
-                'jam_pemeriksaan' => Request::input('jam_pemeriksaan'),
+                // 'jam_pemeriksaan' => Request::input('jam_pemeriksaan'),
             ]);
 
             return redirect()->route("Admin.Antrian.index")->with("message", "Data Layanan Berhasil Di Ubah");

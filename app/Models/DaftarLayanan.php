@@ -23,6 +23,9 @@ class DaftarLayanan extends Model
         'status',
     ];
 
+    protected $casts = [
+        'status'=> 'integer'
+    ];
     protected $appends = [
         'status_layanan',
     ];
@@ -31,13 +34,13 @@ class DaftarLayanan extends Model
     {
         $value = '';
         switch ($this->status) {
-            case '0' || 0:
+            case  0:
                 $value = 'Butuh Konfirmasi';
                 break;
-            case '1' || 1:
+            case 1:
                 $value = 'Sudah di Konfirmasi';
                 break;
-            case '2' || 2:
+            case 2:
                 $value = 'Selesai';
                 break;
 

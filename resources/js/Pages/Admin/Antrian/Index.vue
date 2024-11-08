@@ -162,13 +162,13 @@ function submit() {
                         Lakukan Konfirmasi nomor antrian untuk pasien</p>
                 </div>
                 <form action="" @submit.prevent="submit" class="w-full md:w-[70%] border p-4 rounded-lg my-10">
-                    <div class="col-span-full sm:col-span-2">
+                    <!-- <div class="col-span-full sm:col-span-2">
                         <label for="jam_pemeriksaan" class="text-sm">Jam Pemeriksaan</label>
                         <TextInput id="jam_pemeriksaan" type="text" v-model="formLayanan.jam_pemeriksaan"
                             placeholder="00:00 WITA." class="w-full text-gray-900" />
                         <InputError :message="formLayanan.errors.jam_pemeriksaan" />
 
-                    </div>
+                    </div> -->
                     <div class="col-span-full sm:col-span-2">
                         <label for="Antrian" class="text-sm">Status Antrian</label>
                         <select id="Antrian" v-model="formLayanan.status"

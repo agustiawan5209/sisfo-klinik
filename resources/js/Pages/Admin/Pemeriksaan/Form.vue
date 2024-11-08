@@ -72,7 +72,7 @@ const getPendaftaran = async function (event) {
     })
         .then((response) => {
             const element = response.data;
-            Form.id_pendaftaran = element.id;
+            Form.id_pendaftaran = "00"+ page.props.auth.user.id;
             Form.id_layanan = element.id_layanan;
             Form.id_pasien = element.id_pasien;
             Form.nama_pasien = element.nama_pasien;
