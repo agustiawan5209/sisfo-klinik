@@ -145,6 +145,7 @@ const showingNavigationDropdown = ref(false);
                                         </template>
 
                                         <template #content>
+                                            <DropdownLink :href="route('dashboard.pengguna')" class="!text-gray-800"> Dashboard </DropdownLink>
                                             <DropdownLink :href="route('User.profile.edit')" class="!text-gray-800"> Profile </DropdownLink>
                                             <DropdownLink :href="route('logout')" method="post" as="button" class="!text-gray-800">
                                                 Log Out

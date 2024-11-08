@@ -22,10 +22,9 @@ class Layanan extends Model
      {
          $query->when($filter['search'] ?? null, function ($query, $search) {
              $query->where('nama_layanan', 'like', '%' . $search . '%')
-                 ->orWhere('keteranan', 'like', '%' . $search . '%')
                  ->orWhere('id_layanan', 'like', '%' . $search . '%');
          })->when($filter['order'] ?? null, function ($query, $order) {
-             $query->orderBy('id', $order);
+             $query->orderBy('id_layanan', $order);
          });
      }
 }

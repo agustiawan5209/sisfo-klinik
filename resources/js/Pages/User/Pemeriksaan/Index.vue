@@ -74,25 +74,6 @@ const formLayanan = useForm({
     tgl: '',
 })
 
-const getLayanan = async function (id) {
-    axios.get(route('api.get.Layanan', { id: id }), {
-        params: {
-            id: id,
-        }
-    })
-        .then((response) => {
-            const element = response.data;
-            formLayanan.id_layanan = element.id;
-            formLayanan.nama_layanan = element.nama_layanan;
-            showModal.value = true;
-
-        }).catch((err) => {
-            console.log(err)
-            const error = err.response.data;
-            messageDisplay(error, "error")
-
-        })
-}
 
 function submit(){
     formLayanan.post(route('User.Layanan.store'),{

@@ -65,6 +65,7 @@ class ApiModelController extends Controller
             return response("Error :". $th->getMessage(),500);
         }
     }
+
     public function getPendaftaran($id)
     {
         try {
@@ -108,5 +109,24 @@ class ApiModelController extends Controller
             'data' => $data,
             'label' => array_values(array_unique($months)),
         ];
+    }
+
+
+    public function cekJadwal($tgl, $jam_pemeriksaan){
+
+        try{
+            if($tgl == 'hari ini'){
+                $tgl = Carbon::now()->format('Y-m-d');
+            }else if($tgl == 'besok'){
+                $tgl = Carbon::now()->addDay(1)->format('Y-m-d');
+            }else{
+                $tgl = Carbon::now()->format('Y-m-d');
+            }
+            $daftar_layanan = DaftarLayanan::where('tgl', $tgl)->where('jam_pemeriksaan', $jam_pemeriksaan)->get();
+
+            return response()->json($daftar_layanan->count(), 200);
+        }catch(\Exception $e){
+            return response()->json($e->getMessage(), 400);
+        }
     }
 }

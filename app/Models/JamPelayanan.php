@@ -10,7 +10,7 @@ class JamPelayanan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'jam',
+        'jam', 'no_antrian'
     ];
 
     public function scopeFilterBySearch($query, $search)

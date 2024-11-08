@@ -27,8 +27,8 @@ class StoreDaftarLayananRequest extends FormRequest
             'id_layanan' => 'required|exists:layanans,id',
             'nama_layanan' => 'required|string',
             // 'nomor_antrian' => 'required|string',
-            'tgl' => 'required|date',
-            // 'status' => 'required|in_array:0,1,2',
+            'tgl' => 'required|in:hari ini,besok,lusa',
+            'jam_pelayanan'=> 'required|string'
         ];
     }
 }

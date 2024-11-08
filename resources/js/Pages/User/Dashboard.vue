@@ -23,7 +23,7 @@ const props = defineProps({
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Dashboard Pasien</h2>
         </template>
 
-        <div class="w-full bg-gradient-to-bl from-primary to-green-300 overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="w-full bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="grid grid-cols-1 2xl:grid-cols-2 gap-7 p-2 place-content-end">
                 <div class=" p-3 flex justify-center items-center relative">
                     <!-- <div class="w-full absolute bg-center left-1/4 z-0 opacity-45">

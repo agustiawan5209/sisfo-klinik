@@ -56,14 +56,14 @@ const User = usePage().props.auth.user
                                             class="flex items-center flex-grow text-xs md:text-sm lg:text-base text-white ">Dashboard</Link>
                                     </span>
                                 </div>
-                                <div>
+                                <!-- <div>
                                     <span
                                         class="select-none flex items-center px-4 bg-blue-600 py-2 rounded-md">
                                         <Link :href="route('User.Layanan.index')"
                                             class="flex items-center flex-grow text-xs md:text-sm lg:text-base text-white ">Daftar
                                             Layanan</Link>
                                     </span>
-                                </div>
+                                </div> -->
                                 <div>
                                     <span
                                         class="select-none flex items-center px-4 bg-blue-600 py-2 rounded-md">

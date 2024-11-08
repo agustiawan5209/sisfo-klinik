@@ -27,3 +27,5 @@ Route::get('get-pengguna-data/{tahun}', [ApiModelController::class, 'getJumlahPe
 
 
 Route::get('antrian-grafik', [GrafikController::class,'allAntrian'])->name('grafik.antrian');
+
+Route::get('get-jadwal-pemeriksaan/{tgl}/{jam_pemeriksaan}', [ApiModelController::class, 'cekJadwal'])->name('api.cek.Jadwal');

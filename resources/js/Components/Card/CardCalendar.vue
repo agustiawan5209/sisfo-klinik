@@ -5,12 +5,26 @@ import { Calendar, DatePicker, Popover } from 'v-calendar';
 import 'v-calendar/style.css';
 import axios from 'axios';
 
+
+const Page = usePage().props.auth;
+const Roles = Page.role;
+function roleToCheck(role) {
+    if (Array.isArray(Roles)) {
+        return Roles.includes(role)
+    }else{
+        return false;
+    }
+}
 const dates = ref(null);
 watch(dates, (value) => {
     const Jadwal = new Date(value)
     const search = `${Jadwal.getFullYear()}-${String(Jadwal.getMonth() + 1).padStart(2, '0')}-${Jadwal.getDate().toString().padStart(2, '0')}`;
 
-    router.get(route('Admin.Antrian.index', {date: search}))
+    if(roleToCheck('Admin')){
+        router.get(route('Admin.Antrian.index', {date: search}))
+    }else{
+        router.get(route('User.Antrian.index', {date: search}))
+    }
 })
 const Loaded = ref(false)
 const AttributeData = ref([{

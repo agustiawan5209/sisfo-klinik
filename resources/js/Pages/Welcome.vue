@@ -1,6 +1,52 @@
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link,usePage } from '@inertiajs/vue3';
 import HomeLayout from '@/Layouts/HomeLayout.vue';
+import { defineProps, onMounted, ref, inject } from 'vue';
+import Pendaftaran from './Pendaftaran.vue';
+
+const swal = inject('$swal')
+
+const page = usePage()
+
+onMounted(() => {
+    if (page.props.message !== null) {
+        swal({
+            icon: "info",
+            title: 'Berhasil',
+            text: page.props.message,
+            showConfirmButton: true,
+            timer: 2000
+        });
+    }
+})
+function messageDisplay(message, icon) {
+    swal({
+        icon: icon,
+        title: 'Perhatian!!',
+        text: message,
+        showConfirmButton: true,
+        timer: 2000
+    });
+}
+
+const props = defineProps({
+    jampelayanan: {
+        type: Object,
+        default: ()=>({}),
+        required: true,
+    },
+    layanan: {
+        type: Object,
+        default: ()=>({}),
+        required: true,
+    },
+    pemeriksaan: {
+        type: Object,
+        default: ()=>({}),
+        required: true,
+    },
+})
+
 
 </script>
 
@@ -9,27 +55,7 @@ import HomeLayout from '@/Layouts/HomeLayout.vue';
     <Head title="Welcome" />
     <HomeLayout class="w-full">
           <!-- start hero -->
-          <div class="bg-gray-100">
-            <section class="cover bg-blue-teal-gradient relative bg-blue-600 px-4 sm:px-8 lg:px-16 xl:px-40 2xl:px-64 overflow-hidden py-48 flex
-          items-center min-h-screen">
-                <div class="h-full w-full absolute top-0 left-0 z-0">
-                    <img src="images/cover-bg.jpg" alt="" class="w-full h-full object-cover opacity-20">
-                </div>
-
-                <div class="lg:w-3/4 xl:w-2/4 relative z-10 h-100 lg:mt-16">
-                    <div>
-                        <h1 class="text-white text-xl md:text-2xl xl:text-5xl font-bold leading-tight">SISTEM PENGELOLAAN DATA
-                            PEMERIKSAAN GIGI</h1>
-                        <p class="text-blue-100 text-xl md:text-2xl leading-snug mt-4">
-                            KLINIK FAHRI DENT KOTA MAKASSAR</p>
-                        <Link :href="route('User.Layanan.index')"
-                            class="px-8 py-4 bg-teal-500 text-white rounded inline-block mt-8 font-semibold">
-                        Pendaftaran Antrian
-                        </Link>
-                    </div>
-                </div>
-            </section>
-        </div>
+    <Pendaftaran :layanan="layanan" :jampelayanan="jampelayanan" :pemeriksaan="pemeriksaan" />
         <!-- end hero -->
 
         <!-- start about -->

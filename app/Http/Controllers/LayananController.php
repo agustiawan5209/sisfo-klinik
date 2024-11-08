@@ -25,7 +25,7 @@ class LayananController extends Controller
         return Inertia::render('Admin/Layanan/Index', [
             'search' =>  Request::input('search'),
             'table_colums' => array_values(array_diff($columns, ['remember_token', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id', 'deskripsi'])),
-            'data' => Layanan::filter(Request::only('search', 'order'))->paginate(10),
+            'data' => Layanan::filter(Request::only('search', 'order'))->where('id_layanan', '!=', 'LN-000')->paginate(10),
             'can' => [
                 'add' => true,
                 'edit' => true,

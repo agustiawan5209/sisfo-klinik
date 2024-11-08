@@ -17,7 +17,7 @@ import { Link, usePage } from '@inertiajs/vue3';
           <p class="text-gray-600 my-2">Terima Kasih Telah Melakukan Pendaftaran Di KLINIK FAHRI DENT .</p>
           <p> Have a great day!  </p>
           <div class="py-10 text-center">
-              <Link :href="route('User.Layanan.index')" class="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3">
+              <Link :href="route('User.Antrian.index')" class="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3">
                   Kembali
              </Link>
           </div>
