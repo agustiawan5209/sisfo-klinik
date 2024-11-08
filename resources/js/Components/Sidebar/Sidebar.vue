@@ -45,6 +45,12 @@ function ArrayToString(){
 
 
         <li class="relative px-6 py-3">
+            <NavLink :href="route('JamPelayanan.index')" :active="route().current('JamPelayanan.index')">
+                <font-awesome-icon :icon="['fas', 'file']"/>
+                <span class="ml-4">JamPelayanan</span>
+            </NavLink>
+        </li>
+        <li class="relative px-6 py-3">
             <NavLink :href="route('Pasien.index')" :active="route().current('Pasien.index')">
                 <font-awesome-icon :icon="['fas', 'file']"/>
                 <span class="ml-4">Pasien</span>

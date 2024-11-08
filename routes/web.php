@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JamPelayananController;
 use App\Http\Controllers\AntrianController;
 use App\Http\Controllers\AntrianUserController;
 use App\Http\Controllers\DaftarLayananController;
@@ -152,5 +153,19 @@ Route::middleware(['auth', 'verified', 'role:Admin|Pasien|Klinik'])->group(funct
         Route::get('/profile', [UserProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [UserProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [UserProfileController::class, 'destroy'])->name('profile.destroy');
+    });
+
+
+      // Router Tahun Ajar
+      Route::group(['prefix' => 'jam-pelayanan', 'as' => "JamPelayanan."], function () {
+        Route::controller(JamPelayananController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/tambah-data/jam-pelayanan', 'create')->name('create');
+            Route::get('/edit-data/jam-pelayanan', 'edit')->name('edit');
+            Route::get('/detail-data/jam-pelayanan', 'show')->name('show');
+            Route::post('/store-data/jam-pelayanan', 'store')->name('store');
+            Route::put('/update-data/jam-pelayanan', 'update')->name('update');
+            Route::delete('/hapus-data/jam-pelayanan', 'destroy')->name('destroy');
+        });
     });
 });
