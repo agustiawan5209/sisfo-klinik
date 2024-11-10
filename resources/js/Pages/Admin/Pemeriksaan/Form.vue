@@ -121,7 +121,7 @@ function submit() {
                                 <select name="id_pendaftaran" id="id_pendaftaran"  @change="getPendaftaran($event)"
                                 class="border-gray-300 focus:border-primary focus:ring-primary rounded-md shadow-sm w-full text-gray-900">
                                 <option value="">---</option>
-                                <option v-for="jab in pendaftaran" :value="jab.id">Nomor Antrian: {{ jab.nomor_antrian }}|| Tanggal: {{jab.tgl}}</option>
+                                <option v-for="jab in pendaftaran" :value="jab.id">ID Pasien:{{ jab.id_pasien }}||Antrian: {{ jab.nomor_antrian }}|| Tanggal: {{jab.tgl}}</option>
                             </select>
 
                                 <InputError :message="Form.errors.id_layanan"/>

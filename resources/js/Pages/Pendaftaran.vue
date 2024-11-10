@@ -74,8 +74,7 @@ const getLayanan = async function (id, param) {
             }
             formLayanan.id_layanan = element.id;
             formLayanan.nama_layanan = layananid;
-            showModal.value = true;
-
+            closeModal();
         }).catch((err) => {
             console.log(err)
             const error = err.response.data;
@@ -92,14 +91,15 @@ const cekJadwal = async function (id, param) {
             // data respon merupakan angka
             let countres = response.data;
 
-            if(countres > 0){
+            if (countres > 0) {
                 messageDisplay('Maaf Jadwal Antrian Sudah Ada untuk Jam =' + param.jam_pemeriksaan, 'error');
                 buttonProses.value = true;
-            }else{
+            } else {
                 formLayanan.tgl = param.tgl;
                 formLayanan.jam_pelayanan = param.jam_pemeriksaan;
                 buttonProses.value = false;
             }
+
         }).catch((err) => {
             console.log(err)
             const error = err.response.data;
@@ -114,7 +114,7 @@ const jamPemeriksaan = ref('')
 
 watch(tglDaftar, async (value) => {
     if (value && jamPemeriksaan.value) {
-        await cekJadwal(formLayanan.id_layanan,{
+        await cekJadwal(formLayanan.id_layanan, {
             jam_pemeriksaan: jamPemeriksaan.value,
             tgl: value,
         })
@@ -122,7 +122,7 @@ watch(tglDaftar, async (value) => {
 })
 watch(jamPemeriksaan, async (value) => {
     if (value && tglDaftar.value) {
-        await cekJadwal(formLayanan.id_layanan,{
+        await cekJadwal(formLayanan.id_layanan, {
             tgl: tglDaftar.value,
             jam_pemeriksaan: value,
         })
@@ -147,10 +147,42 @@ function submit() {
 
     })
 }
+
+const modalLayanan = ref(false);
+const modalPemeriksaan = ref(false)
+
+const showModalLayanan = () => {
+    modalLayanan.value = true;
+}
+const closeModal = () => {
+    modalLayanan.value = false;
+}
+
+function formatTanggal(date) {
+  return date.toLocaleDateString("id-ID", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "Asia/Makassar"
+  });
+}
+
+// Mendapatkan tanggal hari ini
+const hariIni = new Date();
+const hariIniMakassar = new Date(hariIni.toLocaleString("en-US", { timeZone: "Asia/Makassar" }));
+
+// Mendapatkan tanggal besok
+const besok = new Date(hariIniMakassar);
+besok.setDate(hariIniMakassar.getDate() + 1);
+
+// Menampilkan tanggal hari ini dan besok
+console.log("Hari ini:", formatTanggal(hariIniMakassar));
+console.log("Besok:", formatTanggal(besok));
 </script>
 
 <template>
-    <Modal :show="showModal" maxWidth="md">
+    <!-- Form -->
+    <Modal :show="showModal" maxWidth="2xl">
         <div class="w-full flex flex-col justify-center items-center py-4">
             <div class="text-gray-700 text-center">
                 <h3 class="text-xl md:text-2xl">Form Buat Antrian</h3>
@@ -159,8 +191,21 @@ function submit() {
             </div>
             <form action="" @submit.prevent="submit" class="w-full border p-4 rounded-lg my-10">
                 <div class="mt-2">
-                    <inputLabel value="Nama Layanan" />
-                    <TextInput class="w-full" type="text" v-model="formLayanan.nama_layanan" />
+                    <inputLabel value="Pilih Layanan" />
+                    <div class="inline-flex rounded-md shadow-sm" role="group">
+                        <button type="button" v-if="pemeriksaan != null" @click="getLayanan(pemeriksaan.id)"
+                            class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+                            Pemeriksaan
+                        </button>
+                        <button type="button" @click="showModalLayanan"
+                            class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+                            Pilih Layanan
+                        </button>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <inputLabel for="layanan" value="Layanan Yang Dipilih" />
+                    <TextInput type="text" class="w-full " readonly v-model="formLayanan.nama_layanan" />
                 </div>
                 <div class="mt-2">
                     <inputLabel for="list-radio" value="Hari Kedatangan" />
@@ -174,7 +219,7 @@ function submit() {
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                 <label for="radio-hari-ini"
                                     class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Hari
-                                    Ini</label>
+                                    Ini |{{ formatTanggal(hariIniMakassar) }} </label>
                             </div>
                         </li>
                         <li class="w-full dark:border-gray-600">
@@ -182,7 +227,7 @@ function submit() {
                                 <input v-model="tglDaftar" id="radio-besok" type="radio" value="besok" name="list-radio"
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                 <label for="radio-besok"
-                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Besok</label>
+                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Besok |{{ formatTanggal(besok) }} </label>
                             </div>
                         </li>
                     </ul>
@@ -201,18 +246,64 @@ function submit() {
                                     :value="item.jam" :name="'jam_pelayanan'"
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                 <label :for="'jam_pelayanan' + item.id"
-                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ item.jam }}</label>
+                                    class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{
+                                        item.jam }}</label>
                             </div>
                         </li>
                     </ul>
                 </div>
 
                 <div class="mt-2 flex justify-center">
-                    <PrimaryButton type="submit" :disabled="buttonProses" class="bg-green-500 hover:bg-green-700 disabled:bg-opacity-20">Buat Antrian
+                    <PrimaryButton type="submit" :disabled="buttonProses"
+                        class="bg-green-500 hover:bg-green-700 disabled:bg-opacity-20">Buat Antrian
                     </PrimaryButton>
                 </div>
 
             </form>
+        </div>
+    </Modal>
+
+    <!-- Daftar Layanan -->
+    <Modal :show="modalLayanan">
+        <div class="col-span-1 sm:col-span-8 md:col-span-7 bg-white p-2">
+            <div class="w-full overflow-x-auto">
+                <table class="w-full whitespace-no-wrap">
+                    <thead>
+                        <tr
+                            class="text-xs font-semibold tracking-wide text-left uppercase border-b border-gray-700  text-gray-800">
+                            <th class="px-4 py-3">ID Layanan</th>
+                            <th class="px-4 py-3">Pilih Layanan Layanan</th>
+                            <th class="px-4 py-3"></th>
+                        </tr>
+                    </thead>
+                    <tbody class=" divide-y divide-gray-700" v-if="layanan.length">
+                        <tr class="text-gray-800" v-for="(item, index) in layanan">
+                            <td class="px-4 py-3 text-sm">
+                                {{ item.id_layanan }}
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                {{ item.nama_layanan }}
+                                <p class="text-xs">{{ item.keterangan }}</p>
+                                <br>
+                                <span
+                                    class="px-2 py-1 font-semibold leading-tight rounded-full whitespace-nowrap bg-green-700 text-green-100">
+                                    {{ item.harga }}
+                                </span>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                <PrimaryButton type="button" @click="getLayanan(item.id)" class="bg-green-400">
+                                    Buat Antrian
+                                </PrimaryButton>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody class="divide-y divide-gray-700 bg-gray-800" v-else>
+                        <tr>
+                            <td colspan="4" class="p-5 text-gray-400 text-center">Data Kosong</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </Modal>
     <!-- start hero -->
@@ -225,65 +316,17 @@ function submit() {
 
 
             <!-- Layanan -->
-            <div class="w-full relative z-10 grid grid-cols-12 mt-32">
-                <div class="col-span-1 sm:col-span-4 md:col-span-5">
-                    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow" v-if="pemeriksaan">
-                        <a href="#">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Layanan Pemeriksaan</h5>
-                        </a>
-                        <p class="mb-3 font-normal text-gray-700">Pemeriksaan gigi rutin adalah kunci untuk menjaga
-                            kesehatan gigi dan mulut</p>
-                        <a @click="getLayanan(pemeriksaan.id)" href="#"
-                            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                            Daftar Untuk Pemeriksaan
-                            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                            </svg>
-                        </a>
-                    </div>
-
-                </div>
-                <div class="col-span-1 sm:col-span-8 md:col-span-7 bg-white p-2">
-                    <div class="w-full overflow-x-auto">
-                        <table class="w-full whitespace-no-wrap">
-                            <thead>
-                                <tr
-                                    class="text-xs font-semibold tracking-wide text-left uppercase border-b border-gray-700  text-gray-800">
-                                    <th class="px-4 py-3">ID Layanan</th>
-                                    <th class="px-4 py-3">Nama Layanan</th>
-                                    <th class="px-4 py-3"></th>
-                                </tr>
-                            </thead>
-                            <tbody class=" divide-y divide-gray-700" v-if="layanan.length">
-                                <tr class="text-gray-800" v-for="(item, index) in layanan">
-                                    <td class="px-4 py-3 text-sm">
-                                        {{ item.id_layanan }}
-                                    </td>
-                                    <td class="px-4 py-3 text-sm">
-                                        {{ item.nama_layanan }}
-                                        <p class="text-xs">{{ item.keterangan }}</p>
-                                        <br>
-                                        <span
-                                            class="px-2 py-1 font-semibold leading-tight rounded-full whitespace-nowrap bg-green-700 text-green-100">
-                                            {{ item.harga }}
-                                        </span>
-                                    </td>
-                                    <td class="px-4 py-3 text-sm">
-                                        <PrimaryButton type="button" @click="getLayanan(item.id)" class="bg-green-400">
-                                            Buat Antrian
-                                        </PrimaryButton>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <tbody class="divide-y divide-gray-700 bg-gray-800" v-else>
-                                <tr>
-                                    <td colspan="4" class="p-5 text-gray-400 text-center">Data Kosong</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+            <div class="lg:w-3/4 xl:w-2/4 relative z-10 h-100 lg:mt-16">
+                <div>
+                    <h1 class="text-white text-xl md:text-2xl xl:text-5xl font-bold leading-tight">SISTEM PENGELOLAAN
+                        DATA
+                        PEMERIKSAAN GIGI</h1>
+                    <p class="text-blue-100 text-xl md:text-2xl leading-snug mt-4">
+                        KLINIK FAHRI DENT KOTA MAKASSAR</p>
+                    <a @click="showModal = true" href="#"
+                        class="px-8 py-4 bg-teal-500 text-white rounded inline-block mt-8 font-semibold">
+                        Daftar Untuk Pemeriksaan
+                    </a>
                 </div>
             </div>
 

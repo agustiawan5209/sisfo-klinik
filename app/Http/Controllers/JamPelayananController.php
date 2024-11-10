@@ -49,7 +49,10 @@ class JamPelayananController extends Controller
      */
     public function store(StoreJamPelayananRequest $request)
     {
-        JamPelayanan::create($request->all());
+        $lastId = JamPelayanan::max('id') + 1;
+        $data = $request->all();
+        $data['no_antrian'] = str_pad($lastId, 3, '0', STR_PAD_LEFT);
+        JamPelayanan::create($data);
 
         return redirect()->route('JamPelayanan.index')->with('message', 'Data Berhasil Di Tambah');
     }

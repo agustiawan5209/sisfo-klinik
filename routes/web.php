@@ -51,7 +51,7 @@ Route::middleware(['auth', 'verified', 'role:Admin|Pasien|Klinik'])->group(funct
     // User
     // Layanan
     // Router User/Pasien
-    Route::group(['as' => "User.",], function () {
+    Route::group(['as' => "User.", 'middleware' => ['role:Pasien']], function () {
         Route::group(['prefix' => 'layanan', 'as' => "Layanan.",], function () {
             Route::controller(DaftarLayananController::class)->group(function () {
                 Route::get('/daftar', 'index')->name('index');
@@ -62,28 +62,26 @@ Route::middleware(['auth', 'verified', 'role:Admin|Pasien|Klinik'])->group(funct
                 Route::post('/store-daftar-layanan', 'store')->name('store');
                 Route::put('/update-daftar-layanan', 'update')->name('update');
                 Route::delete('/hapus-daftar-layanan', 'destroy')->name('destroy');
-
             });
         });
         Route::group(['prefix' => 'antrian', 'as' => "Antrian.",], function () {
             Route::controller(AntrianUserController::class)->group(function () {
                 Route::get('/data', 'index')->name('index');
                 Route::get('/cetak-antrian/{id}', 'cetakAntrian')->name('cetak');
-
             });
         });
         Route::group(['prefix' => 'pemeriksaan', 'as' => "Pemeriksaan.",], function () {
             Route::controller(UserPemeriksaanController::class)->group(function () {
                 Route::get('/data', 'index')->name('index');
                 Route::get('/detail-pemeriksaan', 'show')->name('show');
-
             });
         });
     });
 
 
-    // Router Pasien
-    Route::group(['prefix' => 'pasien', 'as' => "Pasien.",], function () {
+   Route::middleware('role:Admin|Klinik')->group(function () {
+     // Router Pasien
+     Route::group(['prefix' => 'pasien', 'as' => "Pasien.",], function () {
         Route::controller(PasienController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('/tambah-data-pasien', 'create')->name('create');
@@ -143,15 +141,15 @@ Route::middleware(['auth', 'verified', 'role:Admin|Pasien|Klinik'])->group(funct
         });
     });
 
-    Route::group( ['prefix'=> 'user', 'as'=> 'User.'], function () {
+    Route::group(['prefix' => 'user', 'as' => 'User.'], function () {
         Route::get('/profile', [UserProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [UserProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [UserProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
 
-      // Router Tahun Ajar
-      Route::group(['prefix' => 'jam-pelayanan', 'as' => "JamPelayanan."], function () {
+    // Router Tahun Ajar
+    Route::group(['prefix' => 'jam-pelayanan', 'as' => "JamPelayanan."], function () {
         Route::controller(JamPelayananController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('/tambah-data/jam-pelayanan', 'create')->name('create');
@@ -162,4 +160,5 @@ Route::middleware(['auth', 'verified', 'role:Admin|Pasien|Klinik'])->group(funct
             Route::delete('/hapus-data/jam-pelayanan', 'destroy')->name('destroy');
         });
     });
+   });
 });

@@ -80,7 +80,6 @@ class DaftarLayananController extends Controller
             $data_antrian = $antrian->createAntrian($nomor_antrian);
             $pasien = Pasien::with(['user'])->where('user_id', Auth::user()->id)->first();
 
-
             $daftarLayanan = DaftarLayanan::create([
                 'id_pasien' => $pasien->id,
                 'nama_pasien' => $pasien->user->name . '|'. $pasien->id_pasien,
