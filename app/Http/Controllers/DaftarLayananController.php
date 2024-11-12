@@ -62,7 +62,6 @@ class DaftarLayananController extends Controller
      */
     public function store(StoreDaftarLayananRequest $request)
     {
-        // dd($request->all());
         try {
             $tgl = null;
             if($request->tgl == 'hari ini'){
