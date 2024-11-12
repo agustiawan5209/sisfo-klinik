@@ -31,8 +31,6 @@ use App\Models\DaftarLayanan;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-
-Route::get('/validate-user', [DashboardController::class, 'validate'])->middleware(['auth', 'verified'])->name('validate');
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth', 'verified', 'role:Admin|Klinik'])->name('dashboard');
 Route::get('/dashboard/pasien', [DashboardController::class, 'dashboardPengguna'])->middleware(['auth', 'verified', 'role:Pasien'])->name('dashboard.pengguna');
