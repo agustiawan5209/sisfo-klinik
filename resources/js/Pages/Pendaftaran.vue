@@ -206,7 +206,7 @@ besok.setDate(hariIniMakassar.getDate() + 1);
                 </div>
                 <div class="mt-2">
                     <inputLabel for="list-radio" value="Hari Kedatangan" />
-                    <TextInput type="date" class="w-full " readonly v-model="tglDaftar" />
+                    <TextInput type="date" class="w-full " v-model="tglDaftar" />
                 </div>
 
                 <div class="mt-2">
