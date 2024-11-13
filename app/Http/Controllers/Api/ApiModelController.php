@@ -115,13 +115,6 @@ class ApiModelController extends Controller
     public function cekJadwal($tgl, $jam_pemeriksaan){
 
         try{
-            if($tgl == 'hari ini'){
-                $tgl = Carbon::now()->format('Y-m-d');
-            }else if($tgl == 'besok'){
-                $tgl = Carbon::now()->addDay(1)->format('Y-m-d');
-            }else{
-                $tgl = Carbon::now()->format('Y-m-d');
-            }
             $daftar_layanan = DaftarLayanan::where('tgl', $tgl)->where('jam_pemeriksaan', $jam_pemeriksaan)->get();
 
             return response()->json($daftar_layanan->count(), 200);

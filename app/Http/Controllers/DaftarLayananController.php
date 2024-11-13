@@ -63,14 +63,7 @@ class DaftarLayananController extends Controller
     public function store(StoreDaftarLayananRequest $request)
     {
         try {
-            $tgl = null;
-            if($request->tgl == 'hari ini'){
-                $tgl = Carbon::now()->format('Y-m-d');
-            }else if($request->tgl == 'besok'){
-                $tgl = Carbon::now()->addDay(1)->format('Y-m-d');
-            }else{
-                $tgl = Carbon::now()->format('Y-m-d');
-            }
+            $tgl = $request->tgl;
             $antrian = new AntrianController();
 
             $jampelayanan = JamPelayanan::where('jam', $request->jam_pelayanan)->first();

@@ -50,14 +50,7 @@ class AuthenticatedSessionController extends Controller
             if (session()->has('pendaftaran')) {
                 $session =session()->get('pendaftaran');
 
-                $tgl = null;
-                if ($session['tgl'] == 'hari ini') {
-                    $tgl = Carbon::now()->format('Y-m-d');
-                } else if ($session['tgl'] == 'besok') {
-                    $tgl = Carbon::now()->addDay(1)->format('Y-m-d');
-                } else {
-                    $tgl = Carbon::now()->format('Y-m-d');
-                }
+                $tgl = $session['tgl'];
                 $antrian = new AntrianController();
 
                 $jampelayanan = JamPelayanan::where('jam', $session['jam_pelayanan'])->first();
