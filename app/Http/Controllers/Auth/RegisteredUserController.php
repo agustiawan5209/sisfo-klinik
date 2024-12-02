@@ -79,6 +79,6 @@ class RegisteredUserController extends Controller
         ]);
         $pasien->save();
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOMEPASIEN);
     }
 }
