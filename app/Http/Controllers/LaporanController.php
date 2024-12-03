@@ -29,7 +29,7 @@ class LaporanController extends Controller
         return Inertia::render('Admin/Laporan/Index', [
             'search' =>  Request::input('search'),
             'table_colums' => array_values(array_diff($columns, ['remember_token', 'status', 'id_pendaftaran', 'id_pasien', 'password', 'email_verified_at', 'created_at', 'updated_at', 'user_id', 'deskripsi'])),
-            'data' => Pemeriksaan::whereBetween('created_at', [Request::input('start_date'), Request::input('end_date')])
+            'data' => Pemeriksaan::whereBetween('tgl_pemeriksaan', [Request::input('start_date'), Request::input('end_date')])
             ->orderBy('tgl_pemeriksaan', 'desc')
                 ->paginate(10),
             'can' => [
@@ -46,7 +46,7 @@ class LaporanController extends Controller
     public function cetakPDF()
     {
         // Ambil data pemeriksaan berdasarkan id
-        $data = Pemeriksaan::whereBetween('created_at', Request::only('start_date', 'end_date'))
+        $data = Pemeriksaan::whereBetween('tgl_pemeriksaan', Request::only('start_date', 'end_date'))
         ->orderBy('tgl_pemeriksaan', 'desc')
             ->with(['pasien'])
             ->get();
