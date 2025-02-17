@@ -1,5 +1,4 @@
 ---
-
 ## 🏥 Sistem informsi Klinik Gigi
 
 **Sisfo Klinik** adalah sistem informasi klinik untuk mengelola data pasien, rekam medis, jadwal dokter, dan transaksi pembayaran. Dibangun menggunakan **Laravel, Vue.js, dan Inertia.js** untuk mendukung efisiensi dalam operasional klinik.  
@@ -55,4 +54,3 @@
 Proyek ini menggunakan lisensi **MIT**.  
 
 ---
-😊
